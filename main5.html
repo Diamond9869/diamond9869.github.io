@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="Generator" content="Microsoft Visual Studio Code v1.52.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>マーくんのSurvivブログ</title>
+    <link rel="shortcut icon" type="image/x-icon" href="photos/Favicon (1).ico" />
+    <link rel="icon" type="image/x-icon" href="photos/Favicon (1).ico" />
+    <style type="text/css">
+            body {
+              background-color: rgb(27, 27, 27);
+              color: rgb(255, 255, 255);
+            }
+            header {
+              width: 100%;
+              height: 110px;
+              position: fixed;
+              top: 0;
+              left: 0;
+              z-index: 1;
+            }
+            .onh {
+              transition: all 200ms 15ms ease;
+              opacity: 0;
+              height: 0;
+            }
+            .offh {
+              transition: all 200ms 110ms ease;
+              opacity: 1;
+              height: 110px;
+            }
+            .logo {
+              height: 30px;
+            }
+            .main-part {
+              animation: fadeIn 2.0s ease 0s 1 normal;
+            }
+            @keyframes fadeIn { /* fadeInの動作を指定 */
+              0% {opacity: 0} 
+              100% {opacity: 1} 
+            }
+            .clock {
+              transition: all 400ms ease; /* プロパティが変化する際のアニメーションの速度を操作する */
+              opacity: 1; /* 要素の透明度を指定 */
+              position: fixed;
+              margin-right: 18.720;
+              top: 0;
+              right: 0;
+              z-index: 2;
+            }
+            #view_clock:hover { /* hoverでマウスオーバーされたときの動作を指定 */
+              transition: all 400ms ease;
+              opacity: 1;
+            }
+            #view_time:hover {
+              transition: all 400ms ease;
+              opacity: 1;
+            }
+            #view_clock.onc {
+              transition: all 200ms 15ms ease;
+              opacity: 0;
+            }
+            .offc {
+              transition: all 200ms 110ms ease;
+              opacity: 1;
+            }
+            #view_time.ond {
+              transition: all 200ms 15ms ease;
+              opacity: 0;
+            }
+            .offd {
+              transition: all 200ms 110ms ease;
+              opacity: 1;
+            }
+            #btn {
+              transition: all 400ms 0s ease;
+              opacity:0.3;
+            }
+            #btn:hover {
+              transition: all 400ms 0s ease;
+              opacity:1;
+              color: rgb(0, 255, 255)
+            }
+            #btn:active {
+              transition: all 400ms 0s ease;
+              opacity:1;
+              color: rgb(255, 95, 255)
+            }
+            .onb {
+              transform: translate(0px, -70px) /* 与えられた要素を移動する */
+            }
+            .offb {
+              transform: translate(0px, 0px)
+            }
+            .linktop {
+              position: fixed;
+              right: 20px;
+              bottom: 20px;
+              transition: all 400ms 0s ease;
+              width: 57px;
+              height: 57px;
+            }
+            .linktop:hover {
+              transition: all 400ms 0s ease;
+              width: 77px;
+              height: 77px;
+            }
+            a {
+              color: rgb(200, 255, 0);
+              transition: all 400ms 0s ease;
+              opacity: 0.6;
+            }
+            a:hover {
+              color: rgb(0, 255, 255);
+              transition: all 400ms 0s ease;
+              opacity: 1;
+            }
+            a:active {
+              color: rgb(255, 0, 242);
+              transition: all 400ms 0s ease;
+              opacity: 1;
+            }
+            .introduction {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .introduction.show {
+              opacity: 1;
+              transform: none;
+            }
+            .top {
+              transition: all 400ms 0s ease;
+              width: 48px;
+              height: 48px;
+            }
+            .top:hover {
+              transition: all 400ms 0s ease;
+              width: 58px;
+              height: 58px;
+            }
+            .top-3 {
+              transition: all 400ms 0s ease;
+              width: 48px;
+              height: 48px;
+            }
+            .top-3:hover {
+              transition: all 400ms 0s ease;
+              width: 58px;
+              height: 58px;
+            }
+            .top-link {
+              transition: all 400ms 0s ease;
+              width: 64px;
+              height: 64px;
+            }
+            .top-link:hover {
+              transition: all 400ms 0s ease;
+              width: 85px;
+              height: 85px;
+            }
+            .top-link3 {
+              transition: all 400ms 0s ease;
+              width: 64px;
+              height: 64px;
+            }
+            .top-link3:hover {
+              transition: all 400ms 0s ease;
+              width: 85px;
+              height: 85px;
+            }
+            .links-top {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .links-top.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-root {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-root.show {
+              opacity: 1;
+              transform: none;
+            }
+            .copyright {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .copyright.show {
+              opacity: 1;
+              transform: none;
+            }
+            .linkaccounts-1 {
+              transition: all 400ms 0s ease;
+              width: 120px;
+              height: 120px;
+            }
+            .linkaccounts-1:hover {
+              transition: all 400ms 0s ease;
+              width: 150px;
+              height: 150px;
+            }
+            .linkaccounts-2 {
+              transition: all 400ms 0s ease;
+              width: 100px;
+              height: 100px;
+            }
+            .linkaccounts-2:hover {
+              transition: all 400ms 0s ease;
+              width: 125px;
+              height: 125px;
+            }
+            .fadein-0 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-0.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-1 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-1.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-2 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-2.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-3 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-3.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-4 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-4.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-5 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-5.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-6 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-6.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-7 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-7.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-8 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-8.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-9 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-9.show {
+              opacity: 1;
+              transform: none;
+            }
+            #image1 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image2 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image3 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image4 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image5 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image6 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image7 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image8 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image9 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image10 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+    </style>
+  </head>
+  <body>
+    <div class="main-part">
+      <header id="header">
+        <h1>
+          マーくんの<img class="logo" src="photos/250px-Surviv.io.png">ブログ
+          <a class="top-3" href="main2.html">
+            <img class="top" alt="ホームへ戻る" title="ホームへ戻る" src="photos/Screenshot_-_2019年12月21日_-_10時58分04秒.png">
+          </a>
+          <a  href="index.html">
+            <img class="top-3" alt="index.htmlへ戻る" title="index.htmlへ戻る" src="photos/220px-ISO_7010_E001_new.svg.png">
+          </a>
+        </h1>
+      </header>
+      <p align="right">
+        <a href="#linktop">
+          <img alt="TOPへ移動" title="TOPへ移動" class="linktop" src="photos/btn_pagetop.png">
+        </a>
+      </p>
+      <div class="noscript"> 
+        <noscript> <!--ブラウザのJavaScriptの設定が無効な場合の動作を指定-->
+          <h1 align="center">
+            <font color="red">
+              <strong>※ブラウザのJavaScriptが無効なため、ページは機能しません。JavaScriptを有効にしてください。</strong>
+            </font> 
+          </h1>
+        </noscript>
+      </div>
+      <div class="warning">
+        <h1 align="center">
+          <font color="red">ページを開く前の注意。</font>
+        </h1>
+        <p align="center">注意喚起の内容ですが、僕のページは、</p>
+        <h1 align="center">
+          <font color="red">IE,旧Edgeでは正常に動作しません。</font>
+        </h1>
+        <p align="center">
+          もしIE,旧Edgeで開いている場合には、Chromeなどの別のブラウザで開きなおしてください。<br>
+          (上のURLをコピー&ペーストして別のブラウザでこのページを開きなおす)<br>
+          なお、すでに別のブラウザで開いている場合は、この操作は必要ありません。
+        </p>
+        <p align="center">
+          <a href="#linktop">開きなおしたら、こちらをクリックしてください。</a>
+        </p>
+      </div>
+      <div class="main">
+        <h1 id="linktop"></h1>
+        <br>
+        <h4 class="clock" align="right">
+          <span id="view_clock"></span> <!--ここに現在時刻を表示-->
+          <script type="text/javascript">
+          timerID = setInterval('clock()',67); // 現在時刻の更新頻度を設定;
+          function clock() {
+          	document.getElementById("view_clock").innerHTML = getNow(); // innerHTMLは要素内の HTML または XML のマークアップを取得したり設定したりする。ここでgetNow()ファンクションを指定;
+          }
+          function getNow() { // getNow()の中身を指定;
+          	var now = new Date(); // 現在時刻を取得;
+          	var year = now.getFullYear(); // 西暦を取得;
+          	var mon = now.getMonth()+1; // 月を取得し、1を足す;
+          	var day = now.getDate(); // 日を取得;
+          	var hour = now.getHours(); // 時を取得;
+          	var min = now.getMinutes(); // 分を取得;
+          	var sec = now.getSeconds(); // 秒を取得;
+            var ms = now.getMilliseconds(); // ミリ秒を取得;
+            if (min < 10) { // もしmin(分)が10未満なら;
+              min = "0" + min; // minの値の前に0を追加して表示;
+            }
+            if (sec < 10) { // もしsec(秒)が10未満なら;
+              sec = "0" + sec; // secの値の前に0を追加して表示;
+            }
+            if (ms < 10) { // もしms(ミリ秒)が10未満なら;
+              ms = "0" + ms; // msの値の前に0を2つ追加して表示;
+            }
+            if (ms < 100) { // もしms(ミリ秒)が100未満なら;
+              ms = "0" + ms; // msの値の前に0を1つ追加して表示;
+            } // (msの方の補足) msの値が10未満の場合、下2つのifが共にtrueとなり0が2つ追加される;
+          	var time = "現在時刻: " + year + "/" + mon + "/" + day + " " + hour + ":" + min + ":" + sec + "." + ms + "　"; // 現在時刻のフォーマットをこのようにする;
+          	return time; // 現在時刻を返し、上の<span>...</span>内に表示する;
+          }
+          </script>
+          <br>
+          <span id="view_time"></span> <!--ここにページ読み込み時の時刻を表示-->
+          <script type="text/javascript">
+          document.getElementById("view_time").innerHTML = getNow2();
+          function getNow2() {
+          	var now2 = new Date();
+          	var year2 = now2.getFullYear();
+          	var mon2 = now2.getMonth()+1;
+          	var day2 = now2.getDate();
+          	var hour2 = now2.getHours();
+          	var min2 = now2.getMinutes();
+            var sec2 = now2.getSeconds();
+            var ms2 = now2.getMilliseconds();
+            if (min2 < 10) {
+              min2 = "0" + min2;
+            }
+            if (sec2 < 10) {
+              sec2 = "0" + sec2;
+            }
+            if (ms2 < 10) {
+              ms2 = "0" + ms2;
+            }
+            if (ms2 < 100) {
+              ms2 = "0" + ms2;
+            }
+          	time2 = "ページ読み込み時刻: " + year2 + "/" + mon2 + "/" + day2 + " " + hour2 + ":" + min2 + ":" + sec2 + "." + ms2 + "　"; 
+          	return time2;
+          } // ここにはsetInterval()関数がないため、連続更新はされず、ページ読み込み時に1回のみ更新される;
+          </script>
+          <p align="right" id="btn" onclick="btn1()">クリックしてヘッダーを表示/非表示</p> <!--onclickでクリックされた時の動作をJavaScriptで指定-->
+          <script type="text/javascript">
+            const btn = document.getElementById('btn'); // btnという定数を作成する。 var 変数とは異なり、window オブジェクトのプロパティにはならない;
+            const clockt = document.getElementById('view_clock'); // clocktという定数を作成する;
+            const timet = document.getElementById('view_time'); // timetという定数を作成する;
+            const headerh = document.getElementById('header'); // headerhという定数を作成する;
+            let statbtn = false; // statbtnという変数をfalseにする;
+
+            function btn1() { // 上のonclick="btn1()"とつながっている;
+              if(statbtn) {
+                btn.classList.add('offb'); // btnが指定しているHTML要素に"offb"クラスを追加;
+                btn.classList.remove('onb'); // btnが指定しているHTML要素の"onb"クラスを削除;
+                clockt.classList.add('offc'); // clocktが指定しているHTML要素に"offc"クラスを追加;
+                clockt.classList.remove('onc'); // clocktが指定しているHTML要素の"onc"クラスを削除;
+                timet.classList.add('offd'); // timetが指定しているHTML要素に"offd"クラスを追加;
+                timet.classList.remove('ond'); // timetが指定しているHTML要素の"ond"クラスを削除;
+                headerh.classList.add('offh'); // headerhが指定しているHTML要素に"offh"クラスを追加;
+                headerh.classList.remove('onh'); // headerhが指定しているHTML要素の"onh"クラスを削除;
+              } else { // 上とは逆の動作をする;
+                btn.classList.add('onb'); 
+                btn.classList.remove('offb');
+                clockt.classList.add('onc');
+                clockt.classList.remove('offc');
+                timet.classList.add('ond');
+                timet.classList.remove('offd');
+                headerh.classList.add('onh');
+                headerh.classList.remove('offh');
+              }
+              statbtn = !statbtn;
+            }
+          </script>
+        </h4>
+        <div class="introduction">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">マーくんのSurvivブログ。</h1>
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">赤弾武器</h1>
+          <p align="center" style="font-size: 12px">12 gauge</p>
+          <p align="center">
+            <img src="photos/Ammo-12gauge.png" width="240" height="240">
+          </p>
+          <p align="center">
+            <font style="color:rgb(255, 47, 20);">赤弾(12 gauge)</font>は、surviv.ioで登場する弾薬の一つである。<br>
+            主にショットガンで使用される。<br>
+            <br>
+            複数の小さい弾が同時に発射されるため赤弾単発あたりのダメージがとても高く、(一部銃を除き)射程が短いのが特徴。<br>
+            持てる量は他の銃弾と比べると少ない。
+          </p>
+          <script type="text/javascript">
+            var scrollAnimationElm303 = document.querySelectorAll('.introduction'); // "scrollAnimationElm303"を定義;
+            var scrollAnimationFunc303 = function() { // "scrollAnimationFunc303"を定義;
+              for(var i303 = 0; i303 < scrollAnimationElm303.length; i303++) {
+                var triggerMargin303 = 200; // "triggerMargin"を定義;
+                if (window.innerHeight > scrollAnimationElm303[i303].getBoundingClientRect().top + triggerMargin303) { // 画面の下と要素の位置の差が200pxになった時に;
+                  scrollAnimationElm303[i303].classList.add('show'); // 要素に"show"クラスを追加;
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc303);
+            window.addEventListener('scroll', scrollAnimationFunc303);
+          </script>
+        </div>
+        <div class="links-top">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">リンク</h1>
+          <p align="center">
+            <a href="#M870">
+              <img alt="M870" title="M870" src="photos/Loot-weapon-pumpshotgun.webp" class="top-link">
+            </a>
+            <a href="#M1100">
+              <img alt="M1100" title="M1100" src="photos/Loot-weapon-m1100.webp" class="top-link">
+            </a>
+            <a href="#MP220">
+              <img alt="MP220" title="MP220" src="photos/Loot-weapon-mp220.webp" class="top-link">
+            </a>
+            <a href="#Hawk 12G">
+              <img alt="Hawk 12G" title="Hawk 12G" src="photos/Loot-weapon-hawk12g.webp" class="top-link">
+            </a>
+            <a href="#SPAS-12">
+              <img alt="SPAS-12" title="SPAS-12" src="photos/Loot-weapon-spas12.webp" class="top-link">
+            </a>
+            <a href="#Saiga-12">
+              <img alt="Saiga-12" title="Saiga-12" src="photos/Loot-weapon-saiga.webp" class="top-link">
+            </a>
+            <a href="#USAS-12">
+              <img alt="USAS-12" title="USAS-12" src="photos/Loot-weapon-usas.webp" class="top-link">
+            </a>
+            <a href="#Super-90">
+              <img alt="Super 90" title="Super 90" src="photos/Loot-weapon-m1014.webp" class="top-link">
+            </a>
+          </p>
+          <script type="text/javascript">
+            var scrollAnimationElm200 = document.querySelectorAll('.links-top');
+            var scrollAnimationFunc200 = function() {
+              for(var i200 = 0; i200 < scrollAnimationElm200.length; i200++) {
+                var triggerMargin200 = 200;
+                if (window.innerHeight > scrollAnimationElm200[i200].getBoundingClientRect().top + triggerMargin200) {
+                  scrollAnimationElm200[i200].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc200);
+            window.addEventListener('scroll', scrollAnimationFunc200);
+          </script>
+        </div>
+        <div class="fadein-0">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="M870" align="center">M870</h1>
+          <p align="center" style="font-size: 12px">Remington Model 870</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img width="128" height="128" alt="M870" title="M870" src="photos/Loot-weapon-pumpshotgun.webp" id="image1" onclick="func1()">
+          </p>
+          <p align="center">
+            M870は赤弾を使用するショットガンの一種である。赤弾使用銃の基本。<br>
+            <br>
+            ショットガンとしては基本的な性能を備えており、序盤から終盤まで問題なく使える。<br>
+            射程の短いダメージ12.5の小弾が9個同時に発射されるため、最大単発ダメージは112.5と、<br>
+            防具無しならワンパンだし、仮に防具があっても結構なダメージが通ってしまう。<br>
+            まあ「１発だけでかなりの体力を持って行かれる」というのは全てのショットガンにおいて共通の性質である。<br>
+            一部(一部？)Super 90とかいうクソでかい弾を１発だけ(スラッグ弾)発射する銃や、<br>
+            USAS-12とかいう弾が爆発する<s>チート武器</s>なんかもあるが、これは後ほど解説している。<br>
+            <br>
+            基本的なショットガンなだけあって、発射後の反動が結構大きい。<br>
+            これを回避するために打った後にすぐにほかの武器にも使え、再び同じ武器を構える「クイックスイッチ」という手法がよく使われる。<br>
+            クイックスイッチにより反動が打ち消せるため、うまいプレイヤーはこれを駆使してかなりせこい攻撃の仕方をしてくる。<br>
+            たかがM870だから...なんてナメていたのでは、あっという間にボコボコにされてしまう。<br>
+            なおこのクイックスイッチは、狙撃銃にも使える戦術であるため、ぜひとも覚えておこう。<br>
+            <br>
+            そしてこのM870、自分は「はなお」と言うあだ名をつけている。<s>なんか某YouTuberの名前みたいやな</s>
+          </p>
+          <script type="text/javascript">
+            const image1 = document.getElementById("image1");
+            let stat1 = false;
+
+            function func1() {
+              if(stat1) {
+                image1.classList.add('off');
+                image1.classList.remove('on');
+              } else {
+                image1.classList.add('on');
+                image1.classList.remove('off');
+              }
+              stat1 = !stat1;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm101 = document.querySelectorAll('.fadein-0');
+            var scrollAnimationFunc101 = function() {
+              for(var i101 = 0; i101 < scrollAnimationElm101.length; i101++) {
+                var triggerMargin101 = 200;
+                if (window.innerHeight > scrollAnimationElm101[i101].getBoundingClientRect().top + triggerMargin101) {
+                  scrollAnimationElm101[i101].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc101);
+            window.addEventListener('scroll', scrollAnimationFunc101);
+          </script>
+        </div>
+        <div class="fadein-1">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="M1100" align="center">M1100</h1>
+          <p align="center" style="font-size: 12px">Remington Model 1100</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img width="128" height="128" alt="M1100" title="M1100" src="photos/Loot-weapon-m1100.webp" id="image2" onclick="func2()">
+          </p>
+          <p align="center">
+            M1100は赤弾を使用するショットガンの一種である。<br>
+            <br>
+            M1100の長所は何と言っても、ショットガンにしては高い連射力にある。<br>
+            4発あるマガジンをわずか数秒で打ちつくしてしまうその連射力がゆえに、<font style="color:rgb(255, 47, 20);">DPSは240にもなる。</font><br>
+            M870のように一発一発は重いが連射力のないショットガンとはまるで真逆だ。こんなのに狙われたらあっという間に敵は溶けてしまうだろう。<br>
+            <br>
+            ...と言いたかったが、実はこの銃には残念なところが多い。<br>
+            その筆頭はあまりにも大きすぎる弾道の広がり具合だ。他のショットガンと比較しても結構な幅で広がってしまっている。<br>
+            これでは超至近距離で打たない限りそのDPSを最大限に生かすことはできないだろう。<br>
+            もちろんその分エイムがあまりよくないプレイヤーでも扱いやすいというのはあるが。<br>
+            (それからM870よりもさらに射程が短い？)<br>
+            <br>
+            結局これが理由で、M870と比べるとあまり使われていない武器になる。初心者には好まれているのかもしれないが。<br>
+            そんな現状を見て俺が用意したセリフ。
+          </p>
+          <h1 align="center"><font style="color:rgb(255, 192, 20);">ふざけんじゃねぇよこのクソタコヤロー！！！</font></h1>
+          <p align="center">...なんかM1100が無駄に被害被ってる気がするのは気のせい？</p>
+          <script type="text/javascript">
+            const image2 = document.getElementById("image2");
+            let stat2 = false;
+
+            function func2() {
+              if(stat2) {
+                image2.classList.add('off');
+                image2.classList.remove('on');
+              } else {
+                image2.classList.add('on');
+                image2.classList.remove('off');
+              }
+              stat2 = !stat2;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm102 = document.querySelectorAll('.fadein-1');
+            var scrollAnimationFunc102 = function() {
+              for(var i102 = 0; i102 < scrollAnimationElm102.length; i102++) {
+                var triggerMargin102 = 200;
+                if (window.innerHeight > scrollAnimationElm102[i102].getBoundingClientRect().top + triggerMargin102) {
+                  scrollAnimationElm102[i102].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc102);
+            window.addEventListener('scroll', scrollAnimationFunc102);
+          </script>
+        </div>
+        <div class="fadein-2">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="MP220" align="center">MP220</h1>
+          <p align="center" style="font-size: 12px">Baikal MP220</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="MP220" title="MP220" height="128" width="128" src="photos/Loot-weapon-mp220.webp" id="image3" onclick="func3()">
+          </p>
+          <p align="center">
+            MP220は赤弾を使用するショットガンの一種である。<br>
+            レア度は高くないが、実はかなりの戦闘能力を秘めている極悪兵器だ。<br>
+            <br>
+            何と言ってもMP220の最大の特徴は、112.5と言う単発ダメージを持った弾を、ほぼ隙間なく2連射できるところであろう。<br>
+            その間、わずか0.25秒。<font style="color:rgb(255, 14, 14);">DPSはなんと562.5!!!!!!!!!</font>と、全武器中最大のDPSを誇る。<br>
+            これにはさっきのM1100やMAC-10、Vectorなども顔負けだ。おそらく最大瞬間DPSでこいつに勝てる銃はいないだろう。<br>
+            結構見かける類の銃でこれはかなりやばい。間違いなくこいつはsurviv.ioの試合において反乱を巻き起こすタイプの銃だ。<br>
+            <br>
+            もちろんこんな銃にも、わかりやすい弱点と言うのがある。<br>
+            それはなんといっても、装填数がたったの2発しかないこと、その割にはリロードが2.7秒と長いことであろう。<br>
+            つまり何が言いたいかと言うと<b>「一撃で仕留められないと大変」</b>ということだ。<br>
+            仕留められなくても2連射によってかなりのダメージを相手に与えられたなら、それはそれでいい。<br>
+            もしも一発、全然当たらなかった弾があったら、その時は一瞬にしてピンチと化す。<br>
+            なんせ待っているのは、2.7秒の長いリロード。敵に対し「さあ思う存分攻撃してくださいね」と言っているようなものだ。<br>
+            <br>
+            だからこの銃はどちらかというとエイムがある程度うまくなった中～上級者向けだ。<br>
+            初心者はあまり手を出さないほうがいいのかもしれない。強いことには強いけど。<br>
+            <br>
+            それから、レア度が高くないがゆえに2丁見つかることもよくある。<br>
+            そんなときにやられるとこれまた厄介なのがMP220の2丁持ち、通称<font style="color:rgb(255, 14, 14);">「MP440」</font><br>
+            なにせ112.5x4のダメージを、持ちかえる時間を考慮しても1秒未満で放てるのだから、<br>
+            近距離ならよっぽどプロでもない限りほぼ確実に敵を溶かせてしまう。<br>
+            なんて恐ろしいんだ...<br>
+          </p>
+          <script type="text/javascript">
+            const image3 = document.getElementById("image3");
+            let stat3 = false;
+
+            function func3() {
+              if(stat3) {
+                image3.classList.add('off');
+                image3.classList.remove('on');
+              } else {
+                image3.classList.add('on');
+                image3.classList.remove('off');
+              }
+              stat3 = !stat3;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm103 = document.querySelectorAll('.fadein-2');
+            var scrollAnimationFunc103 = function() {
+              for(var i103 = 0; i103 < scrollAnimationElm103.length; i103++) {
+                var triggerMargin103 = 200;
+                if (window.innerHeight > scrollAnimationElm103[i103].getBoundingClientRect().top + triggerMargin103) {
+                  scrollAnimationElm103[i103].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc103);
+            window.addEventListener('scroll', scrollAnimationFunc103);
+          </script>
+        </div>
+        <div class="fadein-3">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="Hawk 12G" align="center">Hawk 12G</h1>
+          <p align="center" style="font-size: 12px">Hawk Type 97</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="Hawk 12G" title="Hawk 12G" height="128" width="128" src="photos/Loot-weapon-hawk12g.webp" id="image4" onclick="func4()">
+          </p>
+          <p align="center">
+            Hawk 12Gは赤弾を使用するショットガンの一種である。イベント限定。<br>
+            <br>
+            このHawk 12Gだが、実は特筆すべきことはほとんどない。<br>
+            というのもいろんなところがM870に似ているからだ。ダメージも連射不可なところも、反動が大きいところも。<br>
+            違うところと言えば銃身がM870より長く、M870は1発ずつリロードを行うが、Hawkは5発一気にリロードするところだろう。<br>
+            それからリロード音はSaiga-12のものが流用されている。<br>
+            <br>
+            それから毎回毎回気になって仕方ないのが、この銃を構えると銃身が胴体に半分くらい食いこんだように見えることだ。<br>
+            いくらなんでもあれはひどい。<br>
+            「どういう持ち方してんだよ！」なんて叫びたくなってしまう。
+          </p>
+          <script type="text/javascript">
+            const image4 = document.getElementById("image4");
+            let stat4 = false;
+
+            function func4() {
+              if(stat4) {
+                image4.classList.add('off');
+                image4.classList.remove('on');
+              } else {
+                image4.classList.add('on');
+                image4.classList.remove('off');
+              }
+              stat4 = !stat4;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm104 = document.querySelectorAll('.fadein-3');
+            var scrollAnimationFunc104 = function() {
+              for(var i104 = 0; i104 < scrollAnimationElm104.length; i104++) {
+                var triggerMargin104 = 200;
+                if (window.innerHeight > scrollAnimationElm104[i104].getBoundingClientRect().top + triggerMargin104) {
+                  scrollAnimationElm104[i104].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc104);
+            window.addEventListener('scroll', scrollAnimationFunc104);
+          </script>
+        </div>
+        <div class="fadein-4">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="SPAS-12" align="center">SPAS-12</h1>
+          <p align="center" style="font-size: 12px">Franchi Special/Sporting Purpose Automatic Shotgun 12 gauge</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="SPAS-12" title="SPAS-12" height="128" width="128" src="photos/Loot-weapon-spas12.webp" id="image5" onclick="func5()">
+          </p>
+          <p align="center">
+            SPAS-12は赤弾を使用するショットガンの一種である。ややレア。<br>
+            <br>
+            もーー、このSPAS、プロプレイヤー御用達の"あの"銃と組み合わせて使われるせいでさぁ...<br>
+            <font style="color:rgb(255, 152, 246);">ホントに痛い思いすることが何度もあったのよね。（誰？）</font><br>
+            <br>
+            ...とまあPROによく使われがちなSPASの特徴を今からあげていく。<br><br>
+            <b>1つ目、射程が長い！</b><br>
+            他のショットガンとは違い、ショットガンのくせに4倍スコープの端まで届くその射程の長さは、一瞬でproプレイヤーを虜にするだろう。<br><br>
+            <b>2つ目、弾速が速い！</b><br>
+            ショットガンは大体弾速が遅いのが一般的(ちなみにM9より遅い？)だが、このSPAS-12は弾速がそこそこ速い。<br><br>
+            <b>3つめ、弾が正確！</b><br>
+            普通のショットガンは静止時で10°、移動時で12°の弾の広がりを持つものが多い。<br>
+            しかしSPASは静止時で4°、移動時でも7°と言う正確さを持つ。<br>
+            こいつも同じショットガンの類に入っていると言われれば、そのすごさがよくわかるだろう。<br><br>
+            <b>4つ目、9発も装填でき、しかも1発のリロードが速い！</b><br>
+            9発と言う装填数はショットガンにしては2番目だ。(ちなみに1位はあの<s>チート武器</s>USAS)<br>
+            しかも1発ずつリロードを行うが、1発当たりわずか0.55秒と言う速さ！なんて速いんだ！！<br>
+            <br>
+            しかしこんなSPASには特徴的な弱点がある。それは他のショットガンに比べると低い単発ダメージだ。<br>
+            1つの散弾あたりだと8.75、1発全部だと78.75。他のショットガンの散弾1つの12.5と比較してみると低めの数値だ。<br>
+            まあ...射程も長く弾速も速いことの代償なんだろうか。<br>
+            それからショットガンにしては弾があまり広がらないということで、より正確なエイムが必要になってしまっている。<br>
+            ある程度エイムが上手い中～上級者向けだ。<br>
+            <br>
+            と言うことでこいつを使いこなせるようになれば、かなり強くなれるだろう。
+          </p>
+          <script type="text/javascript">
+            const image5 = document.getElementById("image5");
+            let stat5 = false;
+
+            function func5() {
+              if(stat5) {
+                image5.classList.add('off');
+                image5.classList.remove('on');
+              } else {
+                image5.classList.add('on');
+                image5.classList.remove('off');
+              }
+              stat5 = !stat5;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm105 = document.querySelectorAll('.fadein-4');
+            var scrollAnimationFunc105 = function() {
+              for(var i105 = 0; i105 < scrollAnimationElm105.length; i105++) {
+                var triggerMargin105 = 200;
+                if (window.innerHeight > scrollAnimationElm105[i105].getBoundingClientRect().top + triggerMargin105) {
+                  scrollAnimationElm105[i105].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc105);
+            window.addEventListener('scroll', scrollAnimationFunc105);
+          </script>
+        </div>
+        <div class="fadein-5">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="Saiga-12" align="center">Saiga-12</h1>
+          <p align="center" style="font-size: 12px">Izmash Saiga-12;Сайга-12</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="Saiga-12" title="Saiga-12" height="128" width="128" src="photos/Loot-weapon-saiga.webp" id="image6" onclick="func6()">
+          </p>
+          <p align="center">
+            Saiga-12は赤弾を使用するショットガンの一種である。レア。<br>
+            <font style="color:rgb(255, 248, 152);">あのMP220と肩を並べるレベルの極悪ショットガン。</font><br>
+            <br>
+            さてこのSaiga-12、112.5ダメージを持った弾を5連射もできてしまう非常に危険な銃だ。<br>
+            こんなのをまともにくらったのでは、あっという間に敵は溶けてしまう。<br>
+            うまいこと使えば1人どころか連続で2人を溶かすことまでできてしまう。ｵｵｺﾜｲｺﾜｲ<br>
+            <br>
+            しかし、発砲と発砲の間には0.5秒のクールタイムがある。<br>
+            これが何を意味するかと言うと、「一部のプレイヤーはSaigaよりもMP220を好む」ということである。<br>
+            だってMP220の方は隙間なく2連射できちゃうんだもん。プロプレイヤーであれば敵を速く仕留められるのはMP220だ！なんて考えてしまいがちだろう。<br>
+            ...とまあネガティブに言ってしまったが、SaigaにはSaiga也の立ち回りをしなければならない。<br>
+            SaigaとMP220は似て非なるものであるからである。<br>
+            <br>
+            なにせ112.5x5のダメージがあるのだから、小屋に隠れている敵をめがけて<br>
+            1~2発で壁を破壊！そしてそのまま敵を攻撃！なんて攻撃方法もできる。<br>
+            さらに連射できるからと言って、絶対に5連射をしなくてはならないルールはどこにもない。<br>
+            1発1発を大事にねらって打ってもいいし、2発と3発に分けて打ってもいい。<br>
+            とにかく大事なのは、敵のリズムを崩すことだ。<br>
+            <br>
+            レアものであるが、2丁見つかることもまれにある。イベントなんかだと特にそう。<br>
+            2丁持ちできる機会はあまりないけど、そうなったときに負けた記憶は...たぶんない気がする。<br>
+            見かけたらぜひ手に取っておこう。<br>
+            <br>
+            余談だがこの銃の一部のバリエーションは日本でも所持可能。<br>
+            その場合、マガジンは2発に改造される。<br>
+            <font style="color:rgb(255, 152, 246);">2発ってまんまMP220じゃないすか...これではSaigaのアイデンティティが...</font><br>
+          </p>
+          <script type="text/javascript">
+            const image6 = document.getElementById("image6");
+            let stat6 = false;
+
+            function func6() {
+              if(stat6) {
+                image6.classList.add('off');
+                image6.classList.remove('on');
+              } else {
+                image6.classList.add('on');
+                image6.classList.remove('off');
+              }
+              stat6 = !stat6;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm106 = document.querySelectorAll('.fadein-5');
+            var scrollAnimationFunc106 = function() {
+              for(var i106 = 0; i106 < scrollAnimationElm106.length; i106++) {
+                var triggerMargin106 = 200;
+                if (window.innerHeight > scrollAnimationElm106[i106].getBoundingClientRect().top + triggerMargin106) {
+                  scrollAnimationElm106[i106].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc106);
+            window.addEventListener('scroll', scrollAnimationFunc106);
+          </script>
+        </div>
+        <div class="fadein-6">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="USAS-12" align="center">USAS-12</h1>
+          <p align="center" style="font-size: 12px">Daewoo Precision Industries Universal Sporting Automatic Shotgun 12 gauge</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="USAS-12" title="USAS-12" height="128" width="128" src="photos/Loot-weapon-usas.webp" id="image7" onclick="func7()">
+          </p>
+          <p align="center">
+            USAS-12は赤弾を使用するショットガンの一種である。イベント限定かつ激レア。<br>
+          </p>
+          <h1 align="center"><font style="color:rgb(116, 255, 202);">出ましたよUSAS！弾が爆発する<s>チート武器！！！</s></font></h1>
+          <h1 align="center"><font style="color:rgb(116, 255, 202);">USAS「ボコーンボコーンボコーン！！！！」</font></h1>
+          <p align="center">
+            <font style="color:rgb(255, 116, 213);">とまあすぐわかるように、このUSASは<b>弾が爆発しやがる</b>とんでもない銃である。</font><br>
+            その炸裂する爆風は、たとえスクワッドで4人そろった1チームでさえもものともせず撃破可能なほどだ。<br>
+            <br>
+            <font style="color:rgb(227, 158, 255);">本当にショットガンか？こいつ。M79みたいなグレランじゃないの？？？</font><br>
+            <br>
+            弾が爆発する条件は2つある。1つ目は「銃弾が敵や物体にあたること」<br>
+            2つ目は「打った際にマウスカーソルがあった位置に銃弾が到達する」<br>
+            つまり、自分で好きな位置に銃弾を飛ばして爆発させることができるというこれまた<s>チート性能</s>な武器である。<br>
+            もちろんこれでもショットガンの一種であるので、射程は他のショットガンとあまり変わらない。<br>
+            射程限界まで弾が到達した場合は、物体や敵への接触、カーソルの位置に関わらずその時点で爆発する。<br>
+            <br>
+            この銃の一番の使い道は、多分チーム戦にあるだろう。<br>
+            体力全快ビンビンな敵のチームにボコーンボコーンボコーンを複数回やってあげれば、あっという間に相手はピンチ。<br>
+            それこそソロスク状態でも、一瞬で戦況を覆せるレベル。ゲームバランスが崩壊するレベルの強さである。<br>
+            もしかしたらプロがよく使うMosin&SPASの二刀流にも負けないんじゃないか。<br>
+            爆風だからエイムがそんな正確じゃなくてもダメージ通るし。<br>
+            絶対に取っておいて損はない武器である。
+          </p>
+          <script type="text/javascript">
+            const image7 = document.getElementById("image7");
+            let stat7 = false;
+
+            function func7() {
+              if(stat7) {
+                image7.classList.add('off');
+                image7.classList.remove('on');
+              } else {
+                image7.classList.add('on');
+                image7.classList.remove('off');
+              }
+              stat7 = !stat7;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm107 = document.querySelectorAll('.fadein-6');
+            var scrollAnimationFunc107 = function() {
+              for(var i107 = 0; i107 < scrollAnimationElm107.length; i107++) {
+                var triggerMargin107 = 200;
+                if (window.innerHeight > scrollAnimationElm107[i107].getBoundingClientRect().top + triggerMargin107) {
+                  scrollAnimationElm107[i107].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc107);
+            window.addEventListener('scroll', scrollAnimationFunc107);
+          </script>
+        </div>
+        <div class="fadein-7">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="Super-90" align="center">Super 90</h1>
+          <p align="center" style="font-size: 12px">Benelli M4 Super 90;M1014 Joint Service Combat Shotgun</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="Super 90" title="Super 90" height="128" width="128" src="photos/Loot-weapon-m1014.webp" id="image8" onclick="func8()">
+          </p>
+          <p align="center">
+            Super 90は赤弾を使用するショットガンの一種である。50v50において赤チームのリーダーが持っているやつ。<br>
+            ホントにショットガンか？こいつ。<br>
+            <br>
+            このSuper 90は、ショットガンらしくなくクソでかい弾を1発ずつﾄﾞｺｼﾞｮﾝ！ﾄﾞｺｼﾞｮﾝ！と発射する。<br>
+            その一発の威力はあたかも威力が凝縮されたかのように、驚異の77。<br>
+            ん、77？ショットガンにしては低威力じゃね？<br>
+            ...なんて考えてしまいがちだが、そもそも他のショットガンは全部の小弾が常に敵にあたるわけではない。<br>
+            112.5などと挙げているのは、あくまでも「全ての小弾のダメージを合計した数値」だ。<br>
+            このSuper 90の弾は、当たれば確定で77ダメージが入る。<br>
+            <br>
+            それにこのSuper 90はそれなりに連射力がある。<br>
+            しかも一発ずつリロードができる上、1発当たりのリロード時間もわずか0.52秒ととんでもない爆速だ。<br>
+            それから弾が散らばらないのもあって、射程がSPAS-12よりもさらに長く、8倍スコープの端まで届いてしまう。<br>
+            ホントにショットガンか？こいつ。(2回目)<br>
+            <br>
+            ぶっちゃけ言うとショットガンの部類には入るが、スナイパーライフルのように扱える（？）銃と言ってもいいだろう。<br>
+            しかし射程も長いとはいえ"ショットガンの中で"という条件付きで、実際は8倍スコープの端までギリギリ届く、くらいの長さしかない。<br>
+            弾速もスナイパーより遅いので、完全にスナイパーのように使うのはやっぱり厳しい...かも。<br>
+            <br>
+            イベント限定なだけあって、見かける機会はあまり多くない。<br>
+            せいぜいがポテトか50v50くらい。<br>
+            強いことには強いけど、なんやかんやであまり使う機会がないんだよなぁ...<br>
+          </p>
+          <script type="text/javascript">
+            const image8 = document.getElementById("image8");
+            let stat8 = false;
+
+            function func8() {
+              if(stat8) {
+                image8.classList.add('off');
+                image8.classList.remove('on');
+              } else {
+                image8.classList.add('on');
+                image8.classList.remove('off');
+              }
+              stat8 = !stat8;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm108 = document.querySelectorAll('.fadein-7');
+            var scrollAnimationFunc108 = function() {
+              for(var i108 = 0; i108 < scrollAnimationElm108.length; i108++) {
+                var triggerMargin108 = 200;
+                if (window.innerHeight > scrollAnimationElm108[i108].getBoundingClientRect().top + triggerMargin108) {
+                  scrollAnimationElm108[i108].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc108);
+            window.addEventListener('scroll', scrollAnimationFunc108);
+          </script>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="javascripts/jquery-3.1.0.min.js" ></script> <!--jQuery本体のプログラムを読み込む-->
+    <!--以下、スクロール時に滑らかに移動するプログラムをjQueryで指定-->
+    <script type="text/javascript">
+      // <a>タグのジャンプ先の指定(href)で前に"#"がついているもの (要するにページ内ジャンプ) に以下のプログラムを適用;
+      $(function(){
+        $('a[href^="#"]').click(function() {
+          var speed = 1000;
+          var href= $(this).attr("href");
+          var target = $(href == "#" || href == "" ? 'html' : href);
+          var position = target.offset().top;
+          $('body, html').animate({scrollTop:position}, speed, 'swing');
+          return false;
+        });
+      });
+    </script>
+    <div class="copyright">
+      <p align="center">-----------------------------------------------------------------------------------------------</p>
+      <p align="center">Copyright (C) 2021-2024 MaKun. All Rights Reserved.</p>
+      <script type="text/javascript">
+        var scrollAnimationElm302 = document.querySelectorAll('.copyright');
+        var scrollAnimationFunc302 = function() {
+          for(var i302 = 0; i302 < scrollAnimationElm302.length; i302++) {
+            var triggerMargin302 = 5;
+            if (window.innerHeight > scrollAnimationElm302[i302].getBoundingClientRect().top + triggerMargin302) {
+              scrollAnimationElm302[i302].classList.add('show');
+            }
+          }
+        }
+        window.addEventListener('load', scrollAnimationFunc302);
+        window.addEventListener('scroll', scrollAnimationFunc302);
+      </script>
+    </div>
+  </body>
+</html>

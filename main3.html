@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="Generator" content="Microsoft Visual Studio Code v1.52.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>マーくんのSurvivブログ</title>
+    <link rel="shortcut icon" type="image/x-icon" href="photos/Favicon (1).ico" />
+    <link rel="icon" type="image/x-icon" href="photos/Favicon (1).ico" />
+    <style type="text/css">
+            body {
+              background-color: rgb(27, 27, 27);
+              color: rgb(255, 255, 255);
+            }
+            header {
+              width: 100%;
+              height: 110px;
+              position: fixed;
+              top: 0;
+              left: 0;
+              z-index: 1;
+            }
+            .onh {
+              transition: all 200ms 15ms ease;
+              opacity: 0;
+              height: 0;
+            }
+            .offh {
+              transition: all 200ms 110ms ease;
+              opacity: 1;
+              height: 110px;
+            }
+            .logo {
+              height: 30px;
+            }
+            .main-part {
+              animation: fadeIn 2.0s ease 0s 1 normal;
+            }
+            @keyframes fadeIn { /* fadeInの動作を指定 */
+              0% {opacity: 0} 
+              100% {opacity: 1} 
+            }
+            .clock {
+              transition: all 400ms ease; /* プロパティが変化する際のアニメーションの速度を操作する */
+              opacity: 1; /* 要素の透明度を指定 */
+              position: fixed;
+              margin-right: 18.720;
+              top: 0;
+              right: 0;
+              z-index: 2;
+            }
+            #view_clock:hover { /* hoverでマウスオーバーされたときの動作を指定 */
+              transition: all 400ms ease;
+              opacity: 1;
+            }
+            #view_time:hover {
+              transition: all 400ms ease;
+              opacity: 1;
+            }
+            #view_clock.onc {
+              transition: all 200ms 15ms ease;
+              opacity: 0;
+            }
+            .offc {
+              transition: all 200ms 110ms ease;
+              opacity: 1;
+            }
+            #view_time.ond {
+              transition: all 200ms 15ms ease;
+              opacity: 0;
+            }
+            .offd {
+              transition: all 200ms 110ms ease;
+              opacity: 1;
+            }
+            #btn {
+              transition: all 400ms 0s ease;
+              opacity:0.3;
+            }
+            #btn:hover {
+              transition: all 400ms 0s ease;
+              opacity:1;
+              color: rgb(0, 255, 255)
+            }
+            #btn:active {
+              transition: all 400ms 0s ease;
+              opacity:1;
+              color: rgb(255, 95, 255)
+            }
+            .onb {
+              transform: translate(0px, -70px) /* 与えられた要素を移動する */
+            }
+            .offb {
+              transform: translate(0px, 0px)
+            }
+            .linktop {
+              position: fixed;
+              right: 20px;
+              bottom: 20px;
+              transition: all 400ms 0s ease;
+              width: 57px;
+              height: 57px;
+            }
+            .linktop:hover {
+              transition: all 400ms 0s ease;
+              width: 77px;
+              height: 77px;
+            }
+            a {
+              color: rgb(200, 255, 0);
+              transition: all 400ms 0s ease;
+              opacity: 0.6;
+            }
+            a:hover {
+              color: rgb(0, 255, 255);
+              transition: all 400ms 0s ease;
+              opacity: 1;
+            }
+            a:active {
+              color: rgb(255, 0, 242);
+              transition: all 400ms 0s ease;
+              opacity: 1;
+            }
+            .introduction {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .introduction.show {
+              opacity: 1;
+              transform: none;
+            }
+            .top {
+              transition: all 400ms 0s ease;
+              width: 48px;
+              height: 48px;
+            }
+            .top:hover {
+              transition: all 400ms 0s ease;
+              width: 58px;
+              height: 58px;
+            }
+            .top-3 {
+              transition: all 400ms 0s ease;
+              width: 48px;
+              height: 48px;
+            }
+            .top-3:hover {
+              transition: all 400ms 0s ease;
+              width: 58px;
+              height: 58px;
+            }
+            .top-link {
+              transition: all 400ms 0s ease;
+              width: 64px;
+              height: 64px;
+            }
+            .top-link:hover {
+              transition: all 400ms 0s ease;
+              width: 85px;
+              height: 85px;
+            }
+            .top-link3 {
+              transition: all 400ms 0s ease;
+              width: 64px;
+              height: 64px;
+            }
+            .top-link3:hover {
+              transition: all 400ms 0s ease;
+              width: 85px;
+              height: 85px;
+            }
+            .links-top {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .links-top.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-root {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-root.show {
+              opacity: 1;
+              transform: none;
+            }
+            .account-links {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .account-links.show {
+              opacity: 1;
+              transform: none;
+            }
+            .linkaccounts-1 {
+              transition: all 400ms 0s ease;
+              width: 120px;
+              height: 120px;
+            }
+            .linkaccounts-1:hover {
+              transition: all 400ms 0s ease;
+              width: 150px;
+              height: 150px;
+            }
+            .linkaccounts-2 {
+              transition: all 400ms 0s ease;
+              width: 100px;
+              height: 100px;
+            }
+            .linkaccounts-2:hover {
+              transition: all 400ms 0s ease;
+              width: 125px;
+              height: 125px;
+            }
+            .linkaccounts-3 {
+              transition: all 400ms 0s ease;
+              width: 100px;
+              height: 100px;
+            }
+            .linkaccounts-3:hover {
+              transition: all 400ms 0s ease;
+              width: 125px;
+              height: 125px;
+            }
+            .fadein-0 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-0.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-1 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-1.show {
+              opacity: 1;
+              transform: none;
+            }
+            #image1 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image2 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image3 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image3 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image4 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+    </style>
+  </head>
+  <body>
+    <div class="main-part">
+      <header id="header">
+        <h1>
+          マーくんの<img class="logo" src="photos/250px-Surviv.io.png">ブログ
+          <a class="top-3" href="main2.html">
+            <img class="top" alt="ホームへ戻る" title="ホームへ戻る" src="photos/Screenshot_-_2019年12月21日_-_10時58分04秒.png">
+          </a>
+          <a  href="index.html">
+            <img class="top-3" alt="index.htmlへ戻る" title="index.htmlへ戻る" src="photos/220px-ISO_7010_E001_new.svg.png">
+          </a>
+        </h1>
+      </header>
+      <p align="right">
+        <a href="#linktop">
+          <img alt="TOPへ移動" title="TOPへ移動" class="linktop" src="photos/btn_pagetop.png">
+        </a>
+      </p>
+      <div class="noscript"> 
+        <noscript> <!--ブラウザのJavaScriptの設定が無効な場合の動作を指定-->
+          <h1 align="center">
+            <font color="red">
+              <strong>※ブラウザのJavaScriptが無効なため、ページは機能しません。JavaScriptを有効にしてください。</strong>
+            </font> 
+          </h1>
+        </noscript>
+      </div>
+      <div class="warning">
+        <h1 align="center">
+          <font color="red">ページを開く前の注意。</font>
+        </h1>
+        <p align="center">注意喚起の内容ですが、僕のページは、</p>
+        <h1 align="center">
+          <font color="red">IE,旧Edgeでは正常に動作しません。</font>
+        </h1>
+        <p align="center">
+          もしIE,旧Edgeで開いている場合には、Chromeなどの別のブラウザで開きなおしてください。<br>
+          (上のURLをコピー&ペーストして別のブラウザでこのページを開きなおす)<br>
+          なお、すでに別のブラウザで開いている場合は、この操作は必要ありません。
+        </p>
+        <p align="center">
+          <a href="#linktop">開きなおしたら、こちらをクリックしてください。</a>
+        </p>
+      </div>
+      <div class="main">
+        <h1 id="linktop"></h1>
+        <br>
+        <h4 class="clock" align="right">
+          <span id="view_clock"></span> <!--ここに現在時刻を表示-->
+          <script type="text/javascript">
+          timerID = setInterval('clock()',67); // 現在時刻の更新頻度を設定;
+          function clock() {
+          	document.getElementById("view_clock").innerHTML = getNow(); // innerHTMLは要素内の HTML または XML のマークアップを取得したり設定したりする。ここでgetNow()ファンクションを指定;
+          }
+          function getNow() { // getNow()の中身を指定;
+          	var now = new Date(); // 現在時刻を取得;
+          	var year = now.getFullYear(); // 西暦を取得;
+          	var mon = now.getMonth()+1; // 月を取得し、1を足す;
+          	var day = now.getDate(); // 日を取得;
+          	var hour = now.getHours(); // 時を取得;
+          	var min = now.getMinutes(); // 分を取得;
+          	var sec = now.getSeconds(); // 秒を取得;
+            var ms = now.getMilliseconds(); // ミリ秒を取得;
+            if (min < 10) { // もしmin(分)が10未満なら;
+              min = "0" + min; // minの値の前に0を追加して表示;
+            }
+            if (sec < 10) { // もしsec(秒)が10未満なら;
+              sec = "0" + sec; // secの値の前に0を追加して表示;
+            }
+            if (ms < 10) { // もしms(ミリ秒)が10未満なら;
+              ms = "0" + ms; // msの値の前に0を2つ追加して表示;
+            }
+            if (ms < 100) { // もしms(ミリ秒)が100未満なら;
+              ms = "0" + ms; // msの値の前に0を1つ追加して表示;
+            } // (msの方の補足) msの値が10未満の場合、下2つのifが共にtrueとなり0が2つ追加される;
+          	var time = "現在時刻: " + year + "/" + mon + "/" + day + " " + hour + ":" + min + ":" + sec + "." + ms + "　"; // 現在時刻のフォーマットをこのようにする;
+          	return time; // 現在時刻を返し、上の<span>...</span>内に表示する;
+          }
+          </script>
+          <br>
+          <span id="view_time"></span> <!--ここにページ読み込み時の時刻を表示-->
+          <script type="text/javascript">
+          document.getElementById("view_time").innerHTML = getNow2();
+          function getNow2() {
+          	var now2 = new Date();
+          	var year2 = now2.getFullYear();
+          	var mon2 = now2.getMonth()+1;
+          	var day2 = now2.getDate();
+          	var hour2 = now2.getHours();
+          	var min2 = now2.getMinutes();
+            var sec2 = now2.getSeconds();
+            var ms2 = now2.getMilliseconds();
+            if (min2 < 10) {
+              min2 = "0" + min2;
+            }
+            if (sec2 < 10) {
+              sec2 = "0" + sec2;
+            }
+            if (ms2 < 10) {
+              ms2 = "0" + ms2;
+            }
+            if (ms2 < 100) {
+              ms2 = "0" + ms2;
+            }
+          	time2 = "ページ読み込み時刻: " + year2 + "/" + mon2 + "/" + day2 + " " + hour2 + ":" + min2 + ":" + sec2 + "." + ms2 + "　"; 
+          	return time2;
+          } // ここにはsetInterval()関数がないため、連続更新はされず、ページ読み込み時に1回のみ更新される;
+          </script>
+          <p align="right" id="btn" onclick="btn1()">クリックしてヘッダーを表示/非表示</p> <!--onclickでクリックされた時の動作をJavaScriptで指定-->
+          <script type="text/javascript">
+            const btn = document.getElementById('btn'); // btnという定数を作成する。 var 変数とは異なり、window オブジェクトのプロパティにはならない;
+            const clockt = document.getElementById('view_clock'); // clocktという定数を作成する;
+            const timet = document.getElementById('view_time'); // timetという定数を作成する;
+            const headerh = document.getElementById('header'); // headerhという定数を作成する;
+            let statbtn = false; // statbtnという変数をfalseにする;
+
+            function btn1() { // 上のonclick="btn1()"とつながっている;
+              if(statbtn) {
+                btn.classList.add('offb'); // btnが指定しているHTML要素に"offb"クラスを追加;
+                btn.classList.remove('onb'); // btnが指定しているHTML要素の"onb"クラスを削除;
+                clockt.classList.add('offc'); // clocktが指定しているHTML要素に"offc"クラスを追加;
+                clockt.classList.remove('onc'); // clocktが指定しているHTML要素の"onc"クラスを削除;
+                timet.classList.add('offd'); // timetが指定しているHTML要素に"offd"クラスを追加;
+                timet.classList.remove('ond'); // timetが指定しているHTML要素の"ond"クラスを削除;
+                headerh.classList.add('offh'); // headerhが指定しているHTML要素に"offh"クラスを追加;
+                headerh.classList.remove('onh'); // headerhが指定しているHTML要素の"onh"クラスを削除;
+              } else { // 上とは逆の動作をする;
+                btn.classList.add('onb'); 
+                btn.classList.remove('offb');
+                clockt.classList.add('onc');
+                clockt.classList.remove('offc');
+                timet.classList.add('ond');
+                timet.classList.remove('offd');
+                headerh.classList.add('onh');
+                headerh.classList.remove('offh');
+              }
+              statbtn = !statbtn;
+            }
+          </script>
+        </h4>
+        <div class="introduction">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">マーくんのSurvivブログ。</h1>
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">武器紹介 - ホーム</h1>
+          <p align="center">
+            このページは、surviv.ioの武器紹介へのindexページである。
+          </p>
+          <script type="text/javascript">
+            var scrollAnimationElm303 = document.querySelectorAll('.introduction'); // "scrollAnimationElm303"を定義;
+            var scrollAnimationFunc303 = function() { // "scrollAnimationFunc303"を定義;
+              for(var i303 = 0; i303 < scrollAnimationElm303.length; i303++) {
+                var triggerMargin303 = 200; // "triggerMargin"を定義;
+                if (window.innerHeight > scrollAnimationElm303[i303].getBoundingClientRect().top + triggerMargin303) { // 画面の下と要素の位置の差が200pxになった時に;
+                  scrollAnimationElm303[i303].classList.add('show'); // 要素に"show"クラスを追加;
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc303);
+            window.addEventListener('scroll', scrollAnimationFunc303);
+          </script>
+        </div>
+        <div class="links-top">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">リンク</h1>
+          <p align="center">
+            <a href="main4.html">
+              <img alt="黄弾(9mm)武器紹介へ移動" class="top-link" title="黄弾(9mm)武器紹介へ移動" src="photos/Ammo-9mm.png">
+            </a>
+            <a href="main5.html">
+              <img alt="赤弾(12 gauge)武器紹介へ移動" class="top-link" title="赤弾(12 gauge)武器紹介へ移動" src="photos/Ammo-12gauge.png">
+            </a>
+            <a href="main6.html">
+              <img alt="青弾(7.62mm)武器紹介へ移動" class="top-link" title="青弾(7.62mm)武器紹介へ移動" src="photos/Ammo-762mm.png">
+            </a>
+            <a href="main7.html">
+              <img alt="緑弾(5.56mm)武器紹介へ移動" class="top-link" title="緑弾(5.56mm)武器紹介へ移動" src="photos/Ammo-556mm.png">
+            </a>
+            <a href="main8.html">
+              <img alt="その他の武器紹介へ移動" class="top-link" title="その他の武器紹介へ移動" src="photos/Ammo-flare-01.png">
+            </a>
+          </p>
+          <script type="text/javascript">
+            var scrollAnimationElm300 = document.querySelectorAll('.links-top');
+            var scrollAnimationFunc300 = function() {
+              for(var i300 = 0; i300 < scrollAnimationElm300.length; i300++) {
+                var triggerMargin300 = 200;
+                if (window.innerHeight > scrollAnimationElm300[i300].getBoundingClientRect().top + triggerMargin300) {
+                  scrollAnimationElm300[i300].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc300);
+            window.addEventListener('scroll', scrollAnimationFunc300);
+          </script>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="javascripts/jquery-3.1.0.min.js" ></script> <!--jQuery本体のプログラムを読み込む-->
+    <!--以下、スクロール時に滑らかに移動するプログラムをjQueryで指定-->
+    <script type="text/javascript">
+      // <a>タグのジャンプ先の指定(href)で前に"#"がついているもの (要するにページ内ジャンプ) に以下のプログラムを適用;
+      $(function(){
+        $('a[href^="#"]').click(function() {
+          var speed = 1000;
+          var href= $(this).attr("href");
+          var target = $(href == "#" || href == "" ? 'html' : href);
+          var position = target.offset().top;
+          $('body, html').animate({scrollTop:position}, speed, 'swing');
+          return false;
+        });
+      });
+    </script>
+    <div class="account-links">
+      <p align="center">-----------------------------------------------------------------------------------------------</p>
+      <h1 align="center">お気軽にフォローして下さい</h1>
+      <p align="center">
+        <a href="https://www.youtube.com/channel/UCNmaOhZBYirWnuPYAbp5jwg">
+          <img alt="YouTubeへ移動" title="YouTubeへ移動" class="linkaccounts-1" src="photos/favicon_144.png">
+        </a>
+        <a href="https://www.instagram.com/nmkpkppecheneg/">
+          <img alt="Instagramへ移動" title="Instagramへ移動" class="linkaccounts-2" src="photos/68d99ba29cc8.png">
+        </a>
+        <a href="https://twitter.com/diamond42548">
+          <img alt="X(Twitter)へ移動" title="X(Twitter)へ移動" class="linkaccounts-3" src="photos/l_my_0724twitter05.jpg">
+        </a>
+      </p>
+      <p align="center">Copyright (C) 2021-2024 MaKun. All Rights Reserved.</p>
+      <script type="text/javascript">
+        var scrollAnimationElm302 = document.querySelectorAll('.account-links');
+        var scrollAnimationFunc302 = function() {
+          for(var i302 = 0; i302 < scrollAnimationElm302.length; i302++) {
+            var triggerMargin302 = 10;
+            if (window.innerHeight > scrollAnimationElm302[i302].getBoundingClientRect().top + triggerMargin302) {
+              scrollAnimationElm302[i302].classList.add('show');
+            }
+          }
+        }
+        window.addEventListener('load', scrollAnimationFunc302);
+        window.addEventListener('scroll', scrollAnimationFunc302);
+      </script>
+    </div>
+  </body>
+</html>

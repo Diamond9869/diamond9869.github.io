@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="Generator" content="Microsoft Visual Studio Code v1.52.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>マーくんのSurvivブログ</title>
+    <link rel="shortcut icon" type="image/x-icon" href="photos/Favicon (1).ico" />
+    <link rel="icon" type="image/x-icon" href="photos/Favicon (1).ico" />
+    <style type="text/css">
+            body {
+              background-color: rgb(27, 27, 27);
+              color: rgb(255, 255, 255);
+            }
+            header {
+              width: 100%;
+              height: 110px;
+              position: fixed;
+              top: 0;
+              left: 0;
+              z-index: 1;
+            }
+            .on-8 {
+              transition: all 200ms 15ms ease;
+              opacity: 0;
+              height: 0;
+            }
+            .off-8 {
+              transition: all 200ms 110ms ease;
+              opacity: 1;
+              height: 110px;
+            }
+            .logo {
+              height: 30px;
+            }
+            .main-part {
+              animation: fadeIn 2.0s ease 0s 1 normal;
+            }
+            @keyframes fadeIn { /* fadeInの動作を指定 */
+              0% {opacity: 0} 
+              100% {opacity: 1} 
+            }
+            .clock {
+              transition: all 400ms ease; /* プロパティが変化する際のアニメーションの速度を操作する */
+              opacity: 1; /* 要素の透明度を指定 */
+              position: fixed;
+              margin-right: 18.720;
+              top: 0;
+              right: 0;
+              z-index: 2;
+            }
+            #view_clock:hover { /* hoverでマウスオーバーされたときの動作を指定 */
+              transition: all 400ms ease;
+              opacity: 1;
+            }
+            #view_time:hover {
+              transition: all 400ms ease;
+              opacity: 1;
+            }
+            #view_clock.on-3 {
+              transition: all 200ms 15ms ease;
+              opacity: 0;
+            }
+            .off-3 {
+              transition: all 200ms 110ms ease;
+              opacity: 1;
+            }
+            #view_time.on-4 {
+              transition: all 200ms 15ms ease;
+              opacity: 0;
+            }
+            .off-4 {
+              transition: all 200ms 110ms ease;
+              opacity: 1;
+            }
+            #btn {
+              transition: all 400ms 0s ease;
+              opacity:0.3;
+            }
+            #btn:hover {
+              transition: all 400ms 0s ease;
+              opacity:1;
+              color: rgb(0, 255, 255)
+            }
+            #btn:active {
+              transition: all 400ms 0s ease;
+              opacity:1;
+              color: rgb(255, 95, 255)
+            }
+            .on-2 {
+              transform: translate(0px, -70px) /* 与えられた要素を移動する */
+            }
+            .off-2 {
+              transform: translate(0px, 0px)
+            }
+            .linktop {
+              position: fixed;
+              right: 20px;
+              bottom: 20px;
+              transition: all 400ms 0s ease;
+              width: 57px;
+              height: 57px;
+            }
+            .linktop:hover {
+              transition: all 400ms 0s ease;
+              width: 77px;
+              height: 77px;
+            }
+            a {
+              color: rgb(200, 255, 0);
+              transition: all 400ms 0s ease;
+              opacity: 0.6;
+            }
+            a:hover {
+              color: rgb(0, 255, 255);
+              transition: all 400ms 0s ease;
+              opacity: 1;
+            }
+            a:active {
+              color: rgb(255, 0, 242);
+              transition: all 400ms 0s ease;
+              opacity: 1;
+            }
+            .introduction {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .introduction.show {
+              opacity: 1;
+              transform: none;
+            }
+            .top {
+              transition: all 400ms 0s ease;
+              width: 48px;
+              height: 48px;
+            }
+            .top:hover {
+              transition: all 400ms 0s ease;
+              width: 58px;
+              height: 58px;
+            }
+            .top-3 {
+              transition: all 400ms 0s ease;
+              width: 48px;
+              height: 48px;
+            }
+            .top-3:hover {
+              transition: all 400ms 0s ease;
+              width: 58px;
+              height: 58px;
+            }
+            .top-link {
+              transition: all 400ms 0s ease;
+              width: 64px;
+              height: 64px;
+            }
+            .top-link:hover {
+              transition: all 400ms 0s ease;
+              width: 85px;
+              height: 85px;
+            }
+            .top-link3 {
+              transition: all 400ms 0s ease;
+              width: 64px;
+              height: 64px;
+            }
+            .top-link3:hover {
+              transition: all 400ms 0s ease;
+              width: 85px;
+              height: 85px;
+            }
+            .links-top {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .links-top.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-root {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-root.show {
+              opacity: 1;
+              transform: none;
+            }
+            .copyright {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .copyright.show {
+              opacity: 1;
+              transform: none;
+            }
+            .linkaccounts-1 {
+              transition: all 400ms 0s ease;
+              width: 120px;
+              height: 120px;
+            }
+            .linkaccounts-1:hover {
+              transition: all 400ms 0s ease;
+              width: 150px;
+              height: 150px;
+            }
+            .linkaccounts-2 {
+              transition: all 400ms 0s ease;
+              width: 100px;
+              height: 100px;
+            }
+            .linkaccounts-2:hover {
+              transition: all 400ms 0s ease;
+              width: 125px;
+              height: 125px;
+            }
+            .fadein-0 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-0.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-1 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-1.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-2 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-2.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-3 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-3.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-4 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-4.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-5 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-5.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-6 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-6.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-7 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-7.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-8 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-8.show {
+              opacity: 1;
+              transform: none;
+            }
+            .fadein-9 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-9.show {
+              opacity: 1;
+              transform: none;
+            }
+            #image1 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image2 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image3 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image4 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image5 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image6 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image7 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image8 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image9 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+            #image10 {
+              transition: all 600ms 0s ease;
+            }
+            .on {
+              transform: scale(2.5, 2.5) translate(0px, 0px);
+            }
+            .off {
+              transform: scale(1.0, 1.0) translate(0px, 0px);
+            }
+    </style>
+  </head>
+  <body>
+    <div class="main-part">
+      <header id="header">
+        <h1>
+          マーくんの<img class="logo" src="photos/250px-Surviv.io.png">ブログ
+          <a class="top-3" href="main2.html">
+            <img class="top" alt="ホームへ戻る" title="ホームへ戻る" src="photos/Screenshot_-_2019年12月21日_-_10時58分04秒.png">
+          </a>
+          <a  href="index.html">
+            <img class="top-3" alt="index.htmlへ戻る" title="index.htmlへ戻る" src="photos/220px-ISO_7010_E001_new.svg.png">
+          </a>
+        </h1>
+      </header>
+      <p align="right">
+        <a href="#linktop">
+          <img alt="TOPへ移動" title="TOPへ移動" class="linktop" src="photos/btn_pagetop.png">
+        </a>
+      </p>
+      <div class="noscript"> 
+        <noscript> <!--ブラウザのJavaScriptの設定が無効な場合の動作を指定-->
+          <h1 align="center">
+            <font color="red">
+              <strong>※ブラウザのJavaScriptが無効なため、ページは機能しません。JavaScriptを有効にしてください。</strong>
+            </font> 
+          </h1>
+        </noscript>
+      </div>
+      <div class="warning">
+        <h1 align="center">
+          <font color="red">ページを開く前の注意。</font>
+        </h1>
+        <p align="center">注意喚起の内容ですが、僕のページは、</p>
+        <h1 align="center">
+          <font color="red">IE,旧Edgeでは正常に動作しません。</font>
+        </h1>
+        <p align="center">
+          もしIE,旧Edgeで開いている場合には、Chromeなどの別のブラウザで開きなおしてください。<br>
+          (上のURLをコピー&ペーストして別のブラウザでこのページを開きなおす)<br>
+          なお、すでに別のブラウザで開いている場合は、この操作は必要ありません。
+        </p>
+        <p align="center">
+          <a href="#linktop">開きなおしたら、こちらをクリックしてください。</a>
+        </p>
+      </div>
+      <div class="main">
+        <h1 id="linktop"></h1>
+        <br>
+        <h4 class="clock" align="right">
+          <span id="view_clock"></span> <!--ここに現在時刻を表示-->
+          <script type="text/javascript">
+          timerID = setInterval('clock()',67); // 現在時刻の更新頻度を設定;
+          function clock() {
+          	document.getElementById("view_clock").innerHTML = getNow(); // 
+          }
+          function getNow() { // getNow()の中身を指定;
+          	var now = new Date(); // 現在時刻を取得;
+          	var year = now.getFullYear(); // 西暦を取得;
+          	var mon = now.getMonth()+1; // 月を取得し、1を足す;
+          	var day = now.getDate(); // 日を取得;
+          	var hour = now.getHours(); // 時を取得;
+          	var min = now.getMinutes(); // 分を取得;
+          	var sec = now.getSeconds(); // 秒を取得;
+            var ms = now.getMilliseconds(); // ミリ秒を取得;
+            if (min < 10) { // もしmin(分)が10未満なら;
+              min = "0" + min; // minの値の前に0を追加して表示;
+            }
+            if (sec < 10) { // もしsec(秒)が10未満なら;
+              sec = "0" + sec; // secの値の前に0を追加して表示;
+            }
+            if (ms < 10) { // もしms(ミリ秒)が10未満なら;
+              ms = "0" + ms; // msの値の前に0を2つ追加して表示;
+            }
+            if (ms < 100) { // もしms(ミリ秒)が100未満なら;
+              ms = "0" + ms; // msの値の前に0を1つ追加して表示;
+            } // (msの方の補足) msの値が10未満の場合、下2つのifが共にtrueとなり0が2つ追加される;
+          	var time = "現在時刻: " + year + "/" + mon + "/" + day + " " + hour + ":" + min + ":" + sec + "." + ms + " "; // 現在時刻のフォーマットをこのようにする;
+          	return time; // 現在時刻を返し、上の<span>...</span>内に表示する;
+          }
+          </script>
+          <br>
+          <span id="view_time"></span> <!--ここにページ読み込み時の時刻を表示-->
+          <script type="text/javascript">
+          document.getElementById("view_time").innerHTML = getNow2();
+          function getNow2() {
+          	var now2 = new Date();
+          	var year2 = now2.getFullYear();
+          	var mon2 = now2.getMonth()+1;
+          	var day2 = now2.getDate();
+          	var hour2 = now2.getHours();
+          	var min2 = now2.getMinutes();
+            var sec2 = now2.getSeconds();
+            var ms2 = now2.getMilliseconds();
+            if (min2 < 10) {
+              min2 = "0" + min2;
+            }
+            if (sec2 < 10) {
+              sec2 = "0" + sec2;
+            }
+            if (ms2 < 10) {
+              ms2 = "0" + ms2;
+            }
+            if (ms2 < 100) {
+              ms2 = "0" + ms2;
+            }
+          	time2 = "ページ読み込み時刻: " + year2 + "/" + mon2 + "/" + day2 + " " + hour2 + ":" + min2 + ":" + sec2 + "." + ms2 + " "; 
+          	return time2;
+          } // ここは連続更新はされず、ページ読み込み時に1回のみ更新される;
+          </script>
+          <p align="right" id="btn" onclick="btn1()">クリックしてヘッダーを表示/非表示</p> <!--onclickでクリックされた時の動作をJavaScriptで指定-->
+          <script type="text/javascript">
+            const btn = document.getElementById('btn'); // btnという定数を作成する。 var 変数とは異なり、window オブジェクトのプロパティにはならない;
+            const clockt = document.getElementById('view_clock'); // clocktという定数を作成する;
+            const timet = document.getElementById('view_time'); // timetという定数を作成する;
+            const headerh = document.getElementById('header'); // headerhという定数を作成する;
+            let statbtn = false; // statbtnという変数をfalseにする;
+
+            function btn1() { // 上のonclick="btn1()"とつながっている;
+              if(statbtn) {
+
+                btn.classList.add('off-2'); // btnが指定しているHTML要素に"off-2"クラスを追加;
+                btn.classList.remove('on-2'); // btnが指定しているHTML要素の"on-2"クラスを削除;
+                clockt.classList.add('off-3'); // clocktが指定しているHTML要素に"off-3"クラスを追加;
+                clockt.classList.remove('on-3'); // clocktが指定しているHTML要素の"on-3"クラスを削除;
+                timet.classList.add('off-4'); // timetが指定しているHTML要素に"off-4"クラスを追加;
+                timet.classList.remove('on-4'); // timetが指定しているHTML要素の"on-4"クラスを削除;
+                headerh.classList.add('off-8'); // headerhが指定しているHTML要素に"off-8"クラスを追加;
+                headerh.classList.remove('on-8'); // headerhが指定しているHTML要素の"on-8"クラスを削除;
+              } else { // 上とは逆の動作をする;
+                btn.classList.add('on-2'); 
+                btn.classList.remove('off-2');
+                clockt.classList.add('on-3');
+                clockt.classList.remove('off-3');
+                timet.classList.add('on-4');
+                timet.classList.remove('off-4');
+                headerh.classList.add('on-8');
+                headerh.classList.remove('off-8');
+              }
+              statbtn = !statbtn;
+            }
+          </script>
+        </h4>
+        <div class="introduction">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">マーくんのSurvivブログ。</h1>
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">黄弾武器</h1>
+          <p align="center" style="font-size: 12px">9mm</p>
+          <p align="center">
+            <img src="photos/Ammo-9mm.png" width="240" height="240">
+          </p>
+          <p align="center">
+            <font style="color:rgb(255, 255, 0);">黄弾(9mm)</font>は、surviv.ioで登場する弾薬の一つである。<br>
+            主に拳銃やサブマシンガンで使用される。<br>
+            <br>
+            <font style="color:rgb(0, 160, 255);">青弾(7.62mm)</font>や<font style="color:rgb(0, 255, 0);">緑弾(5.56mm)</font>と比べると、単発ダメージや射程は劣るが、<br>
+            出現率が一番高く、持てる数も一番多いため、弾切れを起こす確率は一番低いだろう。<br>
+          </p>
+          <script type="text/javascript">
+            var scrollAnimationElm303 = document.querySelectorAll('.introduction'); // "scrollAnimationElm303"を定義;
+            var scrollAnimationFunc303 = function() { // "scrollAnimationFunc303"を定義;
+              for(var i303 = 0; i303 < scrollAnimationElm303.length; i303++) {
+                var triggerMargin303 = 200; // "triggerMargin"を定義;
+                if (window.innerHeight > scrollAnimationElm303[i303].getBoundingClientRect().top + triggerMargin303) { // 画面の下と要素の位置の差が200pxになった時に;
+                  scrollAnimationElm303[i303].classList.add('show'); // 要素に"show"クラスを追加;
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc303);
+            window.addEventListener('scroll', scrollAnimationFunc303);
+          </script>
+        </div>
+        <div class="links-top">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">リンク</h1>
+          <p align="center">
+            <a href="#M9">
+              <img alt="M9" title="M9" src="photos/M9.png" class="top-link">
+            </a>
+            <a href="#G18C">
+              <img alt="G18C" title="G18C" src="photos/Glock_18C.png" class="top-link">
+            </a>
+            <a href="#M93R">
+              <img alt="M93R" title="M93R" src="photos/Loot-weapon-m93r.png" class="top-link">
+            </a>
+            <a href="#P30L">
+              <img alt="P30L" title="P30L" src="photos/Loot-weapon-p30l.png" class="top-link">
+            </a>
+            <a href="#MP5">
+              <img alt="MP5" title="MP5" src="photos/MP5.png" class="top-link">
+            </a>
+            <a href="#MAC-10">
+              <img alt="MAC-10" title="MAC-10" src="photos/Loot-weapon-mac10.webp" class="top-link">
+            </a>
+            <a href="#UMP9">
+              <img alt="UMP9" title="UMP9" src="photos/Loot-weapon-ump9.webp" class="top-link">
+            </a>
+            <a href="#Vector">
+              <img alt="Vector" title="Vector" src="photos/Loot-weapon-vector.webp" class="top-link">
+            </a>
+            <a href="#CZ-3A1">
+              <img alt="CZ-3A1" title="CZ-3A1" src="photos/Loot-weapon-scorpion.webp" class="top-link">
+            </a>
+            <a href="#VSS">
+              <img alt="VSS" title="VSS" src="photos/Loot-weapon-vss.webp" class="top-link">
+            </a>
+          </p>
+          <script type="text/javascript">
+            var scrollAnimationElm300 = document.querySelectorAll('.links-top');
+            var scrollAnimationFunc300 = function() {
+              for(var i300 = 0; i300 < scrollAnimationElm300.length; i300++) {
+                var triggerMargin300 = 200;
+                if (window.innerHeight > scrollAnimationElm300[i300].getBoundingClientRect().top + triggerMargin300) {
+                  scrollAnimationElm300[i300].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc300);
+            window.addEventListener('scroll', scrollAnimationFunc300);
+          </script>
+        </div>
+        <div class="fadein-0">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="M9" align="center">M9</h1>
+          <p align="center" style="font-size: 12px">Beretta Model 92</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="M9" title="M9" src="photos/M9.png" id="image1" onclick="func1()">
+          </p>
+          <p align="center">
+            surviv.ioをプレイしたことのある人なら、必ず1回は見たことがある銃。その名もM9。<br>
+            黄弾を使用する拳銃の一種である。<br>
+            あの<font style="color:rgb(190, 61, 202);">紫弾(.45 ACP)</font>の拳銃M1911をのぞけば、古くから最弱の武器として不動の地位にある。<br>
+            <br>
+            ありとあらゆるところから出てくるし、レア武器を期待したいハードストーンや、Vector箱からも出て来る。<br>
+            そんなところから出てこられると、がっかり...を通り越して笑えてくる。<font style="color:rgb(255, 0, 0);"><s>ほんとにどこにでもいるよなお前</s></font>
+            <br>
+            まともに使うなら出番は最序盤のみ。なにせ弾速は遅く、セミオートなので連射するのもきついし、それでいて単発ダメージは12。<br>
+            ただでさえブレの大きい弾を、素っ裸の敵だったとしてもMAX9発も当てないと倒せない。<br>
+            しかも、最序盤はスコープも1倍であることが多く、だったら普通にM9なしでパンチしたほうが強い。<br>
+            下手にM9なんかでうまい人に攻撃を仕掛けたら、反撃のパンチであっという間にボコボコにされてしまう。<br>
+            <br>
+            という、散々な武器だ。<br>
+            <br>
+            <font style="color:rgb(255, 0, 0);">ぶっちゃけこの武器を使うのは、「黄弾の無駄」といってもいいだろう。</font><br>
+            とっととほかの武器に持ち変えるべし。そもそも拾わなくていいやろ。<br>
+            <br>
+            おそらくこの武器の一番の利用方法は、「黄弾専用のバック代わり」だろう。<br>
+            特に、バックのない序盤において、早くからMAC-10やVectorを手に入れたとき、4丁持ちで60発余計に持ち歩けるというのは結構有能だ。<br>
+            また、スマホからのアクセスだと、特有のフルオート仕様によりこのM9がまた1つ厄介な武器に変化する事も、ぜひ覚えておきたい。<br>
+            ま　あ　で　も　弱　い　こ　と　に　変　わ　り　は　な　い　ん　だ　け　ど　さ。<br>
+            <br>
+            そんなM9につけられた名言。
+          </p>
+          <h1 align="center"><font style="color: rgb(255, 94, 0);">なんでM9なんだよ</font></h1>
+          <script type="text/javascript">
+            const image1 = document.getElementById("image1");
+            let stat1 = false;
+
+            function func1() {
+              if(stat1) {
+                image1.classList.add('off');
+                image1.classList.remove('on');
+              } else {
+                image1.classList.add('on');
+                image1.classList.remove('off');
+              }
+              stat1 = !stat1;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm101 = document.querySelectorAll('.fadein-0');
+            var scrollAnimationFunc101 = function() {
+              for(var i101 = 0; i101 < scrollAnimationElm101.length; i101++) {
+                var triggerMargin101 = 200;
+                if (window.innerHeight > scrollAnimationElm101[i101].getBoundingClientRect().top + triggerMargin101) {
+                  scrollAnimationElm101[i101].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc101);
+            window.addEventListener('scroll', scrollAnimationFunc101);
+          </script>
+        </div>
+        <div class="fadein-1">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="G18C" align="center">G18C</h1>
+          <p align="center" style="font-size: 12px">Glock 18C</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="G18C" title="G18C" src="photos/Glock_18C.png" id="image2" onclick="func2()">
+          </p>
+          <p align="center">
+            G18Cは拳銃の一種である。M9に並び、よく見かける銃だ。<br>
+            <br>
+            使ってみるとわかるが、かなり拡散しながら発射される銃弾の射程はごく短い。<br>
+            まさに銃弾のスプレーといったところか。<br>
+            <br>
+            しかし、M9と決定的に違うのは、この銃は<font style="color: rgb(200, 255, 0)">フルオート</font>ということだ。<br>
+            要するに銃弾をマウス押しっぱなしで連射でき、その連射速度も毎秒16.7発と速い。<br>
+            となると、MAC-10に似ている...というかほとんどミニMAC-10。<br>
+            しかし、使い勝手でいえばMAC-10のほうが断然上。あまり長い間持っておきたい武器でもない。<br>
+            <br>
+            もし同じような武器のMAC-10を発見したなら、さっさと持ち替えてOK。<br>
+            リロードも使いやすさも間違いなくMAC-10が上だし。<br>
+            <br>
+            ちなみに2丁持ちすると、ゲーム内最大の連射力を誇る。その値は毎秒33.3発。DPS換算で<font style="color: rgb(255, 94, 0)">約300!!!</font><br>
+            とはいってもリロードが長すぎるので、使い勝手はあまりよくないことに変わりはない。<br>
+          </p>
+          <script type="text/javascript">
+            const image2 = document.getElementById("image2");
+            let stat2 = false;
+
+            function func2() {
+              if(stat2) {
+                image2.classList.add('off');
+                image2.classList.remove('on');
+              } else {
+                image2.classList.add('on');
+                image2.classList.remove('off');
+              }
+              stat2 = !stat2;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm102 = document.querySelectorAll('.fadein-1');
+            var scrollAnimationFunc102 = function() {
+              for(var i102 = 0; i102 < scrollAnimationElm102.length; i102++) {
+                var triggerMargin102 = 200;
+                if (window.innerHeight > scrollAnimationElm102[i102].getBoundingClientRect().top + triggerMargin102) {
+                  scrollAnimationElm102[i102].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc102);
+            window.addEventListener('scroll', scrollAnimationFunc102);
+          </script>
+        </div>
+        <div class="fadein-2">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="M93R" align="center">M93R</h1>
+          <p align="center" style="font-size: 12px">Beretta 93 Raffica</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="M93R" title="M93R" height="128" width="128" src="photos/Loot-weapon-m93r.png" id="image3" onclick="func3()">
+          </p>
+          <p align="center">
+            M93Rは拳銃の一種である。<br>
+            いかにもM9に角をはやしたような形をしているのは、この銃が<font style="color: rgb(255, 94, 0)">まさにM9を改造した銃</font>だからだ。<br>
+            <br>
+            拳銃でありながら3点バーストという、なかなか珍しい銃。装填数も20と拳銃にしてはやや多め。<br>
+            しかしダメージはM9と同じく12。バーストの弾はUMP9やFAMASみたいに痛いのが普通だから、ちょっと意外。<br>
+            それにM9程ではないが、弾のブレも大きめ。まあ拳銃だし...<br>
+            <br>
+            ということでM9よりはマシであるが、あまり長い間使いたい武器でもない。<br>
+            せいぜいが中盤まで使えるかどうか、くらいのものだろう。
+          </p>
+          <script type="text/javascript">
+            const image3 = document.getElementById("image3");
+            let stat3 = false;
+
+            function func3() {
+              if(stat3) {
+                image3.classList.add('off');
+                image3.classList.remove('on');
+              } else {
+                image3.classList.add('on');
+                image3.classList.remove('off');
+              }
+              stat3 = !stat3;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm103 = document.querySelectorAll('.fadein-2');
+            var scrollAnimationFunc103 = function() {
+              for(var i103 = 0; i103 < scrollAnimationElm103.length; i103++) {
+                var triggerMargin103 = 200;
+                if (window.innerHeight > scrollAnimationElm103[i103].getBoundingClientRect().top + triggerMargin103) {
+                  scrollAnimationElm103[i103].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc103);
+            window.addEventListener('scroll', scrollAnimationFunc103);
+          </script>
+        </div>
+        <div class="fadein-3">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="P30L" align="center">P30L</h1>
+          <p align="center" style="font-size: 12px">Heckler & Koch P30 Long</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="P30L" title="P30L" height="128" width="128" src="photos/Loot-weapon-p30l.png" id="image4" onclick="func4()">
+          </p>
+          <p align="center">
+            P30Lは拳銃の一種である。そこそこレア。<br>
+            <br>
+            主な入手方法は、納屋の地下(大槌が出るところ)の地下の奥の部屋から。<br>
+            そこから1丁確定入手することができる。稀に2丁セットで出ることもある。その時はラッキー<br>
+            <br>
+            拳銃の中ではかなりの高性能。<br>
+            単発ダメージは21、連射力も高く、ブレも静止時で2°、移動時で3°と、スナイパー並みの高精度を誇る。<br>
+            相変わらず装填数は15発だが、全武器中最速の1.2秒という爆速リロードが解消してくれる。<br>
+            拳銃の中ではトップクラスの性能である。<font style="color: rgb(255, 238, 0)">黄弾なのに。</font><br>
+            拳銃という枠を超えてもなお強い部類に入る銃である。<font style="color: rgb(255, 238, 0)">黄弾なのに。</font><br>
+            <br>
+            弱点らしい弱点といえば、やっぱりセミオートだ、というところか。<br>
+            それにあまりの高精度のために逆に弾を当てるのが難しい、ということもある。<br>
+            すべての武器がフルオートの武器のように最速で打てるモバイル勢にこれを使われると、かなり厳しい。<br>
+            <br>
+            ダメージがもはやマークスマンライフル。<br>
+            連射力もマークスマンライフル。<br>
+            弾の精度もマークスマンライフル。<br>
+            <b>お前もはや拳銃じゃなくてマークスマンライフルだろ。</b><br>
+            <br>
+            2丁持ちされるとまたさらに厄介な武器になる。<br>
+            連射力がもはやフルオート武器と同じであり、PC勢ではマウスの連打力が試される。スマホ版だとフルオートで打てるからさらに厄介だ。<br>
+            気になるDPSはなんと<font style="color: rgb(255, 72, 0)">驚異の233!!!</font><br>
+            また、Perk「Firepower」により装填数が2倍にもなる数少ない武器である。<br>
+            他に装填数が2倍にもなる武器は、例の最弱武器M9...くらいか。まああれより弱いの存在するけど。<br>
+            <br>
+            というわけで、拳銃の割には非常に強い武器だ。ぜひ見かけたら手に取ってみるといいだろう。
+          </p>
+          <script type="text/javascript">
+            const image4 = document.getElementById("image4");
+            let stat4 = false;
+
+            function func4() {
+              if(stat4) {
+                image4.classList.add('off');
+                image4.classList.remove('on');
+              } else {
+                image4.classList.add('on');
+                image4.classList.remove('off');
+              }
+              stat4 = !stat4;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm104 = document.querySelectorAll('.fadein-3');
+            var scrollAnimationFunc104 = function() {
+              for(var i104 = 0; i104 < scrollAnimationElm104.length; i104++) {
+                var triggerMargin104 = 200;
+                if (window.innerHeight > scrollAnimationElm104[i104].getBoundingClientRect().top + triggerMargin104) {
+                  scrollAnimationElm104[i104].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc104);
+            window.addEventListener('scroll', scrollAnimationFunc104);
+          </script>
+        </div>
+        <div class="fadein-4">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="MP5" align="center">MP5</h1>
+          <p align="center" style="font-size: 12px">Heckler & Koch Maschinenpistole 5</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="MP5" title="MP5" height="128" width="128" src="photos/MP5.png" id="image5" onclick="func5()">
+          </p>
+          <p align="center">
+            MP5はサブマシンガンの一種である。黄弾を使う武器の基本。<br>
+            <br>
+            よく見かけるM416やAK-47などは、銃のふるまい的にやや似ている。<br>
+            でもその2種はアサルトライフル、こっちはサブマシンガンだ。<br>
+            こちらのダメージはM416と同じ、しかし弾速や射程、連射力で負けている。AK-47にはダメージも負けている。<br>
+            <br>
+            しかし、このMP5はこの中で弾が一番正確で、エイムさえ決まれば一番ダメージを与えうる武器である。<br>
+            そういうと、正直言って総合的な性能差はあまりないような気がする。弾速が遅い(ちなみにM9と同じ)ので偏差射撃が必要。<br>
+            なので遠距離戦はさっき挙げた2種のアサルトと比べると苦手かもしれない。そもそもサブマシンガンは遠距離で使う物じゃないし。<br>
+            <br>
+            基本的にそこら辺のアサルトが手に入れば用済みになる。言い換えれば序盤から中盤が出番。<br>
+            しかし、ゲームの進行次第では終盤でまた出番が来る。<br>
+            というのも、青弾や緑弾を途中で使い果たしてしまい、なおかつ補充もできなかった!!なんて場面もなくはないからだ。<br>
+            そんな時はこれに持ち替えるとよい。<br>
+            <br>
+            と考えると、終盤でも意外と使える、汎用性の高い武器であると言える。<br>
+          </p>
+          <script type="text/javascript">
+            const image5 = document.getElementById("image5");
+            let stat5 = false;
+
+            function func5() {
+              if(stat5) {
+                image5.classList.add('off');
+                image5.classList.remove('on');
+              } else {
+                image5.classList.add('on');
+                image5.classList.remove('off');
+              }
+              stat5 = !stat5;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm105 = document.querySelectorAll('.fadein-4');
+            var scrollAnimationFunc105 = function() {
+              for(var i105 = 0; i105 < scrollAnimationElm105.length; i105++) {
+                var triggerMargin105 = 200;
+                if (window.innerHeight > scrollAnimationElm105[i105].getBoundingClientRect().top + triggerMargin105) {
+                  scrollAnimationElm105[i105].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc105);
+            window.addEventListener('scroll', scrollAnimationFunc105);
+          </script>
+        </div>
+        <div class="fadein-5">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="MAC-10" align="center">MAC-10</h1>
+          <p align="center" style="font-size: 12px">Military Armament Corporation Model 10</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="MAC-10" title="MAC-10" height="128" width="128" src="photos/Loot-weapon-mac10.webp" id="image6" onclick="func6()">
+          </p>
+          <p align="center">
+            MAC-10は黄弾を使うサブマシンガンの一種である。MP5と同じく黄弾を使用する銃の基本。<br>
+            <br>
+            実際に使ってみるとわかるが、ものすごい勢いで弾を連射するその姿は<br>
+            わかりやすく近距離に特化した武器であることを物語っている。<br>
+            接近戦ではショットガンと同じように使えば、かなりの威力を発揮するだろう。<br>
+            <br>
+            それから、接近戦向けと言うこともあって、弾のブレが静止時で10°、移動時で21°もある。<br>
+            適当なエイムでも結構な数の弾が敵に当たるから、初心者でエイムが苦手な人にも使いやすいであろう。<br>
+            M870やMP220などのショットガンが苦手ならMAC-10を使うのもよし。<br>
+            それからチームプレーにおいて、味方全員がショットガン(=赤弾を使う銃)を持っているなら、代わりにMAC-10を持つのもアリ。<br>
+            と言うかむしろ味方と使用する銃弾が被るのを防げるから、極力そうしたほうがいい。AK-47とM416などのアサルトライフルでも然り。<br>
+            <br>
+            しかし、さっき挙げたブレは時に弱点にもなる。<br>
+            中~遠距離になるとそのブレの大きさのために、敵に球を当てることが非常に難しくなる。<br>
+            そもそも射程短いから弾が届かんし。<br>
+            <br>
+            それからもう1つの弱点は、その連射力の高さのために異常な速さで球を消費してしまうところだ。<br>
+            黄弾だから見つかりやすいとはいえ、常にどこにでも落ちているわけでもない。だから弾の補充はお忘れなく。<br>
+            <br>
+            ということで、MP5と同じく黄弾の中ではなかなか有能な武器だ。
+          </p>
+          <script type="text/javascript">
+            const image6 = document.getElementById("image6");
+            let stat6 = false;
+
+            function func6() {
+              if(stat6) {
+                image6.classList.add('off');
+                image6.classList.remove('on');
+              } else {
+                image6.classList.add('on');
+                image6.classList.remove('off');
+              }
+              stat6 = !stat6;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm106 = document.querySelectorAll('.fadein-5');
+            var scrollAnimationFunc106 = function() {
+              for(var i106 = 0; i106 < scrollAnimationElm106.length; i106++) {
+                var triggerMargin106 = 200;
+                if (window.innerHeight > scrollAnimationElm106[i106].getBoundingClientRect().top + triggerMargin106) {
+                  scrollAnimationElm106[i106].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc106);
+            window.addEventListener('scroll', scrollAnimationFunc106);
+          </script>
+        </div>
+        <div class="fadein-6">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="UMP9" align="center">UMP9</h1>
+          <p align="center" style="font-size: 12px">Heckler & Koch Universale Maschinenpistole 9mm</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="UMP9" title="UMP9" height="128" width="128" src="photos/Loot-weapon-ump9.webp" id="image7" onclick="func7()">
+          </p>
+          <p align="center">
+            UMP9は黄弾を使用するサブマシンガンの一種である。<br>
+            <br>
+            ...さてこのUMP9であるが、とある1つの特徴が原因で、多くのプレイヤーに嫌われがちになっている、なんとも残念な銃である。<br>
+            <font style="color: rgb(200, 255, 0)"><b>UMP9「別に意図して嫌われるためじゃないのに！！！うううう(泣)」</b></font><br>
+            <br>
+            ...というのもUMP9は「3点バースト式」の銃であるからだ。<br>
+            簡単に言えば3発の銃弾が「パパパッ」と連射された後にしばらく間が空き、再び次の3発が「パパパッ」と飛び出す仕様。<br>
+            嫌われやすい原因はやっぱりこの連射と連射の間にあるようだ。<br>
+            <br><font style="color: rgb(255, 94, 0)"><b>プレイヤー「ああああああ発砲の間にやられたぁあぁあぁあぁあ！！！！！！」</b></font><br>
+            <br>
+            ということで<s>こんなどうでもいい茶番はよしておいて</s>、バーストが故に弱い銃にとらわれがちであるが、別にUMP9の性能自体がダメなわけではない。<br>
+            気になるUMP9の単発ダメージは<font style="color: rgb(253, 132, 237)"><b>実は15！</b></font><br>
+            数値そのものはなんと青弾のアサルトライフルSCAR-Hと同じで、なんとあのチートレベルに強いことで有名なM249、PKP等をも上回っている。<br>
+            しかもUMP9が使用するのは、単発ダメージが劣ると言われている黄弾。と考えるとそのすごさが分かるだろう。<br>
+            <br>
+            それからUMP9はバースト銃だからなのか弾が正確であり、静止時で1.5°、移動時で4.5°というなかなかの高精度を誇る。<br>
+            つまり結論としては、中~遠距離においては見た目以上の戦闘力を秘めた銃だ。バーストだからと言って軽視しないほうがいい。<br>
+            <br>
+            なお本物のUMP9には3点バーストと言うのはない。<s>なんで勝手に追加したし。</s>
+            <br>
+            それから個人的な意見であるが、どうもこの銃、
+          </p>
+          <h3 align="center">なんかVectorに似てるくない？？？</h3>
+          <p align="center">
+            と、見かけるたびに毎回毎回思ってしまう。<br>
+            あーもう、うおおVectorだやったああ！って思って近づいた時にUMP9だったときのあの悲しさよ。<br>
+            <br>
+            そんなときにおれが用意したセリフがこちら
+          </p>
+          <h1 align="center"><font style="color: rgb(255, 94, 0)">おいUMP！！<b>このVectorもどきが(怒</b></font></h1>
+          <script type="text/javascript">
+            const image7 = document.getElementById("image7");
+            let stat7 = false;
+
+            function func7() {
+              if(stat7) {
+                image7.classList.add('off');
+                image7.classList.remove('on');
+              } else {
+                image7.classList.add('on');
+                image7.classList.remove('off');
+              }
+              stat7 = !stat7;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm107 = document.querySelectorAll('.fadein-6');
+            var scrollAnimationFunc107 = function() {
+              for(var i107 = 0; i107 < scrollAnimationElm107.length; i107++) {
+                var triggerMargin107 = 200;
+                if (window.innerHeight > scrollAnimationElm107[i107].getBoundingClientRect().top + triggerMargin107) {
+                  scrollAnimationElm107[i107].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc107);
+            window.addEventListener('scroll', scrollAnimationFunc107);
+          </script>
+        </div>
+        <div class="fadein-7">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="Vector" align="center">Vector</h1>
+          <p align="center" style="font-size: 12px">KRISS Vector</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="Vector" title="Vector" height="128" width="128" src="photos/Loot-weapon-vector.webp" id="image8" onclick="func8()">
+          </p>
+          <p align="center">
+            Vectorは黄弾を使用するサブマシンガンの一種である。レア。<br>
+            黄弾を使用するものと紫弾(.45 ACP)を使用する者の両方が同じVectorと言う名前で存在するが、ここでは黄弾の方を解説する。<br>
+            <br>
+            主な入手方法は、研究所の奥の部屋にある斧箱。そこから結構な確率で出てくる。<br>
+            たまにほかの武器(MP220,M416,<font style="color:rgb(255, 0, 149);">M9<s>←これ重要</s></font>,PKP,M134,M249)が出てくることがあるが、それは本当にたまにだ。<br>
+            それから、小屋に偽装したバンカーにも斧箱があり、そこからも同じように出てくることがある。<br>
+            <br>
+            特徴は何と言っても、その凄まじい連射力と弾の正確さ、そしてリロードの速さを併せ持つところだ。<br>
+            連射においては何と<font style="color: rgb(255, 104, 44)">驚異の毎秒26.4発</font>と、全武器中2番目の連射速度を誇る。(1位はG18Cの2丁持ちで毎秒33.3発)<br>
+            <s>もっともG18Cの2丁持ちはただただ連射が速いだけで使い勝手はVectorと比べ物にならないくらい悪いんだけど。</s><br>
+            こんな弾をまともにくらってしまったのでは、あっという間に体力を削られてしまう...何とも恐ろしい武器だ。<br>
+            <br>
+            それからブレについては静止時で2.5°、移動時で4.5°と言う高精度を誇る。<br>
+            MAC-10のような分かりやすく近距離専用ではなく、中距離でもかなりの性能を発揮する。<br>
+            しかもリロードも全武器中2番目の1.6秒という速さを誇る。(1位はP30Lの1.2秒)<br>
+            ...なんてロマンチックな武器なんだ！！自分が初めて見かけたときはその性能に一目惚れしてしまった。<br>
+            <br>
+            もちろん、こんなに強くてロマンチックなVectorにも、弱点と言うのがある。<br>
+            まず筆頭は<b>単発ダメージの低さ</b>だ。連射力が高いがために打ち消されているだけであって、<br>
+            Vectorの単発ダメージは<font style="color: rgb(200, 255, 0)"><b>なんと7.5しかない。</b></font>流石にこれは全武器中ワースト1位なのではないか。<br>
+            もちろんまともにくらえば7.5x33で計算するまでもなく敵は倒れるけど。<br>
+            <br>
+            それからVectorは、射程が46とかなり短い。<br>
+            MAC-10が50と言われると本当に"かなり"か？と思われそうだが、MAC-10とVectorのブレの大きさを比べれば一目瞭然だ。<br>
+            MAC-10はあれだけのブレを持っていながらも射程がVectorより長いのだから、Vectorの戦闘距離の短さが想像できるだろう。<br>
+            <br>
+            とまあ、前述の弱点は覚えておいたところで、見かけたらとっておきたい武器である。
+          </p>
+          <script type="text/javascript">
+            const image8 = document.getElementById("image8");
+            let stat8 = false;
+
+            function func8() {
+              if(stat8) {
+                image8.classList.add('off');
+                image8.classList.remove('on');
+              } else {
+                image8.classList.add('on');
+                image8.classList.remove('off');
+              }
+              stat8 = !stat8;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm108 = document.querySelectorAll('.fadein-7');
+            var scrollAnimationFunc108 = function() {
+              for(var i108 = 0; i108 < scrollAnimationElm108.length; i108++) {
+                var triggerMargin108 = 200;
+                if (window.innerHeight > scrollAnimationElm108[i108].getBoundingClientRect().top + triggerMargin108) {
+                  scrollAnimationElm108[i108].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc108);
+            window.addEventListener('scroll', scrollAnimationFunc108);
+          </script>
+        </div>
+        <div class="fadein-8">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="CZ-3A1" align="center">CZ-3A1</h1>
+          <p align="center" style="font-size: 12px">CZ Scorpion Evo 3A1</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="CZ-3A1" title="CZ-3A1" height="128" width="128" src="photos/Loot-weapon-scorpion.webp" id="image9" onclick="func9()">
+          </p>
+          <p align="center">
+            CZ-3A1は黄弾を使用するサブマシンガンの一種である。激レア。<br>
+            恐らく黄弾銃の中では最強と言ってもいい。<br>
+            <br>
+            主な入手方法は、金色の救援物資。そこから低確率で出てくる。<br>
+            クラシックで見かけることは殆どないが、レア武器がボロボロ出てくるイベントではまだそこそこ見かけるだろう。<br>
+            <br>
+            その特徴はMP5とVectorのいいとこどりのような性能を持っていることだ。<br>
+            毎秒19.3発という連射力を誇りながらも、単発ダメージも10.75とVectorより高いところが最大の魅力。<br>
+            ブレは静止時で4°、移動時で9°とやや大き目になっているものの、近距離戦がメインのくせに<br>
+            弾があまりブレず扱いにくかったVectorの短所をしっかり改善している。<br>
+            射程もMP5やVector、MAC-10よりもずっと長く、長距離戦でも問題なく活躍するだろう。<br>
+            <br>
+            それから、サプレッサーがついている数少ない銃であり、発射音が比較的小さく、そして発射された銃弾がだんだん見えにくくなっていく。<br>
+            遠いところからこっそり敵を狙うのもよし、茂みなどに隠れてこっそり敵を狙うのもよし。<br>
+            ああ、なんて素敵な銃...<br>
+            <br>
+            <s>とまあまたの茶番はよしておいて、</s>激レア武器であるがゆえにお目に書かれる場面は...イベント以外だとあまりない気がする。<br>
+            もう少し出る確率が高ければ...<br>
+          </p>
+          <script type="text/javascript">
+            const image9 = document.getElementById("image9");
+            let stat9 = false;
+
+            function func9() {
+              if(stat9) {
+                image9.classList.add('off');
+                image9.classList.remove('on');
+              } else {
+                image9.classList.add('on');
+                image9.classList.remove('off');
+              }
+              stat9 = !stat9;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm109 = document.querySelectorAll('.fadein-8');
+            var scrollAnimationFunc109 = function() {
+              for(var i109 = 0; i109 < scrollAnimationElm109.length; i109++) {
+                var triggerMargin109 = 200;
+                if (window.innerHeight > scrollAnimationElm109[i109].getBoundingClientRect().top + triggerMargin109) {
+                  scrollAnimationElm109[i109].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc109);
+            window.addEventListener('scroll', scrollAnimationFunc109);
+          </script>
+        </div>
+        <div class="fadein-9">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="VSS" align="center">VSS</h1>
+          <p align="center" style="font-size: 12px">Vintovka Snayperskaya Spetsialnaya;Винтовка Снайперская Специальная</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="VSS" title="VSS" height="128" width="128" src="photos/Loot-weapon-vss.webp" id="image10" onclick="func10()">
+          </p>
+          <p align="center">
+           VSSは唯一の、黄弾を使用するマークスマンライフルである。レア。<br>
+            <br>
+            主な入手方法は、ノーマルの救援物資。ここからそこそこの確率で出てくる。<br>
+            もちろん、イベントではクラシック以上に見かける確率が高いだろう。<br>
+            <br>
+            CZ-3A1等と同じようにサプレッサーが付いている数少ない銃であり、発砲音が比較的静かかつ発射された弾が見えにくくなっていく。<br>
+            <b>しかもこのVSS、他のサプレッサー付きの銃と比べても、とりわけ発砲音が静かなのである。</b><br>
+            <font style="color: rgb(44, 255, 220)">どれくらいかと言うと、しっかり耳を澄まさないとほとんど聞こえないレベルだ。</font><br>
+            マークスマンライフルなだけあって、遠くから敵の体力をちくちく削るのには非常に適している銃であろう。<br>
+            <br>
+            でもこのVSS、単発ダメージが20と、マークスマンライフルにしてはやや低めである。<br>
+            同じマークスマンライフルでメジャーなものと比較するなら、M39 EMRが24.5、Mk 12 SPRが22.5である。<br>
+            黄弾銃の宿命なのだろうか。<br>
+            幸いなことに(セミオートではあるが)連射力はMk 12 SPRと同等、あるいはそれ以上？はあるので、マウスの連射でどうにかしたい。<br>
+            もちろんスマホ版はフルオートで打ててしまうので関係ない。<br>
+          </p>
+          <script type="text/javascript">
+            const image10 = document.getElementById("image10");
+            let stat10 = false;
+
+            function func10() {
+              if(stat10) {
+                image10.classList.add('off');
+                image10.classList.remove('on');
+              } else {
+                image10.classList.add('on');
+                image10.classList.remove('off');
+              }
+              stat10 = !stat10;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm110 = document.querySelectorAll('.fadein-9');
+            var scrollAnimationFunc110 = function() {
+              for(var i110 = 0; i110 < scrollAnimationElm110.length; i110++) {
+                var triggerMargin110 = 200;
+                if (window.innerHeight > scrollAnimationElm110[i110].getBoundingClientRect().top + triggerMargin110) {
+                  scrollAnimationElm110[i110].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc110);
+            window.addEventListener('scroll', scrollAnimationFunc110);
+          </script>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="javascripts/jquery-3.1.0.min.js" ></script> <!--jQuery本体のプログラムを読み込む-->
+    <!--以下、スクロール時に滑らかに移動するプログラムをjQueryで指定-->
+    <script type="text/javascript">
+      // <a>タグのジャンプ先の指定(href)で前に"#"がついているもの (要するにページ内ジャンプ) に以下のプログラムを適用;
+      $(function(){
+        $('a[href^="#"]').click(function() {
+          var speed = 1000;
+          var href= $(this).attr("href");
+          var target = $(href == "#" || href == "" ? 'html' : href);
+          var position = target.offset().top;
+          $('body, html').animate({scrollTop:position}, speed, 'swing');
+          return false;
+        });
+      });
+    </script>
+    <div class="copyright">
+      <p align="center">-----------------------------------------------------------------------------------------------</p>
+      <p align="center">Copyright (C) 2021-2024 MaKun. All Rights Reserved.</p>
+      <script type="text/javascript">
+        var scrollAnimationElm302 = document.querySelectorAll('.copyright');
+        var scrollAnimationFunc302 = function() {
+          for(var i302 = 0; i302 < scrollAnimationElm302.length; i302++) {
+            var triggerMargin302 = 5;
+            if (window.innerHeight > scrollAnimationElm302[i302].getBoundingClientRect().top + triggerMargin302) {
+              scrollAnimationElm302[i302].classList.add('show');
+            }
+          }
+        }
+        window.addEventListener('load', scrollAnimationFunc302);
+        window.addEventListener('scroll', scrollAnimationFunc302);
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="Generator" content="Microsoft Visual Studio Code v1.52.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>マーくんのSurvivブログ</title>
+    <link rel="shortcut icon" type="image/x-icon" href="photos/Favicon (1).ico" />
+    <link rel="icon" type="image/x-icon" href="photos/Favicon (1).ico" />
+    <style type="text/css">
+      body {
+        background-color: rgb(27, 27, 27);
+        color: rgb(255, 255, 255);
+      }
+      header {
+        width: 100%;
+        height: 110px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      .onh {
+        transition: all 200ms 15ms ease;
+        opacity: 0;
+        height: 0;
+      }
+      .offh {
+        transition: all 200ms 110ms ease;
+        opacity: 1;
+        height: 110px;
+      }
+      .logo {
+        height: 30px;
+      }
+      .main-part {
+        animation: fadeIn 2.0s ease 0s 1 normal;
+      }
+      @keyframes fadeIn { /* fadeInの動作を指定 */
+        0% {opacity: 0} 
+        100% {opacity: 1} 
+      }
+      .clock {
+        transition: all 400ms ease; /* プロパティが変化する際のアニメーションの速度を操作する */
+        opacity: 1; /* 要素の透明度を指定 */
+        position: fixed;
+        margin-right: 18.720;
+        top: 0;
+        right: 0;
+        z-index: 2;
+      }
+      #view_clock:hover { /* hoverでマウスオーバーされたときの動作を指定 */
+        transition: all 400ms ease;
+        opacity: 1;
+      }
+      #view_time:hover {
+        transition: all 400ms ease;
+        opacity: 1;
+      }
+      #view_clock.onc {
+        transition: all 200ms 15ms ease;
+        opacity: 0;
+      }
+      .offc {
+        transition: all 200ms 110ms ease;
+        opacity: 1;
+      }
+      #view_time.ond {
+        transition: all 200ms 15ms ease;
+        opacity: 0;
+      }
+      .offd {
+        transition: all 200ms 110ms ease;
+        opacity: 1;
+      }
+      #btn {
+        transition: all 400ms 0s ease;
+        opacity:0.3;
+      }
+      #btn:hover {
+        transition: all 400ms 0s ease;
+        opacity:1;
+        color: rgb(0, 255, 255)
+      }
+      #btn:active {
+        transition: all 400ms 0s ease;
+        opacity:1;
+        color: rgb(255, 95, 255)
+      }
+      .onb {
+        transform: translate(0px, -70px) /* 与えられた要素を移動する */
+      }
+      .offb {
+        transform: translate(0px, 0px)
+      }
+      .linktop {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        transition: all 400ms 0s ease;
+        width: 57px;
+        height: 57px;
+      }
+      .linktop:hover {
+        transition: all 400ms 0s ease;
+        width: 77px;
+        height: 77px;
+      }
+      a {
+        color: rgb(200, 255, 0);
+        transition: all 400ms 0s ease;
+        opacity: 0.6;
+      }
+      a:hover {
+        color: rgb(0, 255, 255);
+        transition: all 400ms 0s ease;
+        opacity: 1;
+      }
+      a:active {
+        color: rgb(255, 0, 242);
+        transition: all 400ms 0s ease;
+        opacity: 1;
+      }
+      .introduction {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .introduction.show {
+        opacity: 1;
+        transform: none;
+      }
+      .top {
+        transition: all 400ms 0s ease;
+        width: 48px;
+        height: 48px;
+      }
+      .top:hover {
+        transition: all 400ms 0s ease;
+        width: 58px;
+        height: 58px;
+      }
+      .top-3 {
+        transition: all 400ms 0s ease;
+        width: 48px;
+        height: 48px;
+      }
+      .top-3:hover {
+        transition: all 400ms 0s ease;
+        width: 58px;
+        height: 58px;
+      }
+      .top-link {
+        transition: all 400ms 0s ease;
+        width: 64px;
+        height: 64px;
+      }
+      .top-link:hover {
+        transition: all 400ms 0s ease;
+        width: 85px;
+        height: 85px;
+      }
+      .top-link3 {
+        transition: all 400ms 0s ease;
+        width: 64px;
+        height: 64px;
+      }
+      .top-link3:hover {
+        transition: all 400ms 0s ease;
+        width: 76px;
+        height: 76px;
+      }
+      .links-top {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .links-top.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-root {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-root.show {
+        opacity: 1;
+        transform: none;
+      }
+      .copyright {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .copyright.show {
+        opacity: 1;
+        transform: none;
+      }
+      .linkaccounts-1 {
+        transition: all 400ms 0s ease;
+        width: 120px;
+        height: 120px;
+      }
+      .linkaccounts-1:hover {
+        transition: all 400ms 0s ease;
+        width: 150px;
+        height: 150px;
+      }
+      .linkaccounts-2 {
+        transition: all 400ms 0s ease;
+        width: 100px;
+        height: 100px;
+      }
+      .linkaccounts-2:hover {
+        transition: all 400ms 0s ease;
+        width: 125px;
+        height: 125px;
+      }
+      .fadein-0 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-0.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-1 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-1.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-2 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-2.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-3 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-3.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-4 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-4.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-5 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-5.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-6 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-6.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-7 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-7.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-8 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-8.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-9 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-9.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-10 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-10.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-11 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-11.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-12 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-12.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-13 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-13.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-14 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-14.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-15 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-15.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-16 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-16.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-17 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-17.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-18 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-18.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-19 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-19.show {
+        opacity: 1;
+        transform: none;
+      }
+      .fadein-20 {
+        opacity: 0;
+        transition: all 0.5s ease;
+        transform: translate(0, 150px);
+      }
+      .fadein-20.show {
+        opacity: 1;
+        transform: none;
+      }
+      #image1 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image2 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image3 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image4 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image5 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image6 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image7 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image8 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image9 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image10 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image11 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image12 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image13 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image14 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image15 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image16 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image17 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image18 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image19 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+      #image20 {
+        transition: all 600ms 0s ease;
+      }
+      .on {
+        transform: scale(3.5, 3.5) translate(0px, 0px);
+      }
+      .off {
+        transform: scale(1.0, 1.0) translate(0px, 0px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-part">
+      <header id="header">
+        <h1>
+          マーくんの<img class="logo" src="photos/250px-Surviv.io.png">ブログ
+          <a class="top-3" href="main2.html">
+            <img class="top" alt="ホームへ戻る" title="ホームへ戻る" src="photos/Screenshot_-_2019年12月21日_-_10時58分04秒.png">
+          </a>
+          <a  href="index.html">
+            <img class="top-3" alt="index.htmlへ戻る" title="index.htmlへ戻る" src="photos/220px-ISO_7010_E001_new.svg.png">
+          </a>
+        </h1>
+      </header>
+      <p align="right">
+        <a href="#linktop">
+          <img alt="TOPへ移動" title="TOPへ移動" class="linktop" src="photos/btn_pagetop.png">
+        </a>
+      </p>
+      <div class="noscript"> 
+        <noscript> <!--ブラウザのJavaScriptの設定が無効な場合の動作を指定-->
+          <h1 align="center">
+            <font color="red">
+              <strong>※ブラウザのJavaScriptが無効なため、ページは機能しません。JavaScriptを有効にしてください。</strong>
+            </font> 
+          </h1>
+        </noscript>
+      </div>
+      <div class="warning">
+        <h1 align="center">
+          <font color="red">ページを開く前の注意。</font>
+        </h1>
+        <p align="center">注意喚起の内容ですが、僕のページは、</p>
+        <h1 align="center">
+          <font color="red">IE,旧Edgeでは正常に動作しません。</font>
+        </h1>
+        <p align="center">
+          もしIE,旧Edgeで開いている場合には、Chromeなどの別のブラウザで開きなおしてください。<br>
+          (上のURLをコピー&ペーストして別のブラウザでこのページを開きなおす)<br>
+          なお、すでに別のブラウザで開いている場合は、この操作は必要ありません。
+        </p>
+        <p align="center">
+          <a href="#linktop">開きなおしたら、こちらをクリックしてください。</a>
+        </p>
+      </div>
+      <div class="main">
+        <h1 id="linktop"></h1>
+        <br>
+        <h4 class="clock" align="right">
+          <span id="view_clock"></span> <!--ここに現在時刻を表示-->
+          <script type="text/javascript">
+          timerID = setInterval('clock()',67); // 現在時刻の更新頻度を設定;
+          function clock() {
+          	document.getElementById("view_clock").innerHTML = getNow(); // innerHTMLは要素内の HTML または XML のマークアップを取得したり設定したりする。ここでgetNow()ファンクションを指定;
+          }
+          function getNow() { // getNow()の中身を指定;
+          	var now = new Date(); // 現在時刻を取得;
+          	var year = now.getFullYear(); // 西暦を取得;
+          	var mon = now.getMonth()+1; // 月を取得し、1を足す;
+          	var day = now.getDate(); // 日を取得;
+          	var hour = now.getHours(); // 時を取得;
+          	var min = now.getMinutes(); // 分を取得;
+          	var sec = now.getSeconds(); // 秒を取得;
+            var ms = now.getMilliseconds(); // ミリ秒を取得;
+            if (min < 10) { // もしmin(分)が10未満なら;
+              min = "0" + min; // minの値の前に0を追加して表示;
+            }
+            if (sec < 10) { // もしsec(秒)が10未満なら;
+              sec = "0" + sec; // secの値の前に0を追加して表示;
+            }
+            if (ms < 10) { // もしms(ミリ秒)が10未満なら;
+              ms = "0" + ms; // msの値の前に0を2つ追加して表示;
+            }
+            if (ms < 100) { // もしms(ミリ秒)が100未満なら;
+              ms = "0" + ms; // msの値の前に0を1つ追加して表示;
+            } // (msの方の補足) msの値が10未満の場合、下2つのifが共にtrueとなり0が2つ追加される;
+          	var time = "現在時刻: " + year + "/" + mon + "/" + day + " " + hour + ":" + min + ":" + sec + "." + ms + "　"; // 現在時刻のフォーマットをこのようにする;
+          	return time; // 現在時刻を返し、上の<span>...</span>内に表示する;
+          }
+          </script>
+          <br>
+          <span id="view_time"></span> <!--ここにページ読み込み時の時刻を表示-->
+          <script type="text/javascript">
+          document.getElementById("view_time").innerHTML = getNow2();
+          function getNow2() {
+          	var now2 = new Date();
+          	var year2 = now2.getFullYear();
+          	var mon2 = now2.getMonth()+1;
+          	var day2 = now2.getDate();
+          	var hour2 = now2.getHours();
+          	var min2 = now2.getMinutes();
+            var sec2 = now2.getSeconds();
+            var ms2 = now2.getMilliseconds();
+            if (min2 < 10) {
+              min2 = "0" + min2;
+            }
+            if (sec2 < 10) {
+              sec2 = "0" + sec2;
+            }
+            if (ms2 < 10) {
+              ms2 = "0" + ms2;
+            }
+            if (ms2 < 100) {
+              ms2 = "0" + ms2;
+            }
+          	time2 = "ページ読み込み時刻: " + year2 + "/" + mon2 + "/" + day2 + " " + hour2 + ":" + min2 + ":" + sec2 + "." + ms2 + "　"; 
+          	return time2;
+          } // ここにはsetInterval()関数がないため、連続更新はされず、ページ読み込み時に1回のみ更新される;
+          </script>
+          <p align="right" id="btn" onclick="btn1()">クリックしてヘッダーを表示/非表示</p> <!--onclickでクリックされた時の動作をJavaScriptで指定-->
+          <script type="text/javascript">
+            const btn = document.getElementById('btn'); // btnという定数を作成する。 var 変数とは異なり、window オブジェクトのプロパティにはならない;
+            const clockt = document.getElementById('view_clock'); // clocktという定数を作成する;
+            const timet = document.getElementById('view_time'); // timetという定数を作成する;
+            const headerh = document.getElementById('header'); // headerhという定数を作成する;
+            let statbtn = false; // statbtnという変数をfalseにする;
+
+            function btn1() { // 上のonclick="btn1()"とつながっている;
+              if(statbtn) {
+                btn.classList.add('offb'); // btnが指定しているHTML要素に"offb"クラスを追加;
+                btn.classList.remove('onb'); // btnが指定しているHTML要素の"onb"クラスを削除;
+                clockt.classList.add('offc'); // clocktが指定しているHTML要素に"offc"クラスを追加;
+                clockt.classList.remove('onc'); // clocktが指定しているHTML要素の"onc"クラスを削除;
+                timet.classList.add('offd'); // timetが指定しているHTML要素に"offd"クラスを追加;
+                timet.classList.remove('ond'); // timetが指定しているHTML要素の"ond"クラスを削除;
+                headerh.classList.add('offh'); // headerhが指定しているHTML要素に"offh"クラスを追加;
+                headerh.classList.remove('onh'); // headerhが指定しているHTML要素の"onh"クラスを削除;
+              } else { // 上とは逆の動作をする;
+                btn.classList.add('onb'); 
+                btn.classList.remove('offb');
+                clockt.classList.add('onc');
+                clockt.classList.remove('offc');
+                timet.classList.add('ond');
+                timet.classList.remove('offd');
+                headerh.classList.add('onh');
+                headerh.classList.remove('offh');
+              }
+              statbtn = !statbtn;
+            }
+          </script>
+        </h4>
+        <div class="introduction">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">マーくんのSurvivブログ。</h1>
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">青弾武器</h1>
+          <p align="center" style="font-size: 12px">7.62mm</p>
+          <p align="center">
+            <img src="photos/Ammo-762mm.webp" width="240" height="240">
+          </p>
+          <p align="center">
+            <font style="color:rgb(30, 157, 255);">青弾(7.62mm)</font>は、surviv.ioで登場する弾薬の一つである。<br>
+            主にアサルトライフルや軽機関銃で使用される。<br>
+            <br>
+            比較的ダメージが高く、<font style="color:rgb(148, 255, 105);">緑弾(5.56mm)</font>とともに、メイン武器でよく使われる弾薬である。<br>
+          </p>
+          <script type="text/javascript">
+            var scrollAnimationElm303 = document.querySelectorAll('.introduction'); // "scrollAnimationElm303"を定義;
+            var scrollAnimationFunc303 = function() { // "scrollAnimationFunc303"を定義;
+              for(var i303 = 0; i303 < scrollAnimationElm303.length; i303++) {
+                var triggerMargin303 = 200; // "triggerMargin"を定義;
+                if (window.innerHeight > scrollAnimationElm303[i303].getBoundingClientRect().top + triggerMargin303) { // 画面の下と要素の位置の差が200pxになった時に;
+                  scrollAnimationElm303[i303].classList.add('show'); // 要素に"show"クラスを追加;
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc303);
+            window.addEventListener('scroll', scrollAnimationFunc303);
+          </script>
+        </div>
+        <div class="links-top">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 align="center">リンク</h1>
+          <p align="center">
+            <a href="#OT-38">
+              <img alt="OT-38" title="OT-38" src="photos/OT-38.webp" class="top-link">
+            </a>
+            <a href="#AK-47">
+              <img alt="AK-47" title="AK-47" src="photos/Loot-weapon-ak.webp" class="top-link">
+            </a>
+            <a href="#Groza">
+              <img alt="Groza" title="Groza" src="photos/Groza.webp" class="top-link">
+            </a>
+            <a href="#Groza-S">
+              <img alt="Groza-S" title="Groza-S" src="photos/Groza-S.webp" class="top-link">
+            </a>
+            <a href="#SCAR-H">
+              <img alt="SCAR-H" title="SCAR-H" src="photos/Loot-weapon-scar.webp" class="top-link">
+            </a>
+            <a href="#M39-EMR">
+              <img alt="M39 EMR" title="M39 EMR" src="photos/Loot-weapon-m39.webp" class="top-link">
+            </a>
+            <a href="#M1-Garand">
+              <img alt="M1 Garand" title="M1 Garand" src="photos/Loot-weapon-garand.webp" class="top-link">
+            </a>
+            <a href="#SVD-63">
+              <img alt="SVD-63" title="SVD-63" src="photos/Loot-weapon-svd.webp" class="top-link">
+            </a>
+            <a href="#OTs-38">
+              <img alt="OTs-38" title="OTs-38" src="photos/Loot-weapon-ots38.webp" class="top-link">
+            </a>
+            <a href="#Mosin-Nagant">
+              <img alt="Mosin-Nagant" title="Mosin-Nagant" src="photos/Loot-weapon-mosin.webp" class="top-link">
+            </a><br>
+            <a href="#SV-98">
+              <img alt="SV-98" title="SV-98" src="photos/Loot-weapon-sv98.webp" class="top-link">
+            </a>
+            <a href="#BLR-81">
+              <img alt="BLR 81" title="BLR 81" src="photos/Loot-weapon-blr.webp" class="top-link">
+            </a>
+            <a href="#AN-94">
+              <img alt="AN-94" title="AN-94" src="photos/Loot-weapon-an94.webp" class="top-link">
+            </a>
+            <a href="#DP-28">
+              <img alt="DP-28" title="DP-28" src="photos/Loot-weapon-dp28.webp" class="top-link">
+            </a>
+            <a href="#BAR-M1918">
+              <img alt="BAR M1918" title="BAR M1918" src="photos/Loot-weapon-bar.webp" class="top-link">
+            </a>
+            <a href="#PKM">
+              <img alt="PKM" title="PKM" src="photos/Loot-weapon-pkm-lmg.webp" class="top-link">
+            </a>
+            <a href="#M134">
+              <img alt="M134" title="M134" src="photos/Loot-weapon-m134.webp" class="top-link">
+            </a>
+            <a href="#PKP-Pecheneg">
+              <img alt="PKP Pecheneg" title="PKP Pecheneg" src="photos/Loot-weapon-pkp.webp" class="top-link">
+            </a>
+          </p>
+          <script type="text/javascript">
+            var scrollAnimationElm300 = document.querySelectorAll('.links-top');
+            var scrollAnimationFunc300 = function() {
+              for(var i300 = 0; i300 < scrollAnimationElm300.length; i300++) {
+                var triggerMargin300 = 200;
+                if (window.innerHeight > scrollAnimationElm300[i300].getBoundingClientRect().top + triggerMargin300) {
+                  scrollAnimationElm300[i300].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc300);
+            window.addEventListener('scroll', scrollAnimationFunc300);
+          </script>
+        </div>
+        <div class="fadein-0">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="OT-38" align="center">OT-38</h1>
+          <p align="center" style="font-size: 12px">OT-38</p><br>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="OT-38" title="OT-38" height="128" width="128" src="photos/OT-38.webp" id="image1" onclick="func1()">
+          </p>
+          <p align="center">
+            OT-38は青弾を使用する拳銃の一種である。<br>
+            M9と同様、Surviv.ioをプレイしたことのある人なら必ず1回は見たことがある銃。<br>
+            そしてこれまたM9と同様、最弱武器の代表例でもある。<br>
+            <font style="color: rgb(255, 0, 242);"><b>このOTを使うのは青弾を無駄にしているだけだ！</b></font>だと考えているプレイヤーのなんと多いことか。<br>
+            <br>
+            ...まぁ確かに"最弱"なのは紛れもない事実だ。<br>
+            しかしこのOTは、M9などとはまた系統が違う気がする。<br>
+            <br>
+            <font style="color: rgb(105, 220, 255);">というのもOTの単発ダメージはなんと26！</font><br>
+            これはマークスマンライフルでは一般的なM39 EMRやMk 12 SPRなどをも上回り、銃の中ではかなり高い数値である。<br>
+            これ以上のダメージを持つ銃だと、OTs-38やM1 Garandが32、Desert-Eagleが35、SVD-63が36。<br>
+            それ以上となるとスナイパーやショットガンばかりだ。<br>
+            <br>
+            しかし、銃の性能はなにも単発ダメージだけで決まるものではない。<br>
+            OTが最弱と言われる原因は、ほぼ間違いなくその装填数と連射力の無さにあるだろう。<br>
+            拳銃だから仕方ないとはいえ、その装填数はわずか5発しかない。<br>
+            これではいくら単発ダメージが高くても、1マガジンで合計130ダメージにしかならず、敵への有効打にはなりにくくなってしまう。<br>
+            あのM9が1マガジン12x15=180ダメージだから、その低さがよく分かる。<br>
+            <br>
+            そしてOTは連射力が非常に低い。<br>
+            流石にスナイパーよりは速いものの、マークスマンライフル等と比べると桁違いに連射が遅い。<br>
+            これではDPSも上がらず、敵を仕留めるには長い時間がかかってしまう。<br>
+            そしてバトルロイヤルではどれだけ早く敵を仕留められるかが命だ。<br>
+            長い攻撃時間ということは、それだけ敵の反撃を許してしまうことになる。<br>
+            <br>
+            拳銃なので2丁持ちが可能であり、2丁持ちをすれば装填数は10、連射力も元の2倍になるなど多少は改善される。<br>
+            ただしキャラの手の幅の分だけ弾の発射位置がずれるので、やっぱり敵に弾が当てにくくなってしまう。<br>
+            <font style="color: rgb(255, 239, 65)"><s>結局M9とほぼ同類じゃないか。</s></font><br>
+            <br>
+            M9よりはまだ使えるものの、ほかのアサルトライフル等を発見したらとっとと持ち替えていい。絶対そっちの方が使い勝手も性能もいいからだ。<br>
+            <br>
+            ちなみに、OT箱というのが時折登場する。名前の通りOTが4丁と青弾が80発入っている箱だ。<br>
+            ご察しの通りOTはそのままで青弾だけが持っていかれていることがほとんどである。<br>
+            なら青弾箱にすればよかったのでは...<br>
+            <br>
+            トリビアとしてOTs-38というよく似た銃があるが、実はOTsの方が実在する銃であり、<br>
+            OTはこれからサプレッサーを取り除いた実在しない銃である。<br>
+            <font style="color: rgb(255, 51, 245)"><s>だから雑魚いわけか。</s></font><br>
+            <br>
+            そんなOTにつけられた名言。
+          </p>
+          <h1 align="center"><font style="color: rgb(255, 94, 0);">なんでOT(オッティー)なんだよ</font></h1>
+          <script type="text/javascript">
+            const image1 = document.getElementById("image1");
+            let stat1 = false;
+
+            function func1() {
+              if(stat1) {
+                image1.classList.add('off');
+                image1.classList.remove('on');
+              } else {
+                image1.classList.add('on');
+                image1.classList.remove('off');
+              }
+              stat1 = !stat1;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm101 = document.querySelectorAll('.fadein-0');
+            var scrollAnimationFunc101 = function() {
+              for(var i101 = 0; i101 < scrollAnimationElm101.length; i101++) {
+                var triggerMargin101 = 200;
+                if (window.innerHeight > scrollAnimationElm101[i101].getBoundingClientRect().top + triggerMargin101) {
+                  scrollAnimationElm101[i101].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc101);
+            window.addEventListener('scroll', scrollAnimationFunc101);
+          </script>
+        </div>
+        <div class="fadein-1">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="AK-47" align="center">AK-47</h1>
+          <p align="center" style="font-size: 12px">Автомат Калашникова образца 1947 года;Kalashnikov's Automatic Rifle Model 1947</p><br>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="AK-47" title="AK-47" height="128" width="128" src="photos/Loot-weapon-ak.webp" id="image2" onclick="func2()">
+          </p>
+          <p align="center">
+            AK-47は青弾を使用するアサルトライフルの一種である。青弾使用銃の基本。<br>
+            もはや知らない人はいないんじゃないか、というレベルで有名な銃である。<br>
+            <br>
+            性能としてはまぁ普通のアサルトライフルですな、という感じ。<br>
+            その分使い勝手は抜群で、どんな場面でもそれなりの攻撃をすることができ、手に入れさえすればそのまま終盤戦まで活躍する。<br>
+            レア武器が大量に出てくるイベントなどではそりゃあ一歩劣るものの、それでもAKはそれなりに力を発揮してくれるので、<br>
+            強武器相手でも全く歯が立たないということはない。<br>
+            <br>
+            目立った短所としてはあまりないものの、移動時のブレが10°と大きいので、出来るときは止まって撃つのが吉。<br>
+            似た系統の銃としてGrozaとM416があるが、どれを使うかは好みに任せよう。<br>
+            <br>
+            surviv.ioに限った話ではなく、AKは登場するゲームのほとんどで「標準、基準」的な立ち位置にあると考える。<br>
+            何の銃使えばいいか分からないからとりあえずAKにしておこう！みたいな。<br>
+            んで実際に使ってみると非常に使い勝手が良い、なんてことがよくある。<br>
+            流石はギネス記録にもなった銃だ。<br>
+          </p>
+          <script type="text/javascript">
+            const image2 = document.getElementById("image2");
+            let stat2 = false;
+
+            function func2() {
+              if(stat2) {
+                image2.classList.add('off');
+                image2.classList.remove('on');
+              } else {
+                image2.classList.add('on');
+                image2.classList.remove('off');
+              }
+              stat2 = !stat2;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm102 = document.querySelectorAll('.fadein-1');
+            var scrollAnimationFunc102 = function() {
+              for(var i102 = 0; i102 < scrollAnimationElm102.length; i102++) {
+                var triggerMargin102 = 200;
+                if (window.innerHeight > scrollAnimationElm102[i102].getBoundingClientRect().top + triggerMargin102) {
+                  scrollAnimationElm102[i102].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc102);
+            window.addEventListener('scroll', scrollAnimationFunc102);
+          </script>
+        </div>
+        <div class="fadein-2">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="Groza" align="center">Groza</h1>
+          <p align="center" style="font-size: 12px">OTs-14-4A-01 "Groza"</p><br>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="Groza" title="Groza" height="128" width="128" src="photos/Groza.webp" id="image3" onclick="func3()">
+          </p>
+          <p align="center">
+            Grozaは青弾を使用するアサルトライフルの一種である。AKと同じく青弾使用銃の基本。<br>
+            <br>
+            AKやM416と同じように使い勝手が非常によく、手に入れさえすればそのまま終盤戦まで使える。<br>
+            性能としてはAKより単発ダメージがやや低い分連射が速く、DPSもAKより高い。さらに弾速もAKより若干速い。<br>
+            しかし、弾のブレが静止時で5°、移動時で14°もあるため、長距離戦にはやや不向きとなっている。<br>
+            <br>
+            まあM416やAKと比べても総合的な性能差はあまりないので、好みで使い分けよう。<br>
+          </p>
+          <script type="text/javascript">
+            const image3 = document.getElementById("image3");
+            let stat3 = false;
+
+            function func3() {
+              if(stat3) {
+                image3.classList.add('off');
+                image3.classList.remove('on');
+              } else {
+                image3.classList.add('on');
+                image3.classList.remove('off');
+              }
+              stat3 = !stat3;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm103 = document.querySelectorAll('.fadein-2');
+            var scrollAnimationFunc103 = function() {
+              for(var i103 = 0; i103 < scrollAnimationElm103.length; i103++) {
+                var triggerMargin103 = 200;
+                if (window.innerHeight > scrollAnimationElm103[i103].getBoundingClientRect().top + triggerMargin103) {
+                  scrollAnimationElm103[i103].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc103);
+            window.addEventListener('scroll', scrollAnimationFunc103);
+          </script>
+        </div>
+        <div class="fadein-3">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="Groza-S" align="center">Groza-S</h1>
+          <p align="center" style="font-size: 12px">OTs-14-4A-03 "Groza"</p><br>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="Groza-S" title="Groza-S" height="128" width="128" src="photos/Groza-S.webp" id="image4" onclick="func4()">
+          </p>
+          <p align="center">
+            Groza-Sは青弾を使用するアサルトライフルの一種である。ややレア。<br>
+            <br>
+            主な入手方法はクラブの地下の奥。ちょっと変わった見た目の箱から出てくる。<br>
+            そこからはこのGroza-Sの他に、M134、PKP、M79、OTs-38等が出てくることもある。<br>
+            <br>
+            Grozaにサプレッサーがついただけの銃。それだけのはずなのに、こっちははっきり強いと感じる。<br>
+            具体的には単発ダメージがGrozaが12.5に対しGroza-Sは13と若干アップしている。<br>
+            それから弾のブレもやや減少し、静止時で3.5°、移動時で11°となっている。それでもAKよりは弾がブレる。<br>
+            <br>
+            サプレッサー付きの銃の特徴として、発砲音が比較的静かで、発射された弾がだんだん見えづらくなる。<br>
+            結局何が起こるかというと、「見えない何かが俺の体力を削ってる！？」となってしまう。<br>
+            運が悪ければそのままやられてしまうことも...<br>
+            その反面撃ってる側も見えづらい弾のせいで「ホントにこの弾当たってんの？」と疑ってしまいかねない。<br>
+            まあこれはサプレッサー付きの銃すべてに共通する感覚だ。<br>
+            <br>
+            というわけで、クラシックで見かけたらぜひ取っておきたい。<br>
+          </p>
+          <script type="text/javascript">
+            const image4 = document.getElementById("image4");
+            let stat4 = false;
+
+            function func4() {
+              if(stat4) {
+                image4.classList.add('off');
+                image4.classList.remove('on');
+              } else {
+                image4.classList.add('on');
+                image4.classList.remove('off');
+              }
+              stat4 = !stat4;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm104 = document.querySelectorAll('.fadein-3');
+            var scrollAnimationFunc104 = function() {
+              for(var i104 = 0; i104 < scrollAnimationElm104.length; i104++) {
+                var triggerMargin104 = 200;
+                if (window.innerHeight > scrollAnimationElm104[i104].getBoundingClientRect().top + triggerMargin104) {
+                  scrollAnimationElm104[i104].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc104);
+            window.addEventListener('scroll', scrollAnimationFunc104);
+          </script>
+        </div>
+        <div class="fadein-4">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="SCAR-H" align="center">SCAR-H</h1>
+          <p align="center" style="font-size: 12px">FN Herstal Mk 17 Mod. 0 SCAR (Special Operations Forces) Combat Assault Rifle - Heavy</p><br>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="SCAR-H" title="SCAR-H" height="128" width="128" src="photos/Loot-weapon-scar.webp" id="image5" onclick="func5()">
+          </p>
+          <p align="center">
+            SCAR-Hは青弾を使用するアサルトライフルの一種である。ややレア。<br>
+            <br>
+            主な入手方法は警察署の金のロッカー。<br>
+            そこから出てくることがあるが、確定出現ではない。<br>
+            たまにそこからレベル3装備が出ることもあれば、そもそも金のロッカーが出現しないマップも存在する。<br>
+            <br>
+            単発ダメージは15と高く、それでいて連射も速く、弾のブレも移動時で7°と小さいのが魅力。<br>
+            とりあえず見かけたら拾っておいて損はない性能の銃である。<br>
+            目立った短所と言えば装填数が20発と少なく、その割にリロードが長いのがたまに痛い、というくらいだろうか。<br>
+            <br>
+            レア度的に大体同じのGroza-Sとどっちがいいのかは永遠の謎。<br>
+            まあこれも好みで使い分けるべきであろう。<br>
+            サプレッサーを最大限生かしたいのであればGroza-S、単発ダメージにこだわるならSCAR、という具合に。<br>
+          </p>
+          <script type="text/javascript">
+            const image5 = document.getElementById("image5");
+            let stat5 = false;
+
+            function func5() {
+              if(stat5) {
+                image5.classList.add('off');
+                image5.classList.remove('on');
+              } else {
+                image5.classList.add('on');
+                image5.classList.remove('off');
+              }
+              stat5 = !stat5;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm105 = document.querySelectorAll('.fadein-4');
+            var scrollAnimationFunc105 = function() {
+              for(var i105 = 0; i105 < scrollAnimationElm105.length; i105++) {
+                var triggerMargin105 = 200;
+                if (window.innerHeight > scrollAnimationElm105[i105].getBoundingClientRect().top + triggerMargin105) {
+                  scrollAnimationElm105[i105].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc105);
+            window.addEventListener('scroll', scrollAnimationFunc105);
+          </script>
+        </div>
+        <div class="fadein-5">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="M39-EMR" align="center">M39 EMR</h1>
+          <p align="center" style="font-size: 12px">M39 Enhanced Marksman Rifle</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="M39 EMR" title="M39 EMR" height="128" width="128" src="photos/Loot-weapon-m39.webp" id="image6" onclick="func6()">
+          </p>
+          <p align="center">
+          M39 EMRは青弾を使用するマークスマンライフルの一種である。ややレア。<br>
+          <br>
+          主な入手方法はノーマルの救援物資。そこからそこそこの確率で出現する。<br>
+          <br>
+          マークスマンライフルの中ではMk 12 SPRと同じく、古くから存在している銃。<br>
+          マークスマンライフルなだけあって単発ダメージは24.5と高く弾速も速い代わりに、連射力がアサルト等と比較してやや低い。<br>
+          その分弾はアサルトライフルよりも正確で、長距離戦に向いている。<br>
+          8倍以上のスコープだとアサルトなどでは弾のブレや弾速の関係で応戦が難しくなるので、このマークスマンライフルを使う価値は大きい。<br>
+          スナイパーが苦手、という人にもおすすめである。<br>
+          それからフルオートではなく、ショットガンや一部の拳銃と同じくセミオート(マウス1クリックで1発のみ弾を発射)である。<br>
+          Mk 12 SPRと比較すると、こっちの方が単発ダメージは高い代わりに連射力は低い。<br>
+          ﾋﾟｼｭﾝﾋﾟｼｭﾝﾋﾟｼｭﾝ！とおもちゃのような音を放ってるけど。<br>
+          <br>
+          この銃に限った話ではなく、セミオートの銃はやや扱いが難しいところがある。<br>
+          マウスを必死に連打したところで、銃の連射力と合わなければかえって連射速度が落ちてしまうところだったり。<br>
+          そういうのが嫌いな人にはあまり好まれていないのかもしれない。捨てられているところもたまに見かけるし。<br>
+          なおすべての銃がフルオートで打ててしまうスマホ版には関係ない。<br>
+          </p>
+          <script type="text/javascript">
+            const image6 = document.getElementById("image6");
+            let stat6 = false;
+
+            function func6() {
+              if(stat6) {
+                image6.classList.add('off');
+                image6.classList.remove('on');
+              } else {
+                image6.classList.add('on');
+                image6.classList.remove('off');
+              }
+              stat6 = !stat6;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm106 = document.querySelectorAll('.fadein-5');
+            var scrollAnimationFunc106 = function() {
+              for(var i106 = 0; i106 < scrollAnimationElm106.length; i106++) {
+                var triggerMargin106 = 200;
+                if (window.innerHeight > scrollAnimationElm106[i106].getBoundingClientRect().top + triggerMargin106) {
+                  scrollAnimationElm106[i106].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc106);
+            window.addEventListener('scroll', scrollAnimationFunc106);
+          </script>
+        </div>
+        <div class="fadein-6">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="M1-Garand" align="center">M1 Garand</h1>
+          <p align="center" style="font-size: 12px">M1 Garand </p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="M1 Garand" title="M1 Garand" height="128" width="128" src="photos/Loot-weapon-garand.webp" id="image7" onclick="func7()">
+          </p>
+          <p align="center">
+            M1 Garandは青弾を使用するマークスマンライフルの一種である。激レア。<br>
+            <br>
+            主な入手方法は金の救援物資。そこから低確率で出現する。<br>
+            クラシックで見かけることはあまりないが、イベント系ではそこそこ見かける機会があるだろう。<br>
+            特にポテトと50v50では顕著だ。<br>
+            <br>
+            特徴はなんといっても、マークスマンライフルの中でもトップクラスの32という単発ダメージを持つことであろう。<br>
+            その分装填数は8発と少ないが...まあそもそもマークスマンライフルはアサルトとは違い、<br>
+            遠くの敵を狙うための弾の正確さと単発ダメージの高さ、そしてスナイパーよりも扱いやすいことがが売りであるから、別に不思議なことではない。<br>
+            <br>
+            そしてGarandは何よりも音がいい。
+          </p>
+          <h2 align="center" style="color: rgb(105, 220, 255)">
+            ｯﾊﾞｯ！ｯﾊﾞｯﾊﾞｯﾊﾞｯﾊﾞｯﾊﾞｯﾊﾞｯﾊﾞｯバキーン！！<br>
+            ｸﾁｬﾘ,,,ｸﾞﾁｭｸﾞﾁｭガッ！
+          </h2>
+          <p align="center">
+            音マニアにはたまらんだろう。もはやこの銃だけでASMRでもできそうやな。<br>
+            <br>
+            トリビアとして、このバキーン！！という音は「敵に居場所がばれるじゃんか！！！」と実際の戦場で採用された当時から不評だったそうだ。<br>
+            まあこれはsurviv.io上でも同じで、バキーン！の音1つで「あ、あのGarand持ち弾切れやん」という情報が駄々漏れだ。<br>
+            音はいいことにはいいけど、戦闘面ではちょっとな...<br>
+          </p>
+          <script type="text/javascript">
+            const image7 = document.getElementById("image7");
+            let stat7 = false;
+
+            function func7() {
+              if(stat7) {
+                image7.classList.add('off');
+                image7.classList.remove('on');
+              } else {
+                image7.classList.add('on');
+                image7.classList.remove('off');
+              }
+              stat7 = !stat7;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm107 = document.querySelectorAll('.fadein-6');
+            var scrollAnimationFunc107 = function() {
+              for(var i107 = 0; i107 < scrollAnimationElm107.length; i107++) {
+                var triggerMargin107 = 200;
+                if (window.innerHeight > scrollAnimationElm107[i107].getBoundingClientRect().top + triggerMargin107) {
+                  scrollAnimationElm107[i107].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc107);
+            window.addEventListener('scroll', scrollAnimationFunc107);
+          </script>
+        </div>
+        <div class="fadein-7">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="SVD-63" align="center">SVD-63</h1>
+          <p align="center" style="font-size: 12px">Dragunov Sniper Rifle Model 1963;Snayperskaya Vintovka sistem'y Dragunova Obraz'tza 1963 goda</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="SVD-63" title="SVD-63" height="128" width="128" src="photos/Loot-weapon-svd.webp" id="image8" onclick="func8()">
+          </p>
+          <p align="center">
+            SVD-63は青弾を使用するマークスマンライフルの一種である。イベント限定。<br>
+            <br>
+            クラシックでは見かけないが、サバンナやポテト、それからコバルトでは見かける機会がそこそこあるだろう。<br>
+            <br>
+            このSVDの最大の特徴は、なんと36という単発ダメージを誇るところであろう。<br>
+            これはマークスマンライフルの中では最も高い数値である。<br>
+            ちなみにDesert-Eagleが35なので、それよりも高い、と言われればそのすごさがよく分かるだろう。<br>
+            そして装填数も10発と、まさにM1 Garandの強化版であると言える。<br>
+            しかしそれでも他のマークスマンライフルと比べれば少ないし、そのせいで傷になることも少なからずある。<br>
+            <br>
+            それからSVD-63は連射が若干遅い。しかし単発ダメージの高さが救いとなり、DPSは他のマークスマンライフルよりも軒並み高い。<br>
+            じゃあ肝心のブレはというと、静止時で1°、移動時で5.5°と、マークスマンの中でも平均的な精度である。<br>
+            <br>
+            とにかくまとめると、マークスマンの中では結構強い部類に入るのではないか。<br>
+            ただイベント限定という条件付きだから、強武器の多い中で狙って使うような機会は少ない気がする。<br>
+          </p>
+          <script type="text/javascript">
+            const image8 = document.getElementById("image8");
+            let stat8 = false;
+
+            function func8() {
+              if(stat8) {
+                image8.classList.add('off');
+                image8.classList.remove('on');
+              } else {
+                image8.classList.add('on');
+                image8.classList.remove('off');
+              }
+              stat8 = !stat8;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm108 = document.querySelectorAll('.fadein-7');
+            var scrollAnimationFunc108 = function() {
+              for(var i108 = 0; i108 < scrollAnimationElm108.length; i108++) {
+                var triggerMargin108 = 200;
+                if (window.innerHeight > scrollAnimationElm108[i108].getBoundingClientRect().top + triggerMargin108) {
+                  scrollAnimationElm108[i108].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc108);
+            window.addEventListener('scroll', scrollAnimationFunc108);
+          </script>
+        </div>
+        <div class="fadein-8">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="OTs-38" align="center">OTs-38</h1>
+          <p align="center" style="font-size: 12px">Obrazets TsKIBa-38 Stechkin Silent Revolver</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="OTs-38" title="OTs-38" height="128" width="128" src="photos/Loot-weapon-ots38.webp" id="image9" onclick="func9()">
+          </p>
+          <p align="center">
+          OTs-38は青弾を使用する拳銃の一種である。激レア。<br>
+          <br>
+          主な出現場所は、クラシックだとクラブの地下や金の救援物資、それからポテト、50v50の金の救援物資など。<br>
+          ただOT-38にサプレッサーがついただけなのに、こっちははっきりOTより強いと感じる。<br>
+          OTsに限らずサプレッサー付きの銃って大体そういう感覚になる気がする。<br>
+          まぁそれでもOTということに変わりはない上、出現する場所が場所だから<br>
+          出てこられると結構がっかりしがち。<font style="color: rgb(0, 255, 255)"><s>だってOTだもの。</s></font><br>
+          <br>
+          単発ダメージもOTからアップしており、なんと32にまで上昇している。<br>
+          まぁ連射力の低さとマガジンの小ささはOTと変わらないから、そこら辺での力不足は否めないが...<br>
+          それでも26と32の違いは結構デカい。<br>
+          ちなみにブレはOTから0.05°だけ改善されている。<s>そんならOTと一緒でもいいだろ誰が0.05°の違いなんか分かるんだよ</s><br>
+          使いようになっては強武器とも張り合える強さは持ち合わせている。<br>
+          <br>
+          なお弾速はどういうわけか85しかない。<b>OTは112あったのに何で遅くしたし！？</b><br>
+          やっぱり蛙の子は蛙だなぁ...<br>
+          </p>
+          <script type="text/javascript">
+            const image9 = document.getElementById("image9");
+            let stat9 = false;
+
+            function func9() {
+              if(stat9) {
+                image9.classList.add('off');
+                image9.classList.remove('on');
+              } else {
+                image9.classList.add('on');
+                image9.classList.remove('off');
+              }
+              stat9 = !stat9;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm109 = document.querySelectorAll('.fadein-8');
+            var scrollAnimationFunc109 = function() {
+              for(var i109 = 0; i109 < scrollAnimationElm109.length; i109++) {
+                var triggerMargin109 = 200;
+                if (window.innerHeight > scrollAnimationElm109[i109].getBoundingClientRect().top + triggerMargin109) {
+                  scrollAnimationElm109[i109].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc109);
+            window.addEventListener('scroll', scrollAnimationFunc109);
+          </script>
+        </div>
+        <div class="fadein-10">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="Mosin-Nagant" align="center">Mosin-Nagant</h1>
+          <p align="center" style="font-size: 12px">3-line Rifle Model 1891;Mosin-Nagant;Винтовка Мосина</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="Mosin-Nagant" title="Mosin-Nagant" height="128" width="128" src="photos/Loot-weapon-mosin.webp" id="image10" onclick="func10()">
+          </p>
+          <p align="center">
+            Mosin-Nagantは青弾を使用するスナイパーライフルの一種である。ややレア。
+          </p>
+            <h2 align="center" style="color: rgb(255, 215, 69)">出ましたMosin、またの名を<font style="color: rgb(0, 255, 174)"><b>「プロプレイヤーのお供」</b></font></h2>
+          <p align="center">
+            Surviv.ioをそこそこやりこんでいるプレイヤーなら1度は目にしたことがあるだろう。<br>
+            <font style="color: rgb(255, 104, 23)"><b>スナイパー2丁、またはスナイパー+SPASを振り回しながら2連射してくる、厄介なプロプレイヤー。</b></font><br>
+            <font style="color: rgb(255,0,0)"><b><strong>あいつらにどれほど苦しめられてきたことか、自分は計り知れない。</strong></b></font><br>
+            <font style="color: rgb(255,0,0)"><s>こんなカステクニックの温床になるならクイックスイッチなんか廃止しちまえよ。</s></font><br>
+            <s>あとこれやらないと勝てないやつはもう人間生活やめた方がいい。</s><br>
+            <br>
+            ちなみにクイックスイッチとは、スナイパーや一部のショットガンのような撃った後の反動が大きい武器において、<br>
+            撃った後すぐに他の武器に持ち替えることで、反動を消すことができるテクニック。<br>
+            これをやることで事実上反動無しでスナイパーやショットガンを扱うことが可能になる。2連射だってたやすい。<br>
+            なお他の大手FPSとかだと、きちんと対策されていたりするのでこのテクニックは使えない。<br>
+            だからほぼSurviv.ioだけに通用するテクニックといってもいいだろう。<br>
+            <br>
+            Mosinに関する解説をしてなかったので今からしていく。<br>
+            イベント限定のModel 94を除けば、一番一般的なスナイパーである。<br>
+            ﾎﾞﾝｯ！といかにも重そうな音を立てて放たれるその弾のダメージはスナイパーらしく72、装填数は5発。<br>
+            弾速にいたっては178もある。遅い銃の約2倍だ。<br>
+            まぁスナイパーは遠くにいる敵を狙撃するのが用途だから、これくらい弾速が速いのも不思議はない。<br>
+            といってもそこはSurviv.io、やっぱり弾速がどうしても遅く感じる。<br>
+            <br>
+            Mosinに限らず、スナイパーは扱いが結構難しい。<br>
+            銃の特性から8倍スコープ以上で遠くの敵を狙うのに使うのが最適だが、まず適当に撃っていても当たらない。<br>
+            しっかり敵に当てるには相手の動きと弾の軌道を読む、いわゆる「偏差射撃」が重要となる。<br>
+            1日や2日で身につくテクニックではないので、だんだんと慣れていくのがいいだろう。<br>
+            まぁそれでも外すときは外すんだけどね。その反面ズバッと当ててズバッと倒すと、その度にドーパミンがドパッと分泌される。<br>
+            その快感がプロプレイヤーを<b>イ</b>かせているのだろう。<font style="color: rgb(105, 220, 255)"><s>Surviv.ioで気持ちよくなってんじゃねえよ。</s></font><br>
+            それから逃げる側にとってもスナイパーはかなり厄介だ。<br>
+            どっからかﾎﾟﾂｯ！と飛んできたたった1発の弾にかなりの体力を持っていかれる、というのはもうそれだけで脅威となる。<br>
+            スナイパーの弾が飛んできた＝自分が狙われていると判断して、速攻で逃げよう。<br>
+            あるいは近距離戦に持ち込み、MP220などのDPSの高い武器で瞬殺するのもいい。スナイパーは近距離攻撃が不得手だからだ。<br>
+            <br>
+            ちなみにMosinはSurviv.ioの中で唯一の、複数のリロード方法を持つ銃でもある。<br>
+            マガジンに弾がない時は5発一気にリロードし、弾が残っているときはM870のように1発ずつリロードする。<br>
+            何でそのような仕様なのかは不明。<br>
+            <br>
+            主な出現場所は、「Mosinの木」、それからノーマル救援物資。<br>
+            Mosinの木は通常の木よりも葉の色が若干濃く、木の下に変なマークが隠れているので判別はたやすい。<br>
+            他にもサバンナやポテト、50v50で見かける機会があるだろう。<br>
+          </p>
+          <script type="text/javascript">
+            const image10 = document.getElementById("image10");
+            let stat10 = false;
+
+            function func10() {
+              if(stat10) {
+                image10.classList.add('off');
+                image10.classList.remove('on');
+              } else {
+                image10.classList.add('on');
+                image10.classList.remove('off');
+              }
+              stat10 = !stat10;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm10 = document.querySelectorAll('.fadein-10');
+            var scrollAnimationFunc10 = function() {
+              for(var i10 = 0; i10 < scrollAnimationElm10.length; i10++) {
+                var triggerMargin10 = 200;
+                if (window.innerHeight > scrollAnimationElm10[i10].getBoundingClientRect().top + triggerMargin10) {
+                  scrollAnimationElm10[i10].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc10);
+            window.addEventListener('scroll', scrollAnimationFunc10);
+          </script>
+        </div>
+        <div class="fadein-11">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="SV-98" align="center">SV-98</h1>
+          <p align="center" style="font-size: 12px">Snaiperskaya Vintovka Model 1998;Sniper Rifle Model 1998</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="SV-98" title="SV-98" height="128" width="128" src="photos/Loot-weapon-sv98.webp" id="image11" onclick="func11()">
+          </p>
+          <p align="center">
+            SV-98は青弾を使用するスナイパーライフルの一種である。レア。<br>
+            あのMosinの強化版である。<br>
+            <br>
+            主な出現場所は、港にある金のコンテナか救援物資。金のコンテナには4倍以上のスコープも一緒においてある。<br>
+            4倍だと使いづらいと思うんだけどね。<br>
+            それからポテト、50v50でも見かける。サバンナでもまれに見かけるような。<br>
+            <br>
+            詳しく性能を見ていくと、ダメージは82、弾速は182、装填数は10、弾速は182などと、もうすべてがMosinの上位互換である。<br>
+            まぁレア武器かつスナイパーである以上、Mosinよりも嫌われて狙われやすくなる、というのが唯一の欠点だろうか。<br>
+            まぁでもそんなのはスナイパーを使いこなすプロプレイヤーにとっては日常茶飯事だろう。<br>
+            ちなみにMosinにある一発ずつリロードというのはSV-98にはなく、常に全発をまとめてリロードする。<br>
+            <br>
+            総合性能はスナイパーの中ではAWM-Sの次に強い。スナイパーが好きな人は見かけたらとっておくといいだろう。<br>
+            <br>
+            それからSV-98は音がいい。Mosinはﾎﾞﾝｯ！と曇ったような音を出すが、SVはMosinよりもちょっと乾いた音を出す。<br>
+            この音がたまらん。<br>
+            こういうのもプロプレイヤーを虜にする原因なのだろう。<br>
+          </p>
+          <script type="text/javascript">
+            const image11 = document.getElementById("image11");
+            let stat11 = false;
+
+            function func11() {
+              if(stat11) {
+                image11.classList.add('off');
+                image11.classList.remove('on');
+              } else {
+                image11.classList.add('on');
+                image11.classList.remove('off');
+              }
+              stat11 = !stat11;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm11 = document.querySelectorAll('.fadein-11');
+            var scrollAnimationFunc11 = function() {
+              for(var i11 = 0; i11 < scrollAnimationElm11.length; i11++) {
+                var triggerMargin11 = 200;
+                if (window.innerHeight > scrollAnimationElm11[i11].getBoundingClientRect().top + triggerMargin11) {
+                  scrollAnimationElm11[i11].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc11);
+            window.addEventListener('scroll', scrollAnimationFunc11);
+          </script>
+        </div>
+        <div class="fadein-12">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="BLR-81" align="center">BLR 81</h1>
+          <p align="center" style="font-size: 12px">Browning BLR Model 81</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="BLR 81" title="BLR 81" height="128" width="128" src="photos/Loot-weapon-blr.webp" id="image12" onclick="func12()">
+          </p>
+          <p align="center">
+            BLR 81は青弾を使用するスナイパーライフルの一種である。イベント限定。<br>
+            主な出現イベントは、ポテト、コバルトなどだろう。<br>
+            <br>
+            スナイパーにしては単発ダメージが56と弱く、なんか物足りない。<br>
+            スナイパー特有の緊迫感が欠けている、といってもいいだろう。<br>
+            なお装填数も3発しかなく、1マガジンで合計168ダメしかない、という間抜けっぷり。<br>
+            その割にはリロードが1.6秒くらいと早く、他のスナイパーと比べても比較的反動が小さいので、<br>
+            初心者が扱うのにはScout Eliteの次くらいには向いているかも。<br>
+            まぁScout Eliteのほうが反動が小さいんだけどね。あっちはほぼ反動がない。<br>
+            <br>
+            ただでさえ強武器の多いイベントで狙って使うような機会は、ほぼない。<br>
+            使うとしたらスナイパーの練習か趣味。基本的に上位のスナイパーが出たら用済みにしてOK。<br>
+          </p>
+          <script type="text/javascript">
+            const image12 = document.getElementById("image12");
+            let stat12 = false;
+
+            function func12() {
+              if(stat12) {
+                image12.classList.add('off');
+                image12.classList.remove('on');
+              } else {
+                image12.classList.add('on');
+                image12.classList.remove('off');
+              }
+              stat12 = !stat12;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm12 = document.querySelectorAll('.fadein-12');
+            var scrollAnimationFunc12 = function() {
+              for(var i12 = 0; i12 < scrollAnimationElm12.length; i12++) {
+                var triggerMargin12 = 200;
+                if (window.innerHeight > scrollAnimationElm12[i12].getBoundingClientRect().top + triggerMargin12) {
+                  scrollAnimationElm12[i12].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc12);
+            window.addEventListener('scroll', scrollAnimationFunc12);
+          </script>
+        </div>
+        <div class="fadein-13">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="AN-94" align="center">AN-94</h1>
+          <p align="center" style="font-size: 12px">Avtomat Nikonova Model 1994;Автомат Никонова АН-94</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="AN-94" title="AN-94" height="128" width="128" src="photos/Loot-weapon-an94.webp" id="image13" onclick="func13()">
+          </p>
+          <p align="center">
+            AN-94は青弾を使用するアサルトライフルの一種である。イベント限定。<br>
+            50v50で青チームのリーダーが持っているアレである。ほかにもポテトでもたまに見かける。<br>
+            <br>
+            Surviv.ioの中では唯一の、2点バースト銃。<br>
+            ダメージはバーストだからなのか17.5と結構高く、弾のブレも静止時で1.5°、移動時で5.5°というなかなかの高精度を誇る。<br>
+            だからどっちかというと、マークスマンライフルのように使うのがいいだろう。<br>
+            まぁ弾速は平均的なマークスマンライフルよりもやや遅く110だが。<br>
+            <br>
+            それからすべてのバースト式銃に言える事だが、クールタイムがあるため基本的に近距離戦には不向きである。<br>
+            そもそも弾のブレも小さいから当てにくいし。<br>
+            <br>
+            ちなみに本物のAN-94は尋常じゃない連射力があるんだとか。<br>
+            2点バーストになったのは実物と同じ連射力にするとゲームバランスが崩壊するためらしい。<br>
+            それはそれで面白そうだけど。<br>
+          </p>
+          <script type="text/javascript">
+            const image13 = document.getElementById("image13");
+            let stat13 = false;
+
+            function func13() {
+              if(stat13) {
+                image13.classList.add('off');
+                image13.classList.remove('on');
+              } else {
+                image13.classList.add('on');
+                image13.classList.remove('off');
+              }
+              stat13 = !stat13;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm13 = document.querySelectorAll('.fadein-13');
+            var scrollAnimationFunc13 = function() {
+              for(var i13 = 0; i13 < scrollAnimationElm13.length; i13++) {
+                var triggerMargin13 = 200;
+                if (window.innerHeight > scrollAnimationElm13[i13].getBoundingClientRect().top + triggerMargin13) {
+                  scrollAnimationElm13[i13].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc13);
+            window.addEventListener('scroll', scrollAnimationFunc13);
+          </script>
+        </div>
+        <div class="fadein-14">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="DP-28" align="center">DP-28</h1>
+          <p align="center" style="font-size: 12px">Degtyaryov Machine Gun;the DP-27;Пулемёт Дегтярёвa Пехотный</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="DP-28" title="DP-28" height="128" width="128" src="photos/Loot-weapon-dp28.webp" id="image14" onclick="func14()">
+          </p>
+          <p align="center">
+            DP-28は青弾を使用する軽機関銃の一種である。ややレア。<br>
+            <br>
+            もともとはレア武器であったが、格下げされて一般生成もされるようになった。<br>
+            それでもそんなにたくさん見かけるわけではない。<br>
+            ただし森イベントでは<b>もうDP祭りだろ</b>っていうくらいアホみたいな数が出てくる。<br>
+            <br>
+            特徴は何と言っても、中心が丸くてデカイ見た目、そして60という一般的な銃の倍もの装填数だろう。<br>
+            つまりこの銃1つで一般的な銃2丁分の攻撃が可能で、長時間敵を威圧することができる。<br>
+            ...はずなのだが、この銃、実は意外と敵に弾が充てにくい。<br>
+            なんなら60発撃ち切る前に敵に反撃されてやられてしまう、といったことも少なくない。<br>
+            <font style="color: rgb(255, 125, 125)">なんでや60発もあんのに！</font>と思うかもしれないが、それには理由がある。<br>
+            <br>
+            まずDP-28は、移動中のブレが大きい。そのブレは静止時で2°、移動時で11°。<br>
+            というってもこれは静止時2.5°、移動時10°のAKと大して変わらない。<br>
+            実はDPの弱点はブレではなく、後述する連射力の低さにある。<br>
+            単発ダメージは14あるものの、DPSで言うと121そこらしかない。と考えるとこの銃の連射力の低さが分かるだろう。<br>
+            もちろんそれでもフルオートなのでセミオートと比べれば連射力は高いのだが。<br>
+            <br>
+            それからDPに限らず、基本的に軽機関銃は撃っているときの反撃が大きい。<br>
+            動けない、というほどではないが、一般的な銃に比べると重い。<br>
+            だから敵がどんどん近づいているのにいつまでも軽機関銃を打ち続けているのでは、あっという間に相手の餌食となってしまう。<br>
+            DPはDPSが低いのだからなおさらだ。<br>
+            それからリロードも3.3秒とやや長いので傷になりがち。<br>
+            <br>
+            それを解決するためには、ちょっと撃ったら銃をしまって移動する、という使い方が良い。<br>
+            せっかく大容量マガジンなのにそんなみみっちい使い方するのもケチな気がするが、<br>
+            反動による弊害を最小減に抑えるにはそうするしかない。<br>
+            <br>
+            とはいえ、60発というマガジンの大きさはやっぱり脅威である。<br>
+            なにより敵と争っている間に他の敵が来ても、残っている弾でリロードすることなく応戦できる、というのがデカいだろう。<br>
+            <br>
+            QBB-97が実装される前は結構強かったらしいのだが、それ以降いろんな強武器が増えてから<br>
+            相対的に弱くなった感じが否めない。<br>
+          </p>
+          <script type="text/javascript">
+            const image14 = document.getElementById("image14");
+            let stat14 = false;
+
+            function func14() {
+              if(stat14) {
+                image14.classList.add('off');
+                image14.classList.remove('on');
+              } else {
+                image14.classList.add('on');
+                image14.classList.remove('off');
+              }
+              stat14 = !stat14;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm14 = document.querySelectorAll('.fadein-14');
+            var scrollAnimationFunc14 = function() {
+              for(var i14 = 0; i14 < scrollAnimationElm14.length; i14++) {
+                var triggerMargin14 = 200;
+                if (window.innerHeight > scrollAnimationElm14[i14].getBoundingClientRect().top + triggerMargin14) {
+                  scrollAnimationElm14[i14].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc14);
+            window.addEventListener('scroll', scrollAnimationFunc14);
+          </script>
+        </div>
+        <div class="fadein-15">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="BAR-M1918" align="center">BAR M1918</h1>
+          <p align="center" style="font-size: 12px">Model 1918 Browning Automatic Rifle</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="BAR M1918" title="BAR M1918" height="128" width="128" src="photos/Loot-weapon-bar.webp" id="image15" onclick="func15()">
+          </p>
+          <p align="center">
+            BAR M1918は青弾を使用する軽機関銃の一種である。イベント限定。<br>
+            <br>
+            森イベントではDPに続きアホみたいな数が出てくる。<s>BARなんかそんなに数いらねえよBARRRRRRRRRRRRRKA</s><br>
+            他にもポテトでも見かける。<br>
+            <br>
+            特徴は単発ダメージの高さである。そのダメージは17.5。<br>
+            ちなみに軽機関銃の絶対王者、PKPの単発ダメージが18なので、ほぼPKPに匹敵する。<br>
+            その反面装填数は20しかない。ちょっと少ないアサルトライフル並である。<br>
+            <br>
+            それから他の軽機関銃同様、静止時のブレは結構小さいが移動時のブレが大きい。<br>
+            あとは連射力も高いとは言えないので、DP-28のダメージを高くして装填数を1/3にした銃といってもいいだろう。<br>
+            <br>
+            ちなみにBARの弾は、破壊可能な建造物に対して75%の追加ダメージがあるので、覚えておくといい。<br>
+            <br>
+            森イベントだとDP-28とどっちを取るかと言われたら結構迷う。どっちかというとBARを取る人が多いんだとか。<br>
+          </p>
+          <script type="text/javascript">
+            const image15 = document.getElementById("image15");
+            let stat15 = false;
+
+            function func15() {
+              if(stat15) {
+                image15.classList.add('off');
+                image15.classList.remove('on');
+              } else {
+                image15.classList.add('on');
+                image15.classList.remove('off');
+              }
+              stat15 = !stat15;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm15 = document.querySelectorAll('.fadein-15');
+            var scrollAnimationFunc15 = function() {
+              for(var i15 = 0; i15 < scrollAnimationElm15.length; i15++) {
+                var triggerMargin15 = 200;
+                if (window.innerHeight > scrollAnimationElm15[i15].getBoundingClientRect().top + triggerMargin15) {
+                  scrollAnimationElm15[i15].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc15);
+            window.addEventListener('scroll', scrollAnimationFunc15);
+          </script>
+        </div>
+        <div class="fadein-16">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="PKM" align="center">PKM</h1>
+          <p align="center" style="font-size: 12px">Pulemyot Kalashnikova Modernizirovany;пулемёт Калашникова модернизированный</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="PKM" title="PKM" height="128" width="128" src="photos/Loot-weapon-pkm-lmg.webp" id="image16" onclick="func16()">
+          </p>
+          <p align="center">
+            PKMは青弾を使用する軽機関銃の一種である。イベント限定。<br>
+            あの絶対王者PKPを初心者向けかつバランス重視にしたような性能である。<br>
+            <br>
+            主な出現イベントは、森とポテト。<br>
+            森では激レアなのでほとんどお目にかかれないが、ポテトでは時々見かける。<br>
+            <br>
+            軽機関銃らしく、なんと100発もの装填数を誇る。<br>
+            その戦闘継続時間は驚異的で、2～3人の敵を相手しても余裕で応戦できる。<br>
+            なおブレは他の軽機関銃と似たような感じで静止時に2.5°、移動時で10°もある。<br>
+            なおリロード音はPKPの物が流用されている。<br>
+            しかしリロードがなんと6秒と結構長く、なおかつPKPのリロード音は5秒で終わるので、<br>
+            音が止まったからといって銃をしまうとまた長時間リロードする羽目になるので注意。<br>
+            ちゃんとリロードが終わるのを確認してからしまおう。<br>
+            <br>
+            なお反動の大きさはPKPよりもちょっと軽い？くらいである。やっぱりバランス重視なだけはある。<br>
+          </p>
+          <script type="text/javascript">
+            const image16 = document.getElementById("image16");
+            let stat16 = false;
+
+            function func16() {
+              if(stat16) {
+                image16.classList.add('off');
+                image16.classList.remove('on');
+              } else {
+                image16.classList.add('on');
+                image16.classList.remove('off');
+              }
+              stat16 = !stat16;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm16 = document.querySelectorAll('.fadein-16');
+            var scrollAnimationFunc16 = function() {
+              for(var i16 = 0; i16 < scrollAnimationElm16.length; i16++) {
+                var triggerMargin16 = 200;
+                if (window.innerHeight > scrollAnimationElm16[i16].getBoundingClientRect().top + triggerMargin16) {
+                  scrollAnimationElm16[i16].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc16);
+            window.addEventListener('scroll', scrollAnimationFunc16);
+          </script>
+        </div>
+        <div class="fadein-17">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="M134" align="center">M134</h1>
+          <p align="center" style="font-size: 12px">M134 Minigun</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="M134" title="M134" height="128" width="128" src="photos/Loot-weapon-m134.webp" id="image17" onclick="func17()">
+          </p>
+          <p align="center">
+            M134は青弾を使用する軽機関銃の一種である。激レア。<br>
+            本来は重機関銃に分類されるが、多分ゲームの便宜上なのだろう。<br>
+            <br>
+            主な出現場所は、クラブの地下、研究所のVector箱。そこから低確率で出る。<br>
+            クラシックではほとんど見かけないが、森、ポテト、50v50ではたまに見かける。<br>
+            <br>
+            M134の最大の特徴といえば、言わずもがな、<font style="color: rgb(255, 0, 242)">200発というトップの装填数</font>を誇ることであろう。<br>
+            これは絶対王者PKPに肩を並べる数値である。<br>
+            この大容量マガジンをもってすれば、敵の1人や2人、さらに3,4人を相手してまでもまだ余裕のある数値といえる。<br>
+            <br>
+            また連射力も高く、何と毎秒18発もの弾を発射する。<br>
+            そのせいなのか単発ダメージはたったの10しかないのだが、DPS換算でなんと180にも達する。<br>
+            こんなのに狙われたらひとたまりもないだろう。<br>
+            <br>
+            またM134は弾の精度がSurviv.io全武器中最も高く、静止時で1°、移動時でもわずか2°という正確さを誇る。<br>
+            これにはスナイパーライフルも顔負けの精度である。<br>
+            一般的なスナイパーの移動時のブレがだいたい4°くらいなので、フルオートにしてはもはや正確すぎる。<br>
+            こんなのに狙われたら、なすすべもなく壊滅していく敵も少なくないだろう。<br>
+            <br>
+            しかしここまでの性能を誇るM134には、致命的な弱点がある。<br>
+            まずはその反動の大きさだ。軽機関銃は総じて反動が大きいのだが、M134はさらに反動が大きい。<br>
+            ただ持っているだけでもわかりやすく移動速度が遅くなるし、発射中は<b>反動の域を超えてもうほぼ動けない。</b><br>
+            こんなんでは敵の反撃を許してしまう。<br>
+            特に相手がスナイパーやマークスマンライフルだと致命的だ。そっちは反動も小さい上(クイックスイッチを活用していた場合)、<br>
+            こちらがモロに高ダメージの弾を連続で受け続けてしまうことになる。<br>
+            それからM134は連射力の高さがゆえに、弾の消費が早く、あっという間に青弾を食いつくしてしまう。<br>
+            それから弾を打ち尽くした後は、全武器中最長の8秒にもなるリロードが待っている。<br>
+            さらにその高すぎる精度がゆえに、相手に反復横跳びされてしまうとなかなか弾が当たらない。<br>
+            これらの弊害を最小限に抑えるためには、なるべくちょっと撃ったら銃をしまって移動する方がいい。<br>
+            200発もあるのにみみっちい使い方かもしれないがね。<br>
+            <br>
+            なおM134にはもう1つ、長所がある。<br>
+            その長所とは、破壊可能な障害物にあたったとき、そのダメージが<font style="color: rgb(255, 104, 23)"><b>なんと5倍にまで跳ね上がる</b></font>というものである。 <br>
+            その対障害物DPSは<font style="color: rgb(255,0,0)"><b>なんと驚異の900!!!!!!!!!!!</b></font> これには絶対王者PKPも顔負けである。<br>
+            もはやM134にとってはどんな障害物もただのぺ二ヤ板であろう。<br>
+            ポテトイベントのポテトガンが出現する大きなバレル、森イベントの地下バンカーにある<br>
+            限定スキンを保護する厚いガラスすら数秒で破壊できる威力を持つ。<br>
+            ひとたび乱射していればあっという間に周りの物が消えていくそのパワーは、もはやゲームバランス崩壊レベル。<br>
+            <br>
+            たぶんこの銃の一番の使い道は、チームプレー時の援護射撃であろう。<br>
+            味方にとって邪魔になる障害物を消す、精度の高さを利用して遠くから敵の体力を削る、などである。<br>
+            見た目のごつさを過信せず、使い処を見極めて使おう。
+          </p>
+          <script type="text/javascript">
+            const image17 = document.getElementById("image17");
+            let stat17 = false;
+
+            function func17() {
+              if(stat17) {
+                image17.classList.add('off');
+                image17.classList.remove('on');
+              } else {
+                image17.classList.add('on');
+                image17.classList.remove('off');
+              }
+              stat17 = !stat17;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm17 = document.querySelectorAll('.fadein-17');
+            var scrollAnimationFunc17 = function() {
+              for(var i17 = 0; i17 < scrollAnimationElm17.length; i17++) {
+                var triggerMargin17 = 200;
+                if (window.innerHeight > scrollAnimationElm17[i17].getBoundingClientRect().top + triggerMargin17) {
+                  scrollAnimationElm17[i17].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc17);
+            window.addEventListener('scroll', scrollAnimationFunc17);
+          </script>
+        </div>
+        <div class="fadein-18">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="PKP-Pecheneg" align="center">PKP Pecheneg</h1>
+          <p align="center" style="font-size: 12px">Pulemyot Kalashnikova Pekhotny "Pecheneg";Пулемёт Калашникова Пехотный Печенег</p>
+          <p align="center">画像（クリックで拡大）</p>
+          <p align="center">
+            <img alt="PKP Pecheneg" title="PKP Pecheneg" height="128" width="128" src="photos/Loot-weapon-pkp.webp" id="image18" onclick="func18()">
+          </p>
+          <p align="center">
+            PKP Pechenegは青弾を使用する軽機関銃の一種である。激レア。<br>
+            <font style="color: rgb(200, 255, 0)">軽機関銃の絶対王者。どの軽機関銃もこいつの前にはひれ伏すのみ。</font><br>
+            <br>
+            主な出現場所は、クラブの地下、研究所のVector箱。そこから低確率で出る。<br>
+            クラシックではほとんど見かけないが、森、ポテト、50v50ではたまに見かける。<br>
+            なお50v50ではチームの残り人数が2人になったとき、「孤高の生存者」としてこのPKPとM249のどちらかが付与される。<br>
+            <br>
+            PKPの最大の特徴は、18という高い単発ダメージ、<font style="color: rgb(255, 0, 242)">200発というトップの装填数</font>、180にも達するDPSである。<br>
+            DPSこそM134と変わらないものの、こっちは連射力がM134より低い代わりに単発ダメージが高い。<br>
+            <font style="color: rgb(0, 255, 174)">使いやすさで言えば間違いなくこっちの方が上であろう。</font>弾の消費量も少ないし。<br>
+            それから200発もの大容量マガジンによって、圧倒的な戦闘継続時間を誇る。<br>
+            3~4人を相手してもまだまだ戦えるその容量のデカさは<font style="color: rgb(255, 51, 245)">まさに驚異的。</font><br>
+            さらにその大容量マガジンに反し、リロード時間は5秒。<br>
+            一般的な銃に比べればもちろん長いが、他の軽機関銃と比べれば桁違いの速さだ。<br>
+            こんなのに暴れ回られたら、なすすべもなく倒れていく敵も多いはず。<br>
+            <br>
+            また対障害物は2倍の36を誇るが、これは5倍にもなるM134に負けてしまっている。<br>
+            しかしそこは絶対王者、そんなのをものともしない総合性能の高さである。<br>
+            <br>
+            もはやPKPに弱点などないともいえるだろうが、やっぱりPKPも軽機関銃、弱点も他の軽機関銃と共通している。<br>
+            まず筆頭は弾のブレだ。そのブレは静止時で2.5°、移動時で10°。軽機関銃の中では2番目に悪い数値だ。<br>
+            その他、反動の重さなどもM134ほどではないものの、結構重く感じる。<br>
+            またPKPに限らず、軽機関銃は近距離の攻撃が不得手である。<br>
+            だから近距離戦に持ち込むのがPKP制覇の一番の近道ともいえる。<br>
+            とはいってもDPSが高いため、近づく間にやられてしまう、というパターンも少なくない。<br>
+            そのような場合は、遠くからQBB-97やM249などの軽機関銃でちくちく体力を削る、という戦法が適している。<br>
+            M249はPKPよりもブレが小さくDPSもほぼ互角なので最適だが、激レアなためあまり見かけられない。<br>
+            そのためQBBはPKP相手の武器としておすすめである。ブレも小さいし。<br>
+            もちろん、PKPの反動の重さを利用してスナイパーやマークスマンライフルで返り討ちにするのもアリ。<br>
+            <br>
+            まぁ結局、その性能の高さに慢心せず、使い処を見極めて使うことが大事。<br>
+            色んな所が優秀になったDP-28と考えて使うといいだろう。<br>
+          </p>
+          <script type="text/javascript">
+            const image18 = document.getElementById("image18");
+            let stat18 = false;
+
+            function func18() {
+              if(stat18) {
+                image18.classList.add('off');
+                image18.classList.remove('on');
+              } else {
+                image18.classList.add('on');
+                image18.classList.remove('off');
+              }
+              stat18 = !stat18;
+            }
+          </script>
+          <script type="text/javascript">
+            var scrollAnimationElm18 = document.querySelectorAll('.fadein-18');
+            var scrollAnimationFunc18 = function() {
+              for(var i18 = 0; i18 < scrollAnimationElm18.length; i18++) {
+                var triggerMargin18 = 200;
+                if (window.innerHeight > scrollAnimationElm18[i18].getBoundingClientRect().top + triggerMargin18) {
+                  scrollAnimationElm18[i18].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc18);
+            window.addEventListener('scroll', scrollAnimationFunc18);
+          </script>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="javascripts/jquery-3.1.0.min.js" ></script> <!--jQuery本体のプログラムを読み込む-->
+    <!--以下、スクロール時に滑らかに移動するプログラムをjQueryで指定-->
+    <script type="text/javascript">
+      // <a>タグのジャンプ先の指定(href)で前に"#"がついているもの (要するにページ内ジャンプ) に以下のプログラムを適用;
+      $(function(){
+        $('a[href^="#"]').click(function() {
+          var speed = 1000;
+          var href= $(this).attr("href");
+          var target = $(href == "#" || href == "" ? 'html' : href);
+          var position = target.offset().top;
+          $('body, html').animate({scrollTop:position}, speed, 'swing');
+          return false;
+        });
+      });
+    </script>
+    <div class="copyright">
+      <p align="center">-----------------------------------------------------------------------------------------------</p>
+      <p align="center">Copyright (C) 2021-2024 MaKun. All Rights Reserved.</p>
+      <script type="text/javascript">
+        var scrollAnimationElm302 = document.querySelectorAll('.copyright');
+        var scrollAnimationFunc302 = function() {
+          for(var i302 = 0; i302 < scrollAnimationElm302.length; i302++) {
+            var triggerMargin302 = 5;
+            if (window.innerHeight > scrollAnimationElm302[i302].getBoundingClientRect().top + triggerMargin302) {
+              scrollAnimationElm302[i302].classList.add('show');
+            }
+          }
+        }
+        window.addEventListener('load', scrollAnimationFunc302);
+        window.addEventListener('scroll', scrollAnimationFunc302);
+      </script>
+    </div>
+  </body>
+</html>
