@@ -1,6 +1,6 @@
 ﻿jQuery(document).ready(function() {
   jQuery.ajax({
-    url: 'https://makunblog.web.fc2.com/ajax-counter/counter.ph', // counter.php への絶対パス．
+    url: 'https://nagasedaiya.f5.si/ajax-counter/counter.php', // counter.php への絶対パス．
     cache: false,
     dataType: 'json',
     success: function(res) {
