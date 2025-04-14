@@ -350,12 +350,21 @@
               opacity: 1;
               transform: none;
             }
-      		.fadein-12 {
+      	    .fadein-12 {
               opacity: 0;
               transition: all 0.5s ease;
               transform: translate(0, 150px);
             }
             .fadein-12.show {
+              opacity: 1;
+              transform: none;
+            }
+	    .fadein-13 {
+              opacity: 0;
+              transition: all 0.5s ease;
+              transform: translate(0, 150px);
+            }
+            .fadein-13.show {
               opacity: 1;
               transform: none;
             }
@@ -707,7 +716,8 @@ function get_month_calendar(year, month) {
           <p align="center">-----------------------------------------------------------------------------------------------</p>
           <h1 align="center">リンク</h1>
           <p align="center">
-			<a href="#link7">2024年10月</a><br>
+            <a href="#link8">2025年4月</a><br>
+	    <a href="#link7">2024年10月</a><br>
             <a href="#link6">2024年6月</a><br>
             <a href="#link5">2024年5月</a><br>
             <a href="#link4">2024年4月</a><br>
@@ -731,6 +741,37 @@ function get_month_calendar(year, month) {
             window.addEventListener('scroll', scrollAnimationFunc300);
           </script>
         </div>
+	<div class="fadein-13">
+          <p align="center">-----------------------------------------------------------------------------------------------</p>
+          <h1 id="link8"></h1>
+          <h1 align="center">2025/04/14</h1>
+          <p align="center">
+            サイトをGitHub Pagesに移行してからの初更新です。<br>
+  	    fc2.comを使用してた頃は別のドメインからのリダイレクトができなかったので、<br>
+	　　〇〇〇〇.web.fc2.comって言うドメイン名を使用せざるを得なかったのですが、<br>
+            今回GitHub Pagesに移行したことによって、新規で自分のドメインを取得し、そこからリダイレクトさせるということができるようになりました。<br>
+	    一応、GitHub PagesのデフォルトのURLは「〇〇〇〇.github.io」なんですが、それだとなんか気に入らないので<br>
+	    自分で新しく取得した「nagasedaiya.f5.si」からリダイレクトする方式を取りました。<br>
+	    <br>
+		  <s>本当は.comとか.netとか取りたかったんだけど、それだと金かかるんだよな。</s><br>
+	    <br>
+	　　てことでもしかしたら近日中に新しい更新するかもしれないです。乞うご期待！！！<br>
+	  ※更新するとは言っていない
+          </p>
+          <script type="text/javascript">
+            var scrollAnimationElm13 = document.querySelectorAll('.fadein-13');
+            var scrollAnimationFunc13 = function() {
+              for(var i13 = 0; i13 < scrollAnimationElm13.length; i13++) {
+                var triggerMargin13 = 200;
+                if (window.innerHeight > scrollAnimationElm13[i13].getBoundingClientRect().top + triggerMargin13) {
+                  scrollAnimationElm13[i13].classList.add('show');
+                }
+              }
+            }
+            window.addEventListener('load', scrollAnimationFunc13);
+            window.addEventListener('scroll', scrollAnimationFunc13);
+          </script>
+        </div>
     	<div class="fadein-12">
           <p align="center">-----------------------------------------------------------------------------------------------</p>
           <h1 id="link7"></h1>
@@ -744,7 +785,7 @@ function get_month_calendar(year, month) {
           <script type="text/javascript">
             var scrollAnimationElm12 = document.querySelectorAll('.fadein-12');
             var scrollAnimationFunc12 = function() {
-              for(var i12 = 0; i12 < scrollAnimationElm10.length; i12++) {
+              for(var i12 = 0; i12 < scrollAnimationElm12.length; i12++) {
                 var triggerMargin12 = 200;
                 if (window.innerHeight > scrollAnimationElm12[i12].getBoundingClientRect().top + triggerMargin12) {
                   scrollAnimationElm12[i12].classList.add('show');
