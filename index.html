@@ -20,6 +20,23 @@
               left: 0;
               z-index: 1;
             }
+	    .backimg {
+              margin: 0;
+              position: absolute;
+              padding-bottom: 56.25%; 
+              height: 0;
+              overflow: hidden;
+            }
+            .backimg img {
+              position: fixed; /* 絶対位置への配置となり、スクロールしても位置が固定されたままとなる */
+              bottom: 0;
+              left: 0;
+              min-width: 100%;
+              min-height: 100%;
+              width: auto;
+              height: auto;
+              z-index: -1; /* 要素の重なりの優先度を指定 */
+            }
             #bigsize {
               font-size: 40px;
             }
@@ -780,6 +797,9 @@ function get_month_calendar(year, month) {
             window.addEventListener('load', scrollAnimationFunc303);
             window.addEventListener('scroll', scrollAnimationFunc303);
           </script>
+        </div>
+	<div class="backimg">
+          <img src="photos/Screenshot_2025.01.07_16.44.04.881.png">>
         </div>
         <div class="links-top">
           <p align="center">-----------------------------------------------------------------------------------------------</p>
