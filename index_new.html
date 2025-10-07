@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="Generator" content="Microsoft Visual Studio Code v1.62.3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>マーくんのブログ</title>
+    <link rel="shortcut icon" type="image/x-icon" href="photos/1781.png" />
+    <link rel="icon" type="image/x-icon" href="photos/1781.png" />
+    <!-- Tailwind CSSの読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* フォントの指定: モダンなInterを使用 */
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+      
+      /* Tailwind CSS設定 */
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          }
+        }
+      }
+
+      /* カスタムCSS（アニメーションと固定背景の調整） */
+      :root {
+        --header-height: 5rem; /* 80px */
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #1a1a1a; 
+        color: #ffffff;
+      }
+      
+      /* フェードインアニメーションの基底スタイル */
+      .fadein-target {
+        opacity: 0;
+        transition: opacity 1s ease-out, transform 0.6s ease-out; /* トランジションをスムーズに */
+        transform: translateY(20px); /* わずかに下からフェードインさせる */
+      }
+      .fadein-target.is-show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* backimgの固定背景コンテナ */
+      .backimg-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -20; 
+        overflow: hidden;
+      }
+      .backimg-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.4); /* 背景を暗くしてテキストを見やすく */
+      }
+      
+      /* スクロール時のヘッダー背景色変更用クラス (JSで付与) */
+      .scrolled {
+        background-color: rgba(26, 26, 26, 0.95);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(5px);
+      }
+
+      /* リンクアイコンのスタイル */
+      .link-icon {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        margin: 0.5rem;
+        display: inline-block;
+      }
+      .link-icon:hover {
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); /* ホバーエフェクトを強調 */
+      }
+
+      /* プロフィール画像のスタイル */
+      .profile-img {
+        transition: transform 0.3s ease-in-out;
+      }
+      .profile-img:hover {
+        transform: scale(1.05);
+      }
+
+      /* 記事内の画像クリック/ホバーエフェクト */
+      .post-image {
+        transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        cursor: pointer;
+        border-radius: 0.5rem; /* 角を丸く */
+      }
+      .post-image.is-zoomed {
+        transform: scale(1.03); /* クリックで少し拡大 */
+        filter: brightness(1.1);
+      }
+      .post-image:hover {
+        filter: brightness(0.9);
+      }
+
+      /* iframeのレスポンシブ調整 */
+      .discord-iframe-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+      .discord-iframe {
+        max-width: 450px;
+        width: 100%;
+        height: 650px;
+      }
+    </style>
+  </head>
+  
+  <body class="bg-gray-900 text-white antialiased">
+
+    <!-- 背景画像コンテナ -->
+    <div class="backimg-container">
+      <img alt="backimage" title="backimage" src="photos/backimage.jpg" class="backimg-1">
+    </div>
+
+    <!-- ヘッダー (固定、スクロールで色が変わる) -->
+    <header id="header" class="fixed top-0 left-0 w-full h-20 bg-transparent transition-all duration-300 z-50 flex items-center">
+      <div class="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <h1 class="text-3xl font-extrabold text-white tracking-wider">
+            <!-- トップへのリンクを分かりやすく -->
+            <a href="#top" class="hover:text-cyan-400 transition duration-300">MaKun's Blog</a>
+          </h1>
+        </div>
+      </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <!-- ヘッダー分のパディングと中央寄せ、最大幅設定 -->
+    <div id="main" class="pt-24 pb-16 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- プロフィールセクション (fadein-0〜fadein-4) -->
+      <section id="top" class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-0">
+        <h2 class="text-3xl font-extrabold mb-6 border-b-2 border-cyan-500 pb-2">Profile</h2>
+        <div class="flex flex-col sm:flex-row items-center sm:items-start space-y-6 sm:space-y-0 sm:space-x-8">
+          
+          <img alt="プロフィール画像" title="プロフィール画像" src="photos/1781.png" 
+               class="w-32 h-32 rounded-full object-cover border-4 border-cyan-500 shadow-xl profile-img fadein-target fadein-1">
+          
+          <div class="text-center sm:text-left space-y-3">
+            <p class="text-2xl font-semibold fadein-target fadein-2">マーくん</p>
+            <p class="text-lg fadein-target fadein-3">
+              皆さん、こんにちは。マーくんといいます。<br>
+              このサイトを見に来てくださってありがとうございます。<br>
+              好きなものは、ゲーム、プログラミング、Youtube、車などです。<br>
+              ブログでは、上記の好きなものについてを中心に書いていきます．<br>
+              たまに全然関係ないことも書くかもしれません．
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- このブログについてセクション (fadein-5, fadein-6) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-5">
+        <h2 class="text-3xl font-extrabold mb-6 border-b-2 border-cyan-500 pb-2">このブログについて</h2>
+        <div class="text-lg space-y-4">
+          <p class="fadein-target fadein-6">
+            このブログは、マーくんが日常で思ったことや趣味でやっていることなどを発信するブログです。<br>
+            主にブログの投稿や、ホームページの作成などについて書いていく予定です。<br>
+          </p>
+        </div>
+      </section>
+      <!-- リンクセクション (fadein-13) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-13">
+        <h2 class="text-3xl font-extrabold mb-6 border-b-2 border-cyan-500 pb-2">リンク</h2>
+        <div class="text-lg text-center">
+          <p class="account-links">
+            <a href="https://twitter.com/MaKun07191207">
+              <img alt="Xへ移動" title="Xへ移動" class="linkaccounts-1 link-icon" src="photos/twitterlogo_400x400.jpg">
+            </a>
+            <a href="https://github.com/MaKun07191207">
+              <img alt="GitHubへ移動" title="GitHubへ移動" class="linkaccounts-2 link-icon" src="photos/github-mark-white.png">
+            </a>
+            <a href="https://www.youtube.com/channel/UCfT_vU3uW-B0L-1pB5tq8gA">
+              <img alt="YouTubeへ移動" title="YouTubeへ移動" class="linkaccounts-3 link-icon" src="photos/youtube-icon-logo-24.png">
+            </a>
+            <a href="https://atcoder.jp/users/MaKun">
+              <img alt="AtCoderへ移動" title="AtCoderへ移動" class="linkaccounts-4 link-icon" src="photos/AtCoder_icon.png">
+            </a>
+            <a href="https://discord.gg/vC27wQEV6S">
+              <img alt="Discordサーバーへ移動" title="Discordサーバーへ移動" class="linkaccounts-5 link-icon" src="photos/discordlogo_400x400.jpg">
+            </a>
+            <a href="https://steamcommunity.com/profiles/76561199465926941">
+              <img alt="Steamへ移動" title="Steamへ移動" class="linkaccounts-6 link-icon" src="photos/Steam_icon_logo.svg.png">
+            </a>
+            <a href="https://open.spotify.com/user/31dwobdr5gxozkag6btd4rjsw6si">
+              <img alt="Spotifyへ移動" title="Spotifyへ移動" class="linkaccounts-7 link-icon" src="photos/Spotify_Icon_RGB_Green.png">
+            </a>
+            <a href="https://www.roblox.com/ja/users/5600914519/profile">
+              <img alt="Robloxへ移動" title="Robloxへ移動" class="linkaccounts-8 link-icon" src="photos/Roblox_profile.jpg">
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <!-- 新しいブログ投稿セクション -->
+      <h2 class="text-4xl font-extrabold pt-12 text-center text-cyan-400">ブログ投稿</h2>
+      
+      <!-- 2025/04/14 (fadein-14) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-14 space-y-4">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold text-center">2025/04/14</h1>
+        <div class="text-lg space-y-4 text-center">
+          <p>
+            サイトをGitHub Pagesに移行してからの初更新です。<br>
+            fc2.comを使用してた頃は別のドメインからのリダイレクトができなかったので、<br>
+            〇〇〇〇.web.fc2.comって言うドメイン名を使用せざるを得なかったのですが、<br>
+            今回GitHub Pagesに移行したことによって、新規で自分のドメインを取得し、そこからリダイレクトさせるということができるようになりました。<br>
+            一応、GitHub PagesのデフォルトのURLは「〇〇〇〇.github.io」なんですが、それだとなんか気に入らないので<br>
+            自分で新しく取得した「nagasedaiya.f5.si」からリダイレクトする方式を取りました。<br>
+          </p>
+          <p class="mt-4">
+            <s class="text-gray-400">本当は.comとか.netとか取りたかったんだけど、それだと金かかるんだよな。</s><br>
+          </p>
+          <p>
+            てことでもしかしたら近日中に新しい更新するかもしれないです。乞うご期待！！！<br>
+            <span class="text-sm text-gray-400">※更新するとは言っていない</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- 2024/10/18 (fadein-15) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-15 space-y-4">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold text-center">2024/10/18</h1>
+        <div class="text-lg space-y-4 text-center">
+          <p class="text-[rgb(0,235,169)]">
+            管理人が運営しているDiscord公開サーバーがあるので, 掲載しておきます。<br>
+            以下のリンクから参加できます。<br>
+          </p>
+          <div class="discord-iframe-container">
+            <iframe src="https://discord.com/widget?id=939743055920111636&theme=dark" 
+                    class="discord-iframe"
+                    allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2024/6/10 (fadein-16) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-16 space-y-4">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold text-center">2024/6/10</h1>
+        <div class="text-lg space-y-4 text-center">
+          <p>
+            今日はこのブログの管理人が持っている人生観などについて書いていこうと思う。<br>
+            なぜこんなことを書こうと思ったかというと, 最近色々深く考えることが多いからだ。<br>
+            後は大学の中間テスト地獄がようやく終わったから暇つぶしとして笑<br>
+          </p>
+          <p>
+            長文を見るのは苦手、という人もいるかもしれないので(実際自分もその１人。長い話を延々と続けてる人を見ると<br>
+            とりあえず要約してくれ、と思ってしまう)、自分が考える「人生」について、一言でまとめる。<br>
+            それは、<br>
+          </p>
+          <h1 class="text-3xl font-extrabold text-center text-[rgb(0,255,200)]">「7割運、3割努力」</h1>
+          <p>
+            へ？と思うかもしれないが、言いたいことは<b>これで全て</b>である。<br>
+            なんなら運の割合はもっと高く、8割とかあるかもしれない。9割までは多分いかない。<br>
+            <br>
+            まずこの「7割運」について詳しく述べていく。<br>
+            <br>
+            全ての生物はまず雄と雌のもとで生まれてくる。人間も例外ではない。<br>
+            まずこの時点ですでに人生最大レベルの運要素が含まれる。<br>
+            産む側は「子を持つかどうか」決められるが、生まれてくる側は自分が生まれてくるかどうか、<br>
+            あるいはどの家庭に生まれるかなど、決められるはずもないのは明らかである。<br>
+            <br>
+            さらに非情なことに、大概のカップルは「なんとなくな気持ち」で子供を持つか決めている。<br>
+            なんとなく子供が欲しい、とかそんな感じ。本当に心の底から子供が欲しくて産む、なんてカップルの方が少数派だろう。<br>
+            なんなら大人の夜遊びしてたら偶然できちゃった、なんてパターンも少なくないと思う。<br>
+            そんな軽々した気持ちで産むから、子育てにおいて待ち受ける相当数の困難を乗り越えられない親のなんと多いことか。<br>
+            <br>
+            それから生まれた家庭の環境、場所だって完全な運要素である。<br>
+            大富豪の家に生まれるかもしれないし、貧乏な家かもしれない。先進国で生まれるかもしれないし、発展途上国かもしれない。<br>
+            さらに、夫婦円満な家庭かもしれないし、親同士が犬猿の仲で離婚→片親、なんてことだってありえる。<br>
+            結局、子供からすれば「どの家庭のもとで生まれるか」とか「どこで生まれるか」、「そもそも生まれてくるかどうか」など、<br>
+            あらかじめ定められた、どうしようもない運命でしかないのである。<br>
+            <br>
+            次に運要素の強いものは「恋愛」だろう。<br>
+            自分の顔、身長、体型などそんなのほとんど運である。<br>
+            恋愛における最初の決め手は顔or容姿であって、性格の良さなどではない事が多い。<br>
+            むろんその後の恋愛を続けたりするのには性格や相性などがものをいうが。<br>
+            だから容姿が良ければモッテモテだろうし、イマイチな人はまず恋愛において他人より後ろのスタート地点に立たされる。<br>
+            というかスタート地点に立てているかすら怪しい。世の中はあまりにも非情である。<br>
+            努力次第で何とかできなくもないが、とんでもブサイクが絶世の美女や美男子に劇的ビフォーアフター、なんていうのは流石に厳しいだろう。<br>
+            <s class="text-gray-400">そんなことができたら世の中の非モテたちや俺も苦労しない。</s><br>
+            <br>
+            それからモテモテだからと言って、必ずしもいい相手に巡り合えるとは限らない。<br>
+            メンヘラが来るかもしれないし、重い奴が来るかもしれないし、クズ男が来るかもしれない。<br>
+            そうじゃなかったとしても、なんか気に入らない、なんてこともあるだろう。<br>
+            だからいい相手に巡り合えた人、その奇跡に感謝すべきである。<br>
+            運に感謝というのはなんか変な感じがするが。<br>
+            <br>
+            それから、相手に対してアプローチをずっと続けたから、狙っていた人と一緒になれた、という人も少なからずいるだろう。<br>
+            確かにそれは努力の成果かもしれないが、なにも「アプローチを相手が嫌がらなかった」という前提が成り立ってのアプローチ成功であって、<br>
+            「努力したから」が100%とは言えない。<br>
+            世の中にはそういったアプローチに対して警戒心を持ったりする人もいるし、<br>
+            あるいはそもそも生理的に無理な人からのアプローチは逆に嫌がらせにしかならないだろう。<br>
+            だからこれも結局運。<br>
+            <br>
+            最後に、学業や仕事などについて。<br>
+            正直な話、これは努力要素もそれなりに強いかなとは思う。<br>
+            努力したからどこどこの学校に受かれた、努力したからどこどこの会社行けた、などである。<br>
+            確かに学業や仕事については努力が実を結ぶのも確かである。<br>
+            <br>
+            しかし、これも最終的な決め手は決して努力そのものではない。<b>何度も言っているように、「運」である。</b><br>
+            <br>
+            学業で言うなら、世の中には東大理3やハーバードに行くような変態がいる。<br>
+            もしも努力だけが実を結ぶのであれば、世界中の誰もがきちんと努力を重ねればそのような境地に到達できるはずである。<br>
+            しかし現実にはこういうことは起こらないし、起こるはずもない。<br>
+            なぜかというと、1人1人の頭の良しあしなど、「運」要素が最終的にものをいうからである。<br>
+            <br>
+            人間の脳は6歳に達した時点でほぼ成人と変わらない程度にまで発育するといわれている。<br>
+            言い換えれば6歳の時点で、学業的に成功できるかというのはある程度決まる。<br>
+            で、この6歳になるまでの脳の発育には様々な要因が関係する。<br>
+            例えば親の教育や育て方、親からの遺伝、などである。<br>
+            そこから「努力は裏切らない」と言い切れるほどの努力できる余地など、多くは残されていない。<br>
+            これは仕事についてもだいたい同じである。<br>
+            運は1人1人の未来を明るくするものであるかもしれないし、<br>
+            それまでの努力を一瞬で無に帰すほどの恐ろしさも秘めているのである。<br>
+            <br>
+            じゃあ、どうするのかというと、管理人なりの意見を以下に示す。<br>
+          </p>
+          <h1 class="text-3xl font-extrabold text-center text-[rgb(85,255,33)]">「今を全力で楽しむ」</h1>
+          <p>
+            よく「将来のため」とか言う人がいる。その将来とは、いつを指すのだろうか。<br>
+            ...卒業？成人？就職？老後？<br>
+            今を"全力で"楽しみつつその将来のために歩んでいけるのであればいい。というかそれが最も良いパターンである。<br>
+            しかし何度も述べているように、「運」が悪いとそうはいかない。<br>
+            今を犠牲にして将来の目標を成し遂げるという考えの人は、一度立ち止まって考えてみよう。<br>
+            例えば良い大学に行き、良い会社などに就職するために、小中高時代を犠牲にしたとする。<br>
+            もちろん学生生活とことん満喫してそういうことを成し遂げられる人もいるだろう。しかし全員がそうとは限らない。<br>
+            その将来の目標を達成するために犠牲にした学生時代や青春は、<b>決して戻ってくることはない。</b><br>
+            だからこそ、「今を全力で楽しむ」というのは重要なのである。<br>
+            <br>
+            それから、努力で挽回できない運命に関してはもう受け入れるしかない。<br>
+            こればかりは仕方ない。このような運命は、人間1人の力ではどうすることもできない。<br>
+            それから何度も言っているが運というのは、たった1つのきっかけで吉と出ることも凶と出ることもある。<br>
+            それも人生のある意味醍醐味として、受け入れて生きるのが最適な道かもしれない。<br>
+            <br>
+            もちろんこれは全て管理人の意見であって、実際の考え方は人それぞれである。<br>
+            鵜吞みにすることなく、万人それぞれが幸せと思える人生を歩んでいってほしい。<br>
+          </p>
+        </div>
+      </section>
+
+      <!-- 2024/5/26 (fadein-17) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-17 space-y-4 text-center">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold">2024/5/26</h1>
+        <h1 class="text-3xl font-extrabold text-[rgb(253,187,244)]">生きててよかった...</h1>
+        <p class="flex justify-center">
+          <img src="photos/Screenshot_20240616-140432.png" alt="mana_bride" title="mana_bride" id="image2" 
+               class="post-image w-full max-w-xl mx-auto" onclick="toggleImageZoom('image2')">
+        </p>
+      </section>
+      
+      <!-- 2024/4/30 (fadein-18) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-18 space-y-4 text-center">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold">2024/4/30</h1>
+        <h1 class="text-3xl font-extrabold text-[rgb(255,142,50)]">GW中の学校マジだるすぎわろた</h1>
+      </section>
+
+      <!-- 2024/4/26 (fadein-19) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-19 space-y-4 text-center">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold">2024/4/26</h1>
+        <div class="text-lg space-y-4">
+          <p>
+            <span class="text-cyan-400">約2年半ぶりの更新となってしまいました。</span><br>
+            なぜ今まで更新していなかったかというと、リアルの多忙によって更新モチベが薄れてしまったためです。<br>
+            現在モチベが回復してきた？かもしれないので、まぁ今まで通り不定期更新でやっていくことにします。<br>
+            まぁ今後ともよろしく。<br>
+            <br>
+            それから、Surviv.ioブログを大幅に更新したので、ぜひ見てってください。<br>
+            <a href="main2.html" class="text-cyan-400 hover:text-cyan-300 underline transition duration-300">こちらからSurviv.ioブログに移動する</a><br>
+            あとは1年弱前から「IDOLY PRIDE」というゲームをやっているんだが、そこに出てくる「長瀬麻奈」というキャラが<br>
+          </p>
+          <h1 class="text-3xl font-extrabold text-[rgb(255,146,255)]">もう可愛すぎて愛おしいのよ。</h1>
+          <p>
+            てなわけで、今度から「長瀬麻奈についてひたすら語るページ」も作ってみようかな、なんて最近思ってたりはする。<br>
+            ぶっちゃけsurviv.ioなんかもうｻｼｭｳしてるから更新急ぐ必要ないし。<br>
+            乞うご期待！！！ <span class="text-sm text-gray-400">※更新するとは言っていない</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- 2021/11/19 (fadein-20) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-20 space-y-4 text-center">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold">2021/11/19</h1>
+        <div class="text-lg space-y-4">
+          <p>
+            どの学校にも<span class="text-[rgb(255,0,191)] text-2xl font-bold">老害</span>っているよね。<br>
+            例えば俺のところで言うなら某古典教師とかwwww<br>
+            例えば<span class="text-[rgb(200,255,0)] text-2xl font-bold">「文系は4番全部できるようにしてね!?」</span>←定期テストで文系の出来が悪かったため<br>
+            <span class="text-[rgb(255,115,0)] text-2xl font-bold">「こんなのは初めて」</span>とかさ.....<br>
+            それから某世界史教師とかwwwwwwww<br>
+            <span class="text-[rgb(217,255,0)] text-2xl font-bold">「ふざけんじゃねーよこのクソタコ野郎!!!!!」</span><br>
+            <span class="text-[rgb(255,174,0)] text-2xl font-bold">「お前やべえよお前!!!!!!」</span><br>
+            <span class="text-[rgb(255,123,0)] text-2xl font-bold">「オ メ エ 何 や っ て ん だ オ メ ェ ?」</span><br>
+            <span class="text-[rgb(255,81,0)] text-2xl font-bold">「受け取らねえよ!!!!!!!!」</span><br>
+            <span class="text-[rgb(255,0,0)] text-2xl font-bold">「出すんじゃねえよ!!!!!!!!!!!!!!」</span><br>
+            <span class="text-[rgb(255,0,200)] text-2xl font-bold">「オメエやる気ねえなら出てけ!!!!!!!!!!!!!!!!!」</span><br>
+            極めつけは課題提出日に休み、次の日に課題を出しに行った生徒に対し<span class="text-[rgb(255,0,43)] text-2xl font-bold">「知らねえよ!!!!!!!!!!!!!!!!!!!!!!!!!」</span><br>
+          </p>
+          <h1 class="text-3xl font-extrabold">What on earth are you thinking?</h1>
+          <p>後はsurfaceを授業時間の開始までに持ってこなかったからキレた某地理教師が別の時間にsurfaceを使ってたら「surfaceは受験勉強には役立たない」とかさ!!!!!</p>
+        </div>
+      </section>
+
+      <!-- 2021/10/18 (fadein-21) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-21 space-y-4 text-center">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold">2021/10/18</h1>
+        <h2 class="text-xl font-semibold">
+          <span class="text-[rgb(43,196,124)]">survivブログを公開しました。まあこちらも不定期で更新します</span>
+        </h2>
+        <p>
+          <a href="main2.html" class="text-cyan-400 hover:text-cyan-300 underline transition duration-300">こちらからsurvivブログへ移動する</a>
+        </p>
+      </section>
+
+      <!-- 2021/10/14 (fadein-22) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-22 space-y-4 text-center">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold">2021/10/14</h1>
+        <h2 class="text-xl font-semibold">
+          <span class="text-[rgb(200,255,0)]">学校でsurfaceは神過ぎるぜ☆</span>
+        </h2>
+      </section>
+
+      <!-- 2021/10/08 (fadein-23) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-23 space-y-4 text-center">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold">2021/10/08</h1>
+        <h2 class="text-xl font-semibold">
+          <span class="text-[rgb(255,144,219)] font-bold">今これ学校の総合の授業の時間に更新してるwwwwwww</span>
+        </h2>
+      </section>
+
+      <!-- 2021/10/01 (fadein-24) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-24 space-y-4 text-center">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold">2021/10/01</h1>
+        <h3 class="text-xl font-semibold">
+          <span class="text-[rgb(255,0,242)]">や っ ぱ り s u r v i v は 楽 し い</span>
+        </h3>
+        <p class="flex justify-center">
+          <img src="photos/1932.png" alt="surviv1" title="surviv1" id="image1" 
+               class="post-image w-full max-w-xl mx-auto" onclick="toggleImageZoom('image1')">
+        </p>
+      </section>
+
+      <!-- 2021/09/30 (fadein-25) -->
+      <section class="bg-gray-800/80 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-2xl fadein-target fadein-25 space-y-4 text-center">
+        <hr class="my-4 border-gray-700">
+        <h1 class="text-2xl font-bold">2021/09/30</h1>
+        <div class="text-lg space-y-4">
+          <p>
+            まあ今回はこのブログを作った理由を書きます。<br>
+            一言でいうと、
+          </p>
+          <h2 class="text-xl font-semibold">
+            <span class="text-cyan-400">手軽につぶやける<s class="text-gray-400">(ツ○ッターじゃねえかwwww)</s>ブログがほしかったからだ。</span>
+          </h2>
+        </div>
+      </section>
+      
+    </div> <!-- #main end -->
+
+    <!-- フッター -->
+    <footer class="text-center py-4 bg-gray-900/90 border-t border-gray-700/50">
+      <p class="text-sm text-gray-400">Copyright (C) 2021-2025 MaKun. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script type="text/javascript">
+      // --------------------------------------------------------------------------------
+      // ヘッダーのスクロールエフェクト
+      // --------------------------------------------------------------------------------
+      document.addEventListener('DOMContentLoaded', () => {
+        const header = document.getElementById('header');
+        const handleScroll = () => {
+          // スクロール量が50pxを超えたら 'scrolled' クラスを付与
+          if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        };
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // 初期状態のチェック
+      });
+
+      // --------------------------------------------------------------------------------
+      // フェードインアニメーション
+      // 既存の要素(0-13)と追加したブログ投稿の要素(14-25)すべてを対象にする
+      // --------------------------------------------------------------------------------
+      
+      const scrollAnimationElms = [];
+      for (let i = 0; i <= 25; i++) {
+          scrollAnimationElms.push(...document.querySelectorAll(`.fadein-${i}`));
+      }
+      // account-linksもアニメーション対象として含める
+      scrollAnimationElms.push(...document.querySelectorAll('.account-links'));
+
+      var scrollAnimationFunc = function() {
+        var windowH = window.innerHeight; // ウィンドウの高さを取得
+        var triggerMargin = 200; // 元のコードのトリガーマージンを尊重
+
+        for(var i = 0; i < scrollAnimationElms.length; i++) {
+          var elm = scrollAnimationElms[i];
+          // 要素が画面の8割程度の位置に来たとき (windowH * 0.8) または
+          // 要素の上端がウィンドウ下端から200px以内になったとき (triggerMargin) にアニメーションを開始
+          if (elm.getBoundingClientRect().top < windowH * 0.8 || windowH > elm.getBoundingClientRect().top + triggerMargin) {
+            elm.classList.add('is-show');
+          }
+        }
+      };
+
+      // ページ読み込み時とスクロール時にアニメーション関数を実行
+      window.addEventListener('load', scrollAnimationFunc);
+      window.addEventListener('scroll', scrollAnimationFunc);
+      document.addEventListener('DOMContentLoaded', scrollAnimationFunc);
+
+
+      // --------------------------------------------------------------------------------
+      // 記事内 画像クリックの拡大/縮小トグル機能
+      // --------------------------------------------------------------------------------
+      function toggleImageZoom(id) {
+          const img = document.getElementById(id);
+          if (!img) return;
+          
+          // is-zoomed クラスをトグルする
+          img.classList.toggle('is-zoomed');
+
+          // アラートの代わりにメッセージボックス（この環境ではconsole.logを使用）
+          if (img.classList.contains('is-zoomed')) {
+             console.log(`${id}が拡大されました。`);
+          } else {
+             console.log(`${id}が縮小されました。`);
+          }
+      }
+    </script>
+  </body>
+</html>
