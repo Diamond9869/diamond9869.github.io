@@ -1,637 +1,391 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
-  <head>
+<html lang="ja">
+<head>
     <meta charset="UTF-8" />
-    <meta name="Generator" content="Microsoft Visual Studio Code v1.52.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>マーくんのSurvivブログ</title>
-    <link rel="shortcut icon" type="image/x-icon" href="photos/Favicon (1).ico" />
-    <link rel="icon" type="image/x-icon" href="photos/Favicon (1).ico" />
-    <style type="text/css">
-            body {
-              background-color: rgb(27, 27, 27);
-              color: rgb(255, 255, 255);
-            }
-            header {
-              width: 100%;
-              height: 110px;
-              position: fixed;
-              top: 0;
-              left: 0;
-              z-index: 1;
-            }
-            .onh {
-              transition: all 200ms 15ms ease;
-              opacity: 0;
-              height: 0;
-            }
-            .offh {
-              transition: all 200ms 110ms ease;
-              opacity: 1;
-              height: 110px;
-            }
-            .logo {
-              height: 30px;
-            }
-            .main-part {
-              animation: fadeIn 2.0s ease 0s 1 normal;
-            }
-            @keyframes fadeIn { /* fadeInの動作を指定 */
-              0% {opacity: 0} 
-              100% {opacity: 1} 
-            }
-            .clock {
-              transition: all 400ms ease; /* プロパティが変化する際のアニメーションの速度を操作する */
-              opacity: 1; /* 要素の透明度を指定 */
-              position: fixed;
-              margin-right: 18.720;
-              top: 0;
-              right: 0;
-              z-index: 2;
-            }
-            #view_clock:hover { /* hoverでマウスオーバーされたときの動作を指定 */
-              transition: all 400ms ease;
-              opacity: 1;
-            }
-            #view_time:hover {
-              transition: all 400ms ease;
-              opacity: 1;
-            }
-            #view_clock.onc {
-              transition: all 200ms 15ms ease;
-              opacity: 0;
-            }
-            .offc {
-              transition: all 200ms 110ms ease;
-              opacity: 1;
-            }
-            #view_time.ond {
-              transition: all 200ms 15ms ease;
-              opacity: 0;
-            }
-            .offd {
-              transition: all 200ms 110ms ease;
-              opacity: 1;
-            }
-            #btn {
-              transition: all 400ms 0s ease;
-              opacity:0.3;
-            }
-            #btn:hover {
-              transition: all 400ms 0s ease;
-              opacity:1;
-              color: rgb(0, 255, 255)
-            }
-            #btn:active {
-              transition: all 400ms 0s ease;
-              opacity:1;
-              color: rgb(255, 95, 255)
-            }
-            .onb {
-              transform: translate(0px, -70px) /* 与えられた要素を移動する */
-            }
-            .offb {
-              transform: translate(0px, 0px)
-            }
-            .linktop {
-              position: fixed;
-              right: 20px;
-              bottom: 20px;
-              transition: all 400ms 0s ease;
-              width: 57px;
-              height: 57px;
-            }
-            .linktop:hover {
-              transition: all 400ms 0s ease;
-              width: 77px;
-              height: 77px;
-            }
-            a {
-              color: rgb(200, 255, 0);
-              transition: all 400ms 0s ease;
-              opacity: 0.6;
-            }
-            a:hover {
-              color: rgb(0, 255, 255);
-              transition: all 400ms 0s ease;
-              opacity: 1;
-            }
-            a:active {
-              color: rgb(255, 0, 200);
-              transition: all 400ms 0s ease;
-              opacity: 1;
-            }
-            .introduction {
-              opacity: 0;
-              transition: all 0.5s ease;
-              transform: translate(0, 150px);
-            }
-            .introduction.show {
-              opacity: 1;
-              transform: none;
-            }
-            .top {
-              transition: all 400ms 0s ease;
-              width: 48px;
-              height: 48px;
-            }
-            .top:hover {
-              transition: all 400ms 0s ease;
-              width: 58px;
-              height: 58px;
-            }
-            .top-3 {
-              transition: all 400ms 0s ease;
-              width: 48px;
-              height: 48px;
-            }
-            .top-3:hover {
-              transition: all 400ms 0s ease;
-              width: 58px;
-              height: 58px;
-            }
-            .top-link {
-              transition: all 400ms 0s ease;
-              width: 64px;
-              height: 64px;
-            }
-            .top-link:hover {
-              transition: all 400ms 0s ease;
-              width: 76px;
-              height: 76px;
-            }
-            .top-link3 {
-              transition: all 400ms 0s ease;
-              width: 64px;
-              height: 64px;
-            }
-            .top-link3:hover {
-              transition: all 400ms 0s ease;
-              width: 76px;
-              height: 76px;
-            }
-            .links-top {
-              opacity: 0;
-              transition: all 0.5s ease;
-              transform: translate(0, 150px);
-            }
-            .links-top.show {
-              opacity: 1;
-              transform: none;
-            }
-            .account-links {
-              opacity: 0;
-              transition: all 0.5s ease;
-              transform: translate(0, 150px);
-            }
-            .account-links.show {
-              opacity: 1;
-              transform: none;
-            }
-            .linkaccounts-1 {
-              transition: all 400ms 0s ease;
-              width: 120px;
-              height: 120px;
-            }
-            .linkaccounts-1:hover {
-              transition: all 400ms 0s ease;
-              width: 150px;
-              height: 150px;
-            }
-            .linkaccounts-2 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-2:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-            .linkaccounts-3 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-3:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-3 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-3:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-4 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-4:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-5 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-5:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-6 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-6:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-7 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-7:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-8 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-8:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-            .fadein-1 {
-              opacity: 0;
-              transition: all 0.5s ease;
-              transform: translate(0, 150px);
-            }
-            .fadein-1.show {
-              opacity: 1;
-              transform: none;
-            }
-    </style>
-  </head>
-  <body>
-    <div class="main-part">
-      <header id="header">
-        <h1>
-          マーくんの<img class="logo" src="photos/250px-Surviv.io.png">ブログ
-          <a class="top-3" href="main2.html">
-            <img class="top" alt="ホームへ戻る" title="ホームへ戻る" src="photos/Screenshot_-_2019年12月21日_-_10時58分04秒.png">
-          </a>
-          <a href="index.html">
-            <img class="top-3" alt="index.htmlへ戻る" title="index.htmlへ戻る" src="photos/220px-ISO_7010_E001_new.svg.png">
-          </a>
-        </h1>
-      </header>
-      <p align="right">
-        <a href="#linktop">
-          <img alt="TOPへ移動" title="TOPへ移動" class="linktop" src="photos/btn_pagetop.png">
-        </a>
-      </p>
-      <div class="noscript"> 
-        <noscript> <!--ブラウザのJavaScriptの設定が無効な場合の動作を指定-->
-          <h1 align="center">
-            <font color="red">
-              <strong>※ブラウザのJavaScriptが無効なため、ページは機能しません。JavaScriptを有効にしてください。</strong>
-            </font> 
-          </h1>
-        </noscript>
-      </div>
-      <div class="warning">
-        <h1 align="center">
-          <font color="red">ページを開く前の注意。</font>
-        </h1>
-        <p align="center">注意喚起の内容ですが、僕のページは、</p>
-        <h1 align="center">
-          <font color="red">IE,旧Edgeでは正常に動作しません。</font>
-        </h1>
-        <p align="center">
-          もしIE,旧Edgeで開いている場合には、Chromeなどの別のブラウザで開きなおしてください。<br>
-          (上のURLをコピー&ペーストして別のブラウザでこのページを開きなおす)<br>
-          なお、すでに別のブラウザで開いている場合は、この操作は必要ありません。
-        </p>
-        <p align="center">
-          <a href="#linktop">開きなおしたら、こちらをクリックしてください。</a>
-        </p>
-      </div>
-      <div class="main">
-        <h1 id="linktop"></h1>
-        <br>
-        <h4 class="clock" align="right">
-          <span id="view_clock"></span> <!--ここに現在時刻を表示-->
-          <script type="text/javascript">
-          timerID = setInterval('clock()',67); // 現在時刻の更新頻度を設定;
-          function clock() {
-          	document.getElementById("view_clock").innerHTML = getNow(); // innerHTMLは要素内の HTML または XML のマークアップを取得したり設定したりする。ここでgetNow()ファンクションを指定;
-          }
-          function getNow() { // getNow()の中身を指定;
-          	var now = new Date(); // 現在時刻を取得;
-          	var year = now.getFullYear(); // 西暦を取得;
-          	var mon = now.getMonth()+1; // 月を取得し、1を足す;
-          	var day = now.getDate(); // 日を取得;
-          	var hour = now.getHours(); // 時を取得;
-          	var min = now.getMinutes(); // 分を取得;
-          	var sec = now.getSeconds(); // 秒を取得;
-            var ms = now.getMilliseconds(); // ミリ秒を取得;
-            if (min < 10) { // もしmin(分)が10未満なら;
-              min = "0" + min; // minの値の前に0を追加して表示;
-            }
-            if (sec < 10) { // もしsec(秒)が10未満なら;
-              sec = "0" + sec; // secの値の前に0を追加して表示;
-            }
-            if (ms < 10) { // もしms(ミリ秒)が10未満なら;
-              ms = "0" + ms; // msの値の前に0を2つ追加して表示;
-            }
-            if (ms < 100) { // もしms(ミリ秒)が100未満なら;
-              ms = "0" + ms; // msの値の前に0を1つ追加して表示;
-            } // (msの方の補足) msの値が10未満の場合、下2つのifが共にtrueとなり0が2つ追加される;
-          	var time = "現在時刻: " + year + "/" + mon + "/" + day + " " + hour + ":" + min + ":" + sec + "." + ms + "　"; // 現在時刻のフォーマットをこのようにする;
-          	return time; // 現在時刻を返し、上の<span>...</span>内に表示する;
-          }
-          </script>
-          <br>
-          <span id="view_time"></span> <!--ここにページ読み込み時の時刻を表示-->
-          <script type="text/javascript">
-          document.getElementById("view_time").innerHTML = getNow2();
-          function getNow2() {
-          	var now2 = new Date();
-          	var year2 = now2.getFullYear();
-          	var mon2 = now2.getMonth()+1;
-          	var day2 = now2.getDate();
-          	var hour2 = now2.getHours();
-          	var min2 = now2.getMinutes();
-            var sec2 = now2.getSeconds();
-            var ms2 = now2.getMilliseconds();
-            if (min2 < 10) {
-              min2 = "0" + min2;
-            }
-            if (sec2 < 10) {
-              sec2 = "0" + sec2;
-            }
-            if (ms2 < 10) {
-              ms2 = "0" + ms2;
-            }
-            if (ms2 < 100) {
-              ms2 = "0" + ms2;
-            }
-          	time2 = "ページ読み込み時刻: " + year2 + "/" + mon2 + "/" + day2 + " " + hour2 + ":" + min2 + ":" + sec2 + "." + ms2 + "　"; 
-          	return time2;
-          } // ここにはsetInterval()関数がないため、連続更新はされず、ページ読み込み時に1回のみ更新される;
-          </script>
-          <p align="right" id="btn" onclick="btn1()">クリックしてヘッダーを表示/非表示</p> <!--onclickでクリックされた時の動作をJavaScriptで指定-->
-          <script type="text/javascript">
-            const btn = document.getElementById('btn'); // btnという定数を作成する。 var 変数とは異なり、window オブジェクトのプロパティにはならない;
-            const clockt = document.getElementById('view_clock'); // clocktという定数を作成する;
-            const timet = document.getElementById('view_time'); // timetという定数を作成する;
-            const headerh = document.getElementById('header'); // headerhという定数を作成する;
-            let statbtn = false; // statbtnという変数をfalseにする;
-
-            function btn1() { // 上のonclick="btn1()"とつながっている;
-              if(statbtn) {
-                btn.classList.add('offb'); // btnが指定しているHTML要素に"offb"クラスを追加;
-                btn.classList.remove('onb'); // btnが指定しているHTML要素の"onb"クラスを削除;
-                clockt.classList.add('offc'); // clocktが指定しているHTML要素に"offc"クラスを追加;
-                clockt.classList.remove('onc'); // clocktが指定しているHTML要素の"onc"クラスを削除;
-                timet.classList.add('offd'); // timetが指定しているHTML要素に"offd"クラスを追加;
-                timet.classList.remove('ond'); // timetが指定しているHTML要素の"ond"クラスを削除;
-                headerh.classList.add('offh'); // headerhが指定しているHTML要素に"offh"クラスを追加;
-                headerh.classList.remove('onh'); // headerhが指定しているHTML要素の"onh"クラスを削除;
-              } else { // 上とは逆の動作をする;
-                btn.classList.add('onb'); 
-                btn.classList.remove('offb');
-                clockt.classList.add('onc');
-                clockt.classList.remove('offc');
-                timet.classList.add('ond');
-                timet.classList.remove('offd');
-                headerh.classList.add('onh');
-                headerh.classList.remove('offh');
-              }
-              statbtn = !statbtn;
-            }
-          </script>
-        </h4>
-        <div class="introduction">
-          <p align="center">-----------------------------------------------------------------------------------------------</p>
-          <h1 align="center">マーくんのSurvivブログ。</h1>
-          <p align="center">-----------------------------------------------------------------------------------------------</p>
-          <h1 align="center">Survivあるある</h1>
-          <p align="center">
-            このページは、surviv.ioをプレイしていれば、1回は経験するだろう、といった場面をまとめたページである。
-          </p>
-          <script type="text/javascript">
-            var scrollAnimationElm303 = document.querySelectorAll('.introduction'); // "scrollAnimationElm303"を定義;
-            var scrollAnimationFunc303 = function() { // "scrollAnimationFunc303"を定義;
-              for(var i303 = 0; i303 < scrollAnimationElm303.length; i303++) {
-                var triggerMargin303 = 200; // "triggerMargin"を定義;
-                if (window.innerHeight > scrollAnimationElm303[i303].getBoundingClientRect().top + triggerMargin303) { // 画面の下と要素の位置の差が200pxになった時に;
-                  scrollAnimationElm303[i303].classList.add('show'); // 要素に"show"クラスを追加;
-                }
-              }
-            }
-            window.addEventListener('load', scrollAnimationFunc303);
-            window.addEventListener('scroll', scrollAnimationFunc303);
-          </script>
-        </div>
-        <div class="fadein-1">
-          <p align="center">-----------------------------------------------------------------------------------------------</p>
-          <h1 align="center">Survivあるある100連発</h1>
-          <p align="center">
-            1.<font style="color: rgb(255, 255, 0);">M9</font>と<font style="color: rgb(0, 119, 255);">OT-38</font>多すぎ<s>(そして拾っちゃう)</s><br>
-            2.他の銃弾全然持っていないのに<font style="color: rgb(255, 255, 0);">9mm弾(黄色)</font>だけMAX所持している<br>
-            3.(1)の武器あるいは<font style="color: rgb(153, 0, 255);">M1911</font>をジャガイモイベント(あるあるNo.32を参照)以外で持ってる奴<s>n00b説</s><br>
-            4.<font style="color: rgb(255, 255, 0);">Vec</font><font style="color: rgb(153, 0, 255);">tor</font>と<font style="color: rgb(255, 255, 0);">UMP9</font>を間違える<br>
-            (よっしゃ<font style="color: rgb(255, 255, 0);">Vec</font><font style="color: rgb(153, 0, 255);">tor</font>だ！！！と思ったら<font style="color: rgb(255, 255, 0);">UMP9</font>だった時の絶望感)<br>
-            5.花畑の奥にあるスコープが2倍スコープだった時の絶望感<s>(ふざけんな)</s><br>
-            6.チーター回りする(回りながら自分も公転してる奴は<s>n00b</s>)<br>
-            7.スコープ出ない <s>イライラ</s><br>
-            8.回復アイテム出ない、バックも出ない <s>イライラ</s><br>
-            9.意外と8倍スコープ出る(なのに15倍スコープは全然でない)<br>
-            10.ポテトイベントでポテト壊して<font style="color: rgb(255, 255, 0);">M9</font>,<font style="color: rgb(0, 119, 255);">OT-38</font>,<font style="color: rgb(119, 0, 255);">M1911</font>になった時の絶望<br>
-            11.↑の武器でポテト壊して"最強3兄弟"(<font style="color: rgb(0, 119, 255);">M134</font>,<font style="color: rgb(0, 119, 255);">PKP Pecheneg</font>,<font style="color: rgb(0, 255, 0)">M249</font>)になった時の喜び<br>
-            12.<font style="color: rgb(0, 119, 255);">AK-47</font>と<font style="color: rgb(0, 255, 0)">M416</font>比較したがる<br>
-            13.<abbr title="「エイムが絶望的に雑魚である」という意味。">エイ無</abbr>である<s>(その結果狙撃銃、マークスマンライフル使えない)</s><br>
-            14.<font style="color: rgb(0, 255, 0)">M249</font>,<font style="color: rgb(0, 119, 255);">PKM</font>,<font style="color: rgb(0, 119, 255);">M134</font>のリロード時間が異常(リロード中に一方的に攻撃され爆死)<br>
-            15.<font style="color: rgb(0, 119, 255);">M134</font>一瞬で障害物壊す<s>(Why)</s><br>
-            16.AWM-S一発で木を吹き飛ばす<s>(強すぎ)</s><br>
-            17.森イベント<font style="color: rgb(0, 119, 255);">DP-28</font>出すぎ(DP祭り)<br>
-            18.コバルトイベントでタンカーの物資から超いいもの出る<s>(防御専門じゃねーのかよ)</s><br>
-            19.砂漠イベントで物資多すぎ<br>
-            20.サバンナの武器連射できないの多い<s>(エイ無にはきつい)</s><br>
-            21.強武器拾ったときに限って銃弾が落ちていない<s>(頼むよ)</s><br>
-            22.チーミングしようとする奴(自分は問答無用で瞬殺)<br>
-            23.たまに回線切ったやつがいる(ラッキー)  ちなみに<abbr title="プレイヤーが赤チームと青チームに分かれ、2チームで戦うイベント。">50対50</abbr>だとしょっちゅういる<br>
-            24.味方が回線切ることがある(味方は通常、攻撃してもダメージを受けないが、回線を切ったものはダメージを受ける)<br>
-            25.ポテトイベントリスキル多し <s>(チーターも多し)</s><br>
-            26.樽を素手で6回パンチして爆発寸前にする<font style="color: rgb(255, 94, 0)"><s>(危なすぎ)</s></font><br>
-            27.よくよく考えると素手でトイレや石を壊せるのおかしいことに気づく<s>(トイレから武器3つくらい出るの草)</s><br>
-            28.2位から1位になるのムズイ<br>
-            29.<font style="color: rgb(0, 255, 0)">M416</font>と<font style="color: rgb(0, 255, 0)">M249</font>見間違える<br>
-            30.研究所に置かれているVector箱から<font style="color: rgb(255, 255, 0);">M9</font>出た時の絶望<s>(お前の出る幕ではない)</s><br>
-            31.<abbr title="マップ上に1つのみ生成される、ストーンハンマー、大槌、戦槌でのみ壊せる、硬く黒い石。">ハードストーン</abbr>から<font style="color: rgb(255, 255, 0);">M9</font>,または<font style="color: rgb(153, 0, 255);">.45 ACP</font>弾1つだけが出た時の絶望感<br>
-            32.人気イベント(特に<abbr title="マップ上のいたるところにジャガイモが生成され、これを壊すことにより武器を交換することができる。また敵を1人倒すごとに武器が変わる。このイベントでは、いかに強い武器を手に入れるかが非常に重要である。">ジャガイモ</abbr>、<abbr title="プレイヤーがそれぞれ6つの役職に分かれ、2人または4人のチームで戦う。マップ上には特殊な救援物資が生成され、壊したプレイヤーの役職により中身が変わる。">コバルト</abbr>)とにかく人多い<br>
-            33.木の葉の重なったところに隠れると絶対ばれない<s>(お前ら鈍いな)</s> ←特に<abbr title="マップ上に木がびっしり生えるイベント。DP-28が多く出現する。">森</abbr>、50対50でやりやすい<br>
-            34.何気に<font style="color: rgb(0, 255, 0)">M249</font>、<font style="color: rgb(0, 119, 255);">PKP Pecheneg</font>よりレア説<br>
-            35.近距離だとよく散弾銃(<font style="color: rgb(255, 0, 0);">12 gauge</font>)で殺される (特に<font style="color: rgb(255, 0, 0);">MP220</font>)<br>
-            36.知らぬ間に弾激減 (特に<font style="color: rgb(255, 255, 0);">Dual G18C</font>,<font style="color: rgb(255, 255, 0);">Vec</font><font style="color: rgb(153, 0, 255);">tor</font>,<font style="color: rgb(255, 255, 0);">MAC-10</font>で顕著)<br>
-            37.クラシックだとイレギュラーな銃弾は持って使わないまま終わることが多い (特に.308 Subsonic,<font style="color: rgb(153, 0, 255);">.45 ACP</font>,<font style="color: rgb(0, 255, 255)">40mm</font>)<br>
-            38.<font style="color: rgb(0, 119, 255);">Mosin-Nagant</font>,<font style="color: rgb(0, 119, 255);">SV-98</font>,AWM-Sなどを2丁持ちしてクイックスイッチして打つと強い<br>
-            39.<font style="color: rgb(255, 0, 0);">MP220</font>と<font style="color: rgb(255, 0, 0);">Saiga-12</font>派が分かれる<br>
-            40.凡用武器(<font style="color: rgb(0, 119, 255);">AK-47</font>,<font style="color: rgb(0, 255, 0)">M416</font>など)で強武器持ちを倒した時の喜び<br>
-            41.マイン踏む(そして死ぬ<s>n00b</s>)<br>
-            42.木の間や草にマインをばらまく<br>
-            43.敵が強武器＆大量キルしてたら「あいつ絶対友達いねえ!!!」と叫ぶ<s>(それお前だけや)</s><br>
-            44.<abbr title="特殊効果の一つ。回復アイテムの使用時に移動速度が低下しない。">コンバットメディック</abbr>非常に有能<br>
-            45.<abbr title="特殊効果の一つ。銃弾が無限になり、いくらリロードをしても手持ちの銃弾が消費されない。">エンドレス・アモ</abbr>も非常に有能<br>
-            46.結果、↑の2つで信者が分かれる。<br>
-            47.スコープの良し悪しで勝敗が決まる<br>
-            48.コバルトでフラグ投げまくる奴<br>
-            49.変な顔出す奴<s>(次出したら警告するぞ)</s><br>
-            50.いつの間にか武器の名前を略してる<br>
-            51.壊すと爆発するもの壊して死ぬ<s>n00b</s><br>
-            52.うまくなると高速操作によりキーボードのカチカチ音が響く<br>
-            53.キー設定変える<br>
-            54.なぜか操作ミスって<font style="color: rgb(0, 119, 255);">PKP Pecheneg</font>などの強武器を<font style="color: rgb(0, 119, 255);">OT-38</font>などの雑魚武器に持ち替えてしまう<br>
-            55.慣れてくるとアイコンだけで何の銃かわかる<s>(一番覚えてるの<font style="color: rgb(255, 255, 0);">M9</font>と<font style="color: rgb(0, 119, 255);">OT-38</font>なんだが)</s><br>
-            56.コバルトでいつも同じ役職でプレイする<br>
-            57.ジャガイモの<font style="color: rgb(212, 142, 13);">ポテトガン</font>強奪戦半端ねえ<br>
-            58.<abbr title="Survivr Passをアンロックしていくことによってたまっていく、Surviv.io内の通貨。"><font style="color: rgb(255, 255, 0)">Golden Potato</font></abbr>の使い道なし(どれだけプレイしているかの指標にはなる)<br>
-            59.明日のイベントの予測がつく<br>
-            60.ハードストーン壊せないと思っているやつ、または大槌、ストーンハンマー、戦槌持ってて壊さないやつ<s>n00b説</s><br>
-            61.<font style="color: rgb(212, 142, 13);">ポテトガン</font>の弾丸<s>バナナやん</s><br>
-            62.<font style="color: rgb(0, 255, 255);">M79</font>壁に撃って爆死<br>
-            63.<font style="color: rgb(255, 0, 0);">Hawk 12G</font>の銃身胴体に食い込んどる<br>
-            64.<font style="color: rgb(0, 255, 0);">QBB-97</font>からチーズを連想する<s>俺末期説</s><br>
-            65.その日のイベントで一喜一憂<br>
-            66.回復中の敵は余裕で倒せる<br>
-            67.ジャガイモイベント(特にソロ)強武器(<font style="color: rgb(255, 0, 0);">USAS-12</font>,<font style="color: rgb(0, 119, 255);">PKM</font>,<font style="color: rgb(0, 119, 255);">M134</font>,<font style="color: rgb(0, 119, 255);">PKP Pecheneg</font>,<font style="color: rgb(0, 255, 0);">M249</font>,AWM-Sなど)が出たら敵殺したくなくなる<br>
-            68.↑の武器でポテト壊して雑魚武器にしたときの絶望感<s>(回線切りたい)</s><br>
-            69.<font style="color: rgb(255, 255, 0);">9mm弾</font>の武器、1発のダメージが雑魚<br>
-            70.実在しない武器(<font style="color: rgb(0, 119, 255);">OT-38</font>)、名前の変わった武器(<font style="color: rgb(0, 255, 0);">HK416</font>→<font style="color: rgb(0, 255, 0);">M416</font>,Desert-Eagle→DEagle 50)、おかしな挙動をする<s>チート</s>武器(<font style="color: rgb(255, 0, 0);">USAS-12</font>)がある<br>
-            71.マガジンサイズが中途半端な武器がある<br>
-            72.装填数30発の武器多すぎ<s>(一体いくつあるんだ)</s><br>
-            73.<abbr title="特殊効果の一つ。気絶しても、自力で蘇生できる。">リハイヒビファイ</abbr>あまり役立たない(絶対蘇生前に殺される)<br>
-            74.自分でフラグ投げて自分で死ぬ<s>n00b</s><br>
-            75.<abbr title="3キル以上している人の中で、もっともキル数が多い人のこと。">キルリーダー</abbr>の意味<s>ねえだろ</s><br>
-            76.日本家屋、クラブの地下のエンブレムケース爆発すると思って壊さない<s>n00b</s><br>
-            77.無駄に武器の名前を覚える<s>(その気力を勉強に使え)</s><br>
-            78.ジャガイモイベントは運ゲー<br>
-            79.<abbr title="50対50におけるラッパ吹きに強制付与される。吹くと周りの味方の移動速度が3秒間上昇する。">ラッパ</abbr>捨ててえ<s>(もはや武器でもない件)</s><br>
-            80.↑を吹く音、青軍<s>(民主党)</s>のほうが上手い<br>
-            81.50対50のチームに名前を付ける<br>
-            82.草や木に隠れて奇襲する(そして反撃され自分が死ぬのかっこ悪すぎ)<br>
-            83.救援物資に人集まりすぎ(そしてフラグやマインで蹴散らす)<br>
-            84.50対50の救援物資の物多すぎ<br>
-            85.コバルトで銃弾分けてくれないタンカー<s>n00b説</s><br>
-            86.クラブの地下の大浴場激戦地区になりやすい<br>
-            87.↑のサウナ室で体力回復する<br>
-            88.アドレナリンアイテムケチる<br>
-            89.エンドレス・アモがあれば銃で箱壊す<br>
-            90.↑でしばらくやってると感覚しばらく残っちゃう<br>
-            91.調子がいい時と悪い時の波が激しい<br>
-            92.<font style="color: rgb(153, 0, 255);">M1911</font>,<font style="color: rgb(255, 255, 0);">M9</font>,<font style="color: rgb(0, 119, 255);">OT-38</font>で殺された時の絶望感<br>
-            93.大砲系か<font style="color: rgb(0, 119, 255);">M134</font>持っていると移動速度低下するの面倒<br>
-            94.冬版クラシックの期間短すぎ<s>(冬はもっと長いぞ)</s><br>
-            95.15倍スコープ出た時の無敵感ハンパない<br>
-            96.最低でも4倍スコープないとまともに戦えない<br>
-            97.Proって名前つけてるやつだいたい<s>n00b説</s><br>
-            98.バックドロップできない<s>(Why)</s><br>
-            99.何時間もやると手がつかれる<br>
-            <br>
-          </p>
-          <h1 align="center" style="color: rgb(0, 255, 157);">100.でもなんだかんだ言ってSurvivが好きだ</h1>
-          <script type="text/javascript">
-            var scrollAnimationElm102 = document.querySelectorAll('.fadein-1');
-            var scrollAnimationFunc102 = function() {
-              for(var i102 = 0; i102 < scrollAnimationElm102.length; i102++) {
-                var triggerMargin102 = 200;
-                if (window.innerHeight > scrollAnimationElm102[i102].getBoundingClientRect().top + triggerMargin102) {
-                  scrollAnimationElm102[i102].classList.add('show');
-                }
-              }
-            }
-            window.addEventListener('load', scrollAnimationFunc102);
-            window.addEventListener('scroll', scrollAnimationFunc102);
-          </script>
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript" src="javascripts/jquery-3.1.0.min.js" ></script> <!--jQuery本体のプログラムを読み込む-->
-    <!--以下、スクロール時に滑らかに移動するプログラムをjQueryで指定-->
-    <script type="text/javascript">
-      // <a>タグのジャンプ先の指定(href)で前に"#"がついているもの (要するにページ内ジャンプ) に以下のプログラムを適用;
-      $(function(){
-        $('a[href^="#"]').click(function() {
-          var speed = 1000;
-          var href= $(this).attr("href");
-          var target = $(href == "#" || href == "" ? 'html' : href);
-          var position = target.offset().top;
-          $('body, html').animate({scrollTop:position}, speed, 'swing');
-          return false;
-        });
-      });
-    </script>
-    <div class="account-links">
-      <p align="center">-----------------------------------------------------------------------------------------------</p>
-      <h1 align="center">お気軽にフォローして下さい</h1>
-      <p align="center">
-        <a href="https://www.youtube.com/channel/UCNmaOhZBYirWnuPYAbp5jwg">
-          <img alt="YouTubeへ移動" title="YouTubeへ移動" class="linkaccounts-1" src="photos/favicon_144.png">
-        </a>
-        <a href="https://bsky.app/profile/did:plc:vuahuwreulilp6xw2vw7spmu">
-          <img alt="BlueSkyへ移動" title="BlueSkyへ移動" class="linkaccounts-2" src="photos/Bluesky_Logo.svg.png">
-        </a>
-        <a href="https://twitter.com/diamond42548">
-          <img alt="X(Twitter)へ移動" title="X(Twitter)へ移動" class="linkaccounts-3" src="photos/l_my_0724twitter05.jpg">
-        </a>
-	<a href="https://github.com/Diamond9869">
-          <img alt="GitHubへ移動" title="GitHubへ移動" class="linkaccounts-4" src="photos/github-6980894_1280.png">
-        </a>
-	<a href="https://discord.gg/vC27wQEV6S">
-          <img alt="Discordサーバーへ移動" title="Discordサーバーへ移動" class="linkaccounts-5" src="photos/discordlogo_400x400.jpg">
-        </a>
-	<a href="https://steamcommunity.com/profiles/76561199465926941">
-          <img alt="Steamへ移動" title="Steamへ移動" class="linkaccounts-6" src="photos/Steam_icon_logo.svg.png">
-        </a>
-	<a href="https://open.spotify.com/user/31dwobdr5gxozkag6btd4rjsw6si">
-          <img alt="Spotifyへ移動" title="Spotifyへ移動" class="linkaccounts-7" src="photos/Spotify_Icon_RGB_Green.png">
-        </a>
-	<a href="https://www.roblox.com/ja/users/5600914519/profile">
-          <img alt="Robloxへ移動" title="Robloxへ移動" class="linkaccounts-8" src="photos/Roblox_profile.jpg">
-        </a><br>
-      </p>
-      <p align="center">Copyright (C) 2021-2025 MaKun. All Rights Reserved.</p>
-      <script type="text/javascript">
-        var scrollAnimationElm302 = document.querySelectorAll('.account-links');
-        var scrollAnimationFunc302 = function() {
-          for(var i302 = 0; i302 < scrollAnimationElm302.length; i302++) {
-            var triggerMargin302 = 10;
-            if (window.innerHeight > scrollAnimationElm302[i302].getBoundingClientRect().top + triggerMargin302) {
-              scrollAnimationElm302[i302].classList.add('show');
-            }
-          }
+    <title>マーくんのSurvivブログ：あるある集</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font: Inter (モダンなWebサイトでよく使われるフォント) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* カスタムスタイルとアニメーション */
+        :root {
+            --header-height: 4rem; /* 64px */
         }
-        window.addEventListener('load', scrollAnimationFunc302);
-        window.addEventListener('scroll', scrollAnimationFunc302);
-      </script>
+
+        body {
+            /* 日本語と英語に対応するフォント設定 */
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            padding-top: var(--header-height);
+            background-color: #0d0d0d; /* ベースカラー */
+            color: #e5e5e5;
+        }
+
+        /* スクロール時のヘッダー非表示アニメーション */
+        .header-hidden {
+            transform: translateY(calc(-1 * var(--header-height)));
+        }
+
+        /* フェードインアニメーションの基本設定 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 800ms ease-out, transform 800ms ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 時刻表示エリア */
+        .clock-display-container {
+            position: fixed;
+            top: var(--header-height);
+            right: 0;
+            z-index: 1001; /* ヘッダー (1000) より大きくして最前面に表示 */
+            padding: 0.5rem 1rem;
+            background-color: rgba(13, 13, 13, 0.9);
+            backdrop-filter: blur(5px);
+            border-bottom-left-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: top 300ms ease;
+        }
+
+        /* ヘッダー非表示時の時刻表示位置調整 */
+        .header-hidden ~ .clock-display-container {
+            top: 0;
+        }
+        
+        /* あるあるリストのカスタムナンバリング */
+        .aruaru-list {
+            counter-reset: aruaru-counter;
+        }
+        .aruaru-item {
+            list-style: none;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #1f1f1f;
+            border-radius: 0.75rem;
+            position: relative;
+            padding-left: 5rem; /* 番号分のスペースを確保 */
+            border-left: 4px solid #00ff73;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+        .aruaru-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 255, 115, 0.2);
+        }
+
+        .aruaru-item::before {
+            counter-increment: aruaru-counter;
+            content: "あるある " counter(aruaru-counter);
+            position: absolute;
+            left: 1rem;
+            top: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #00ff73; /* 蛍光グリーン */
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        /* 引用スタイル */
+        .quote-box {
+            border-left: 4px solid #f97316; /* オレンジのライン */
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #ccc;
+        }
+        
+        /* 画像のホバーエフェクト */
+        .link-icon-item img, .account-icon-item img {
+            transition: transform 300ms ease-in-out, box-shadow 300ms ease-in-out;
+            cursor: pointer;
+        }
+
+        .link-icon-item:hover img, .account-icon-item:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 115, 0.5);
+        }
+
+    </style>
+</head>
+<body class="antialiased text-white">
+    <!-- ヘッダー (固定) -->
+    <header id="header" class="fixed w-full bg-[#1a1a1a] shadow-lg z-[1000] transition-transform duration-300 ease-in-out" style="height: var(--header-height);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight flex items-center">
+                <span class="text-gray-300 mr-2">マーくんの</span>
+                <img class="h-6 sm:h-8 inline-block logo rounded-sm" src="photos/250px-Surviv.io.png" alt="Surviv.ioロゴ">
+                <span class="text-white ml-2">ブログ</span>
+            </h1>
+            <nav class="flex items-center space-x-4">
+                <a href="index.html" class="p-2 transition duration-300 hover:scale-110 hover:opacity-100 opacity-80 text-sm sm:text-base" title="ホームへ戻る">
+                    ホーム
+                </a>
+                <a href="#top" class="p-2 transition duration-300 hover:scale-110 hover:opacity-100 opacity-80" title="このページトップへ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-green-400"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 時刻表示とヘッダー制御ボタン -->
+    <div id="clock-container" class="clock-display-container flex flex-col items-end text-right text-xs sm:text-sm">
+        <div id="view_clock" class="realtime-clock font-mono text-green-400"></div>
+        <div id="view_time" class="loadtime-clock font-mono text-gray-400"></div>
+        <button id="header-toggle-btn" class="header-toggle-btn mt-1 text-xs text-gray-500 hover:text-green-400 transition-colors duration-300 focus:outline-none">
+            クリックしてヘッダーを表示/非表示
+        </button>
     </div>
-  </body>
+
+    <main class="min-h-screen">
+        
+        <!-- メインコンテンツ -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16" id="top">
+
+            <!-- あるある集タイトル -->
+            <section class="fade-in-section text-center">
+                <h1 class="text-5xl font-extrabold mb-4 text-pink-400">
+                    Surviv.ioあるある集
+                </h1>
+                <p class="text-lg text-gray-400">
+                    思わず「わかる！」となる、プレイヤーなら共感できる「あるある」を集めました。
+                </p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <a href="index.html" class="inline-flex items-center px-4 py-2 border border-green-500 text-sm font-medium rounded-md text-green-500 hover:bg-green-900/50 transition-colors">
+                        &larr; ホームへ戻る
+                    </a>
+                    <a href="main3.html" class="inline-flex items-center px-4 py-2 border border-gray-500 text-sm font-medium rounded-md text-gray-400 hover:bg-gray-800 transition-colors">
+                        武器紹介へ &rarr;
+                    </a>
+                </div>
+            </section>
+
+            <!-- あるあるリスト本体 -->
+            <section class="fade-in-section">
+              <h1 class="text-5xl font-extrabold mb-4 text-pink-400">
+                Survivあるある100連発
+              </h1>
+                  <p align="center">
+                    1.<font style="color: rgb(255, 255, 0);">M9</font>と<font style="color: rgb(0, 119, 255);">OT-38</font>多すぎ<s>(そして拾っちゃう)</s><br>
+                    2.他の銃弾全然持っていないのに<font style="color: rgb(255, 255, 0);">9mm弾(黄色)</font>だけMAX所持している<br>
+                    3.(1)の武器あるいは<font style="color: rgb(153, 0, 255);">M1911</font>をジャガイモイベント(あるあるNo.32を参照)以外で持ってる奴<s>n00b説</s><br>
+                    4.<font style="color: rgb(255, 255, 0);">Vec</font><font style="color: rgb(153, 0, 255);">tor</font>と<font style="color: rgb(255, 255, 0);">UMP9</font>を間違える<br>
+                    (よっしゃ<font style="color: rgb(255, 255, 0);">Vec</font><font style="color: rgb(153, 0, 255);">tor</font>だ！！！と思ったら<font style="color: rgb(255, 255, 0);">UMP9</font>だった時の絶望感)<br>
+                    5.花畑の奥にあるスコープが2倍スコープだった時の絶望感<s>(ふざけんな)</s><br>
+                    6.チーター回りする(回りながら自分も公転してる奴は<s>n00b</s>)<br>
+                    7.スコープ出ない <s>イライラ</s><br>
+                    8.回復アイテム出ない、バックも出ない <s>イライラ</s><br>
+                    9.意外と8倍スコープ出る(なのに15倍スコープは全然でない)<br>
+                    10.ポテトイベントでポテト壊して<font style="color: rgb(255, 255, 0);">M9</font>,<font style="color: rgb(0, 119, 255);">OT-38</font>,<font style="color: rgb(119, 0, 255);">M1911</font>になった時の絶望<br>
+                    11.↑の武器でポテト壊して"最強3兄弟"(<font style="color: rgb(0, 119, 255);">M134</font>,<font style="color: rgb(0, 119, 255);">PKP Pecheneg</font>,<font style="color: rgb(0, 255, 0)">M249</font>)になった時の喜び<br>
+                    12.<font style="color: rgb(0, 119, 255);">AK-47</font>と<font style="color: rgb(0, 255, 0)">M416</font>比較したがる<br>
+                    13.<abbr title="「エイムが絶望的に雑魚である」という意味。">エイ無</abbr>である<s>(その結果狙撃銃、マークスマンライフル使えない)</s><br>
+                    14.<font style="color: rgb(0, 255, 0)">M249</font>,<font style="color: rgb(0, 119, 255);">PKM</font>,<font style="color: rgb(0, 119, 255);">M134</font>のリロード時間が異常(リロード中に一方的に攻撃され爆死)<br>
+                    15.<font style="color: rgb(0, 119, 255);">M134</font>一瞬で障害物壊す<s>(Why)</s><br>
+                    16.AWM-S一発で木を吹き飛ばす<s>(強すぎ)</s><br>
+                    17.森イベント<font style="color: rgb(0, 119, 255);">DP-28</font>出すぎ(DP祭り)<br>
+                    18.コバルトイベントでタンカーの物資から超いいもの出る<s>(防御専門じゃねーのかよ)</s><br>
+                    19.砂漠イベントで物資多すぎ<br>
+                    20.サバンナの武器連射できないの多い<s>(エイ無にはきつい)</s><br>
+                    21.強武器拾ったときに限って銃弾が落ちていない<s>(頼むよ)</s><br>
+                    22.チーミングしようとする奴(自分は問答無用で瞬殺)<br>
+                    23.たまに回線切ったやつがいる(ラッキー)  ちなみに<abbr title="プレイヤーが赤チームと青チームに分かれ、2チームで戦うイベント。">50対50</abbr>だとしょっちゅういる<br>
+                    24.味方が回線切ることがある(味方は通常、攻撃してもダメージを受けないが、回線を切ったものはダメージを受ける)<br>
+                    25.ポテトイベントリスキル多し <s>(チーターも多し)</s><br>
+                    26.樽を素手で6回パンチして爆発寸前にする<font style="color: rgb(255, 94, 0)"><s>(危なすぎ)</s></font><br>
+                    27.よくよく考えると素手でトイレや石を壊せるのおかしいことに気づく<s>(トイレから武器3つくらい出るの草)</s><br>
+                    28.2位から1位になるのムズイ<br>
+                    29.<font style="color: rgb(0, 255, 0)">M416</font>と<font style="color: rgb(0, 255, 0)">M249</font>見間違える<br>
+                    30.研究所に置かれているVector箱から<font style="color: rgb(255, 255, 0);">M9</font>出た時の絶望<s>(お前の出る幕ではない)</s><br>
+                    31.<abbr title="マップ上に1つのみ生成される、ストーンハンマー、大槌、戦槌でのみ壊せる、硬く黒い石。">ハードストーン</abbr>から<font style="color: rgb(255, 255, 0);">M9</font>,または<font style="color: rgb(153, 0, 255);">.45 ACP</font>弾1つだけが出た時の絶望感<br>
+                    32.人気イベント(特に<abbr title="マップ上のいたるところにジャガイモが生成され、これを壊すことにより武器を交換することができる。また敵を1人倒すごとに武器が変わる。このイベントでは、いかに強い武器を手に入れるかが非常に重要である。">ジャガイモ</abbr>、<abbr title="プレイヤーがそれぞれ6つの役職に分かれ、2人または4人のチームで戦う。マップ上には特殊な救援物資が生成され、壊したプレイヤーの役職により中身が変わる。">コバルト</abbr>)とにかく人多い<br>
+                    33.木の葉の重なったところに隠れると絶対ばれない<s>(お前ら鈍いな)</s> ←特に<abbr title="マップ上に木がびっしり生えるイベント。DP-28が多く出現する。">森</abbr>、50対50でやりやすい<br>
+                    34.何気に<font style="color: rgb(0, 255, 0)">M249</font>、<font style="color: rgb(0, 119, 255);">PKP Pecheneg</font>よりレア説<br>
+                    35.近距離だとよく散弾銃(<font style="color: rgb(255, 0, 0);">12 gauge</font>)で殺される (特に<font style="color: rgb(255, 0, 0);">MP220</font>)<br>
+                    36.知らぬ間に弾激減 (特に<font style="color: rgb(255, 255, 0);">Dual G18C</font>,<font style="color: rgb(255, 255, 0);">Vec</font><font style="color: rgb(153, 0, 255);">tor</font>,<font style="color: rgb(255, 255, 0);">MAC-10</font>で顕著)<br>
+                    37.クラシックだとイレギュラーな銃弾は持って使わないまま終わることが多い (特に.308 Subsonic,<font style="color: rgb(153, 0, 255);">.45 ACP</font>,<font style="color: rgb(0, 255, 255)">40mm</font>)<br>
+                    38.<font style="color: rgb(0, 119, 255);">Mosin-Nagant</font>,<font style="color: rgb(0, 119, 255);">SV-98</font>,AWM-Sなどを2丁持ちしてクイックスイッチして打つと強い<br>
+                    39.<font style="color: rgb(255, 0, 0);">MP220</font>と<font style="color: rgb(255, 0, 0);">Saiga-12</font>派が分かれる<br>
+                    40.凡用武器(<font style="color: rgb(0, 119, 255);">AK-47</font>,<font style="color: rgb(0, 255, 0)">M416</font>など)で強武器持ちを倒した時の喜び<br>
+                    41.マイン踏む(そして死ぬ<s>n00b</s>)<br>
+                    42.木の間や草にマインをばらまく<br>
+                    43.敵が強武器＆大量キルしてたら「あいつ絶対友達いねえ!!!」と叫ぶ<s>(それお前だけや)</s><br>
+                    44.<abbr title="特殊効果の一つ。回復アイテムの使用時に移動速度が低下しない。">コンバットメディック</abbr>非常に有能<br>
+                    45.<abbr title="特殊効果の一つ。銃弾が無限になり、いくらリロードをしても手持ちの銃弾が消費されない。">エンドレス・アモ</abbr>も非常に有能<br>
+                    46.結果、↑の2つで信者が分かれる。<br>
+                    47.スコープの良し悪しで勝敗が決まる<br>
+                    48.コバルトでフラグ投げまくる奴<br>
+                    49.変な顔出す奴<s>(次出したら警告するぞ)</s><br>
+                    50.いつの間にか武器の名前を略してる<br>
+                    51.壊すと爆発するもの壊して死ぬ<s>n00b</s><br>
+                    52.うまくなると高速操作によりキーボードのカチカチ音が響く<br>
+                    53.キー設定変える<br>
+                    54.なぜか操作ミスって<font style="color: rgb(0, 119, 255);">PKP Pecheneg</font>などの強武器を<font style="color: rgb(0, 119, 255);">OT-38</font>などの雑魚武器に持ち替えてしまう<br>
+                    55.慣れてくるとアイコンだけで何の銃かわかる<s>(一番覚えてるの<font style="color: rgb(255, 255, 0);">M9</font>と<font style="color: rgb(0, 119, 255);">OT-38</font>なんだが)</s><br>
+                    56.コバルトでいつも同じ役職でプレイする<br>
+                    57.ジャガイモの<font style="color: rgb(212, 142, 13);">ポテトガン</font>強奪戦半端ねえ<br>
+                    58.<abbr title="Survivr Passをアンロックしていくことによってたまっていく、Surviv.io内の通貨。"><font style="color: rgb(255, 255, 0)">Golden Potato</font></abbr>の使い道なし(どれだけプレイしているかの指標にはなる)<br>
+                    59.明日のイベントの予測がつく<br>
+                    60.ハードストーン壊せないと思っているやつ、または大槌、ストーンハンマー、戦槌持ってて壊さないやつ<s>n00b説</s><br>
+                    61.<font style="color: rgb(212, 142, 13);">ポテトガン</font>の弾丸<s>バナナやん</s><br>
+                    62.<font style="color: rgb(0, 255, 255);">M79</font>壁に撃って爆死<br>
+                    63.<font style="color: rgb(255, 0, 0);">Hawk 12G</font>の銃身胴体に食い込んどる<br>
+                    64.<font style="color: rgb(0, 255, 0);">QBB-97</font>からチーズを連想する<s>俺末期説</s><br>
+                    65.その日のイベントで一喜一憂<br>
+                    66.回復中の敵は余裕で倒せる<br>
+                    67.ジャガイモイベント(特にソロ)強武器(<font style="color: rgb(255, 0, 0);">USAS-12</font>,<font style="color: rgb(0, 119, 255);">PKM</font>,<font style="color: rgb(0, 119, 255);">M134</font>,<font style="color: rgb(0, 119, 255);">PKP Pecheneg</font>,<font style="color: rgb(0, 255, 0);">M249</font>,AWM-Sなど)が出たら敵殺したくなくなる<br>
+                    68.↑の武器でポテト壊して雑魚武器にしたときの絶望感<s>(回線切りたい)</s><br>
+                    69.<font style="color: rgb(255, 255, 0);">9mm弾</font>の武器、1発のダメージが雑魚<br>
+                    70.実在しない武器(<font style="color: rgb(0, 119, 255);">OT-38</font>)、名前の変わった武器(<font style="color: rgb(0, 255, 0);">HK416</font>→<font style="color: rgb(0, 255, 0);">M416</font>,Desert-Eagle→DEagle 50)、おかしな挙動をする<s>チート</s>武器(<font style="color: rgb(255, 0, 0);">USAS-12</font>)がある<br>
+                    71.マガジンサイズが中途半端な武器がある<br>
+                    72.装填数30発の武器多すぎ<s>(一体いくつあるんだ)</s><br>
+                    73.<abbr title="特殊効果の一つ。気絶しても、自力で蘇生できる。">リハイヒビファイ</abbr>あまり役立たない(絶対蘇生前に殺される)<br>
+                    74.自分でフラグ投げて自分で死ぬ<s>n00b</s><br>
+                    75.<abbr title="3キル以上している人の中で、もっともキル数が多い人のこと。">キルリーダー</abbr>の意味<s>ねえだろ</s><br>
+                    76.日本家屋、クラブの地下のエンブレムケース爆発すると思って壊さない<s>n00b</s><br>
+                    77.無駄に武器の名前を覚える<s>(その気力を勉強に使え)</s><br>
+                    78.ジャガイモイベントは運ゲー<br>
+                    79.<abbr title="50対50におけるラッパ吹きに強制付与される。吹くと周りの味方の移動速度が3秒間上昇する。">ラッパ</abbr>捨ててえ<s>(もはや武器でもない件)</s><br>
+                    80.↑を吹く音、青軍<s>(民主党)</s>のほうが上手い<br>
+                    81.50対50のチームに名前を付ける<br>
+                    82.草や木に隠れて奇襲する(そして反撃され自分が死ぬのかっこ悪すぎ)<br>
+                    83.救援物資に人集まりすぎ(そしてフラグやマインで蹴散らす)<br>
+                    84.50対50の救援物資の物多すぎ<br>
+                    85.コバルトで銃弾分けてくれないタンカー<s>n00b説</s><br>
+                    86.クラブの地下の大浴場激戦地区になりやすい<br>
+                    87.↑のサウナ室で体力回復する<br>
+                    88.アドレナリンアイテムケチる<br>
+                    89.エンドレス・アモがあれば銃で箱壊す<br>
+                    90.↑でしばらくやってると感覚しばらく残っちゃう<br>
+                    91.調子がいい時と悪い時の波が激しい<br>
+                    92.<font style="color: rgb(153, 0, 255);">M1911</font>,<font style="color: rgb(255, 255, 0);">M9</font>,<font style="color: rgb(0, 119, 255);">OT-38</font>で殺された時の絶望感<br>
+                    93.大砲系か<font style="color: rgb(0, 119, 255);">M134</font>持っていると移動速度低下するの面倒<br>
+                    94.冬版クラシックの期間短すぎ<s>(冬はもっと長いぞ)</s><br>
+                    95.15倍スコープ出た時の無敵感ハンパない<br>
+                    96.最低でも4倍スコープないとまともに戦えない<br>
+                    97.Proって名前つけてるやつだいたい<s>n00b説</s><br>
+                    98.バックドロップできない<s>(Why)</s><br>
+                    99.何時間もやると手がつかれる<br>
+                    <br>
+                  </p>
+                  <h1 class="text-5xl font-extrabold mb-4 text-pink-400">
+                    100.でもやっぱりSurvivが好きだ
+                  </h1>
+            </section>
+        </div>
+    </main>
+    
+    <!-- TOPへ戻るボタン -->
+    <a href="#top" class="fixed bottom-6 right-6 p-3 bg-green-500 text-gray-900 rounded-full shadow-lg transition duration-300 hover:bg-green-400 hover:scale-110 z-50" title="TOPへ移動">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+    </a>
+
+    <!-- フッター/アカウントリンク -->
+    <footer class="bg-[#1a1a1a] py-10 fade-in-section shadow-inner mt-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-2xl font-bold mb-6 text-gray-300">お気軽にフォローして下さい</h1>
+            <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+                <!-- アカウントリンク群 (index.htmlと同じ内容) -->
+                <a href="https://www.youtube.com/channel/UCNmaOhZBYirWnuPYAbp5jwg" class="account-icon-item" title="YouTubeへ移動">
+                    <img alt="YouTubeへ移動" src="photos/favicon_144.png" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://bsky.app/profile/did:plc:vuahuwreulilp6xw2vw7spmu" class="account-icon-item" title="BlueSkyへ移動">
+                    <img alt="BlueSkyへ移動" src="photos/Bluesky_Logo.svg.png" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://twitter.com/diamond42548" class="account-icon-item" title="X(Twitter)へ移動">
+                    <img alt="X(Twitter)へ移動" src="photos/l_my_0724twitter05.jpg" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://github.com/Diamond9869" class="account-icon-item" title="GitHubへ移動">
+                    <img alt="GitHubへ移動" src="photos/github-6980894_1280.png" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://discord.gg/vC27wQEV6S" class="account-icon-item" title="Discordサーバーへ移動">
+                    <img alt="Discordサーバーへ移動" src="photos/discordlogo_400x400.jpg" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://steamcommunity.com/profiles/76561199465926941" class="account-icon-item" title="Steamへ移動">
+                    <img alt="Steamへ移動" src="photos/Steam_icon_logo.svg.png" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://open.spotify.com/user/31dwobdr5gxozkag6btd4rjsw6si" class="account-icon-item" title="Spotifyへ移動">
+                    <img alt="Spotifyへ移動" src="photos/Spotify_Icon_RGB_Green.png" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://www.roblox.com/ja/users/5600914519/profile" class="account-icon-item" title="Robloxへ移動">
+                    <img alt="Robloxへ移動" src="photos/Roblox_profile.jpg" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://suno.com/@nmkpkppecheneg" class="account-icon-item" title="Sunoへ移動">
+                  <img alt="Sunoへ移動" class="w-10 h-10 rounded-full object-cover" src="photos/JbHhI1yH_400x400.jpg">
+                </a>
+            </div>
+            <p class="mt-8 text-sm text-gray-500">© 2021-2025 NagaseDaiya. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // グローバル変数の定義
+        const header = document.getElementById('header');
+        const toggleBtn = document.getElementById('header-toggle-btn');
+
+        let isHeaderVisible = true;
+
+        // 1. ヘッダーの表示/非表示機能
+        toggleBtn.addEventListener('click', () => {
+            isHeaderVisible = !isHeaderVisible;
+            header.classList.toggle('header-hidden', !isHeaderVisible);
+        });
+
+        // 2. 時刻表示機能
+        function updateClock() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const date = String(now.getDate()).padStart(2, '0');
+            const day = ['日', '月', '火', '水', '木', '金', '土'][now.getDay()];
+            const hour = String(now.getHours()).padStart(2, '0');
+            const minute = String(now.getMinutes()).padStart(2, '0');
+            const second = String(now.getSeconds()).padStart(2, '0');
+
+            document.getElementById('view_clock').textContent = `${year}/${month}/${date} (${day}) ${hour}:${minute}:${second}`;
+        }
+        
+        // 読み込み完了時刻 (旧view_timeの機能)
+        window.onload = () => {
+             const loadedTime = new Date();
+             const timeString = `${loadedTime.getHours()}時${loadedTime.getMinutes()}分${loadedTime.getSeconds()}秒`;
+             document.getElementById('view_time').textContent = `ページ読み込み時刻: ${timeString}`;
+        };
+
+
+        // ページの読み込み完了後、クロックの更新を1秒ごとに行う
+        document.addEventListener('DOMContentLoaded', () => {
+            updateClock(); // 初回実行
+            setInterval(updateClock, 1000); // 1秒ごとに更新
+        });
+
+        // 3. スクロール時のフェードインアニメーション (Intersection Observer APIを使用)
+        const fader = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            rootMargin: '0px 0px -10% 0px' // ビューポートの10%手前で発火
+        });
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            fader.observe(section);
+        });
+
+    </script>
+</body>
 </html>
