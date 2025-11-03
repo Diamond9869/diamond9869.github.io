@@ -1,462 +1,171 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
-  <head>
+<html lang="ja">
+<head>
     <meta charset="UTF-8" />
-    <meta name="Generator" content="Microsoft Visual Studio Code v1.52.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>マーくんのSurvivブログ</title>
-    <link rel="shortcut icon" type="image/x-icon" href="photos/Favicon (1).ico" />
-    <link rel="icon" type="image/x-icon" href="photos/Favicon (1).ico" />
-    <style type="text/css">
-            body {
-              background-color: rgb(27, 27, 27);
-              color: rgb(255, 255, 255);
-            }
-            header {
-              width: 100%;
-              height: 110px;
-              position: fixed;
-              top: 0;
-              left: 0;
-              z-index: 1;
-            }
-            .onh {
-              transition: all 200ms 15ms ease;
-              opacity: 0;
-              height: 0;
-            }
-            .offh {
-              transition: all 200ms 110ms ease;
-              opacity: 1;
-              height: 110px;
-            }
-            .logo {
-              height: 30px;
-            }
-            .main-part {
-              animation: fadeIn 2.0s ease 0s 1 normal;
-            }
-            @keyframes fadeIn { /* fadeInの動作を指定 */
-              0% {opacity: 0} 
-              100% {opacity: 1} 
-            }
-            .clock {
-              transition: all 400ms ease; /* プロパティが変化する際のアニメーションの速度を操作する */
-              opacity: 1; /* 要素の透明度を指定 */
-              position: fixed;
-              margin-right: 18.720;
-              top: 0;
-              right: 0;
-              z-index: 2;
-            }
-            #view_clock:hover { /* hoverでマウスオーバーされたときの動作を指定 */
-              transition: all 400ms ease;
-              opacity: 1;
-            }
-            #view_time:hover {
-              transition: all 400ms ease;
-              opacity: 1;
-            }
-            #view_clock.onc {
-              transition: all 200ms 15ms ease;
-              opacity: 0;
-            }
-            .offc {
-              transition: all 200ms 110ms ease;
-              opacity: 1;
-            }
-            #view_time.ond {
-              transition: all 200ms 15ms ease;
-              opacity: 0;
-            }
-            .offd {
-              transition: all 200ms 110ms ease;
-              opacity: 1;
-            }
-            #btn {
-              transition: all 400ms 0s ease;
-              opacity:0.3;
-            }
-            #btn:hover {
-              transition: all 400ms 0s ease;
-              opacity:1;
-              color: rgb(0, 255, 255)
-            }
-            #btn:active {
-              transition: all 400ms 0s ease;
-              opacity:1;
-              color: rgb(255, 95, 255)
-            }
-            .onb {
-              transform: translate(0px, -70px) /* 与えられた要素を移動する */
-            }
-            .offb {
-              transform: translate(0px, 0px)
-            }
-            .linktop {
-              position: fixed;
-              right: 20px;
-              bottom: 20px;
-              transition: all 400ms 0s ease;
-              width: 57px;
-              height: 57px;
-            }
-            .linktop:hover {
-              transition: all 400ms 0s ease;
-              width: 77px;
-              height: 77px;
-            }
-            a {
-              color: rgba(0, 255, 128, 0.829);
-              transition: all 200ms 0s ease;
-              opacity: 0.6;
-            }
-            a:hover {
-              color: rgb(0, 255, 255);
-              transition: all 200ms 0s ease;
-              opacity: 1;
-            }
-            a:active {
-              color: rgb(255, 0, 242);
-              transition: all 200ms 0s ease;
-              opacity: 1;
-            }
-            .introduction {
-              opacity: 0;
-              transition: all 0.5s ease;
-              transform: translate(0, 150px);
-            }
-            .introduction.show {
-              opacity: 1;
-              transform: none;
-            }
-            .top {
-              transition: all 400ms 0s ease;
-              width: 48px;
-              height: 48px;
-            }
-            .top:hover {
-              transition: all 400ms 0s ease;
-              width: 58px;
-              height: 58px;
-            }
-            .top-3 {
-              transition: all 400ms 0s ease;
-              width: 48px;
-              height: 48px;
-            }
-            .top-3:hover {
-              transition: all 400ms 0s ease;
-              width: 58px;
-              height: 58px;
-            }
-            .top-link {
-              transition: all 400ms 0s ease;
-              width: 64px;
-              height: 64px;
-            }
-            .top-link:hover {
-              transition: all 400ms 0s ease;
-              width: 85px;
-              height: 85px;
-            }
-            .top-link3 {
-              transition: all 400ms 0s ease;
-              width: 64px;
-              height: 64px;
-            }
-            .top-link3:hover {
-              transition: all 400ms 0s ease;
-              width: 85px;
-              height: 85px;
-            }
-            .links-top {
-              opacity: 0;
-              transition: all 0.5s ease;
-              transform: translate(0, 150px);
-            }
-            .links-top.show {
-              opacity: 1;
-              transform: none;
-            }
-            .fadein-root {
-              opacity: 0;
-              transition: all 0.5s ease;
-              transform: translate(0, 150px);
-            }
-            .fadein-root.show {
-              opacity: 1;
-              transform: none;
-            }
-            .account-links {
-              opacity: 0;
-              transition: all 0.5s ease;
-              transform: translate(0, 150px);
-            }
-            .account-links.show {
-              opacity: 1;
-              transform: none;
-            }
-            .linkaccounts-1 {
-              transition: all 400ms 0s ease;
-              width: 120px;
-              height: 120px;
-            }
-            .linkaccounts-1:hover {
-              transition: all 400ms 0s ease;
-              width: 150px;
-              height: 150px;
-            }
-            .linkaccounts-2 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-2:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-            .linkaccounts-3 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-3:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-3 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-3:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-4 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-4:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-5 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-5:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-6 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-6:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-7 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-7:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-	    .linkaccounts-8 {
-              transition: all 400ms 0s ease;
-              width: 100px;
-              height: 100px;
-            }
-            .linkaccounts-8:hover {
-              transition: all 400ms 0s ease;
-              width: 125px;
-              height: 125px;
-            }
-            .fadein-0 {
-              opacity: 0;
-              transition: all 0.5s ease;
-              transform: translate(0, 150px);
-            }
-            .fadein-0.show {
-              opacity: 1;
-              transform: none;
-            }
-            #image1 {
-              transition: all 600ms 0s ease;
-            }
-            .on {
-              transform: scale(2.5, 2.5) translate(0px, 0px);
-            }
-            .off {
-              transform: scale(1.0, 1.0) translate(0px, 0px);
-            }
-    </style>
-  </head>
-  <body>
-    <div class="main-part">
-      <header id="header">
-        <h1>
-          マーくんの<img class="logo" src="photos/250px-Surviv.io.png">ブログ - ホーム
-          <a href="index.html">
-            <img class="top-3" alt="index.htmlへ戻る" title="index.htmlへ戻る" src="photos/220px-ISO_7010_E001_new.svg.png">
-          </a>
-        </h1>
-      </header>
-      <p align="right">
-        <a href="#linktop">
-          <img alt="TOPへ移動" title="TOPへ移動" class="linktop" src="photos/btn_pagetop.png">
-        </a>
-      </p>
-      <div class="noscript"> 
-        <noscript> <!--ブラウザのJavaScriptの設定が無効な場合の動作を指定-->
-          <h1 align="center">
-            <font color="red">
-              <strong>※ブラウザのJavaScriptが無効なため、ページは機能しません。JavaScriptを有効にしてください。</strong>
-            </font> 
-          </h1>
-        </noscript>
-      </div>
-      <div class="warning">
-        <h1 align="center">
-          <font color="red">ページを開く前の注意。</font>
-        </h1>
-        <p align="center">注意喚起の内容ですが、このページは、</p>
-        <h1 align="center">
-          <font color="red">IE,旧Edgeでは正常に動作しません。</font>
-        </h1>
-        <p align="center">
-          もしIE,旧Edgeで開いている場合には、Chromeなどの別のブラウザで開きなおしてください。<br>
-          (上のURLをコピー&ペーストして別のブラウザでこのページを開きなおす)<br>
-          なお、すでに別のブラウザで開いている場合は、この操作は必要ありません。
-        </p>
-        <p align="center">
-          <a href="#linktop">開きなおしたら、こちらをクリックしてください。</a>
-        </p>
-      </div>
-      <div class="main">
-        <h1 id="linktop"></h1>
-        <br>
-        <h4 class="clock" align="right">
-          <span id="view_clock"></span> <!--ここに現在時刻を表示-->
-          <script type="text/javascript">
-          timerID = setInterval('clock()',67); // 現在時刻の更新頻度を設定;
-          function clock() {
-          	document.getElementById("view_clock").innerHTML = getNow(); // innerHTMLは要素内の HTML または XML のマークアップを取得したり設定したりする。ここでgetNow()ファンクションを指定;
-          }
-          function getNow() { // getNow()の中身を指定;
-          	var now = new Date(); // 現在時刻を取得;
-          	var year = now.getFullYear(); // 西暦を取得;
-          	var mon = now.getMonth()+1; // 月を取得し、1を足す;
-          	var day = now.getDate(); // 日を取得;
-          	var hour = now.getHours(); // 時を取得;
-          	var min = now.getMinutes(); // 分を取得;
-          	var sec = now.getSeconds(); // 秒を取得;
-            var ms = now.getMilliseconds(); // ミリ秒を取得;
-            if (min < 10) { // もしmin(分)が10未満なら;
-              min = "0" + min; // minの値の前に0を追加して表示;
-            }
-            if (sec < 10) { // もしsec(秒)が10未満なら;
-              sec = "0" + sec; // secの値の前に0を追加して表示;
-            }
-            if (ms < 10) { // もしms(ミリ秒)が10未満なら;
-              ms = "0" + ms; // msの値の前に0を2つ追加して表示;
-            }
-            if (ms < 100) { // もしms(ミリ秒)が100未満なら;
-              ms = "0" + ms; // msの値の前に0を1つ追加して表示;
-            } // (msの方の補足) msの値が10未満の場合、下2つのifが共にtrueとなり0が2つ追加される;
-          	var time = "現在時刻: " + year + "/" + mon + "/" + day + " " + hour + ":" + min + ":" + sec + "." + ms + "　"; // 現在時刻のフォーマットをこのようにする;
-          	return time; // 現在時刻を返し、上の<span>...</span>内に表示する;
-          }
-          </script>
-          <br>
-          <span id="view_time"></span> <!--ここにページ読み込み時の時刻を表示-->
-          <script type="text/javascript">
-          document.getElementById("view_time").innerHTML = getNow2();
-          function getNow2() {
-          	var now2 = new Date();
-          	var year2 = now2.getFullYear();
-          	var mon2 = now2.getMonth()+1;
-          	var day2 = now2.getDate();
-          	var hour2 = now2.getHours();
-          	var min2 = now2.getMinutes();
-            var sec2 = now2.getSeconds();
-            var ms2 = now2.getMilliseconds();
-            if (min2 < 10) {
-              min2 = "0" + min2;
-            }
-            if (sec2 < 10) {
-              sec2 = "0" + sec2;
-            }
-            if (ms2 < 10) {
-              ms2 = "0" + ms2;
-            }
-            if (ms2 < 100) {
-              ms2 = "0" + ms2;
-            }
-          	time2 = "ページ読み込み時刻: " + year2 + "/" + mon2 + "/" + day2 + " " + hour2 + ":" + min2 + ":" + sec2 + "." + ms2 + "　"; 
-          	return time2;
-          } // ここにはsetInterval()関数がないため、連続更新はされず、ページ読み込み時に1回のみ更新される;
-          </script>
-          <p align="right" id="btn" onclick="btn1()">クリックしてヘッダーを表示/非表示</p> <!--onclickでクリックされた時の動作をJavaScriptで指定-->
-          <script type="text/javascript">
-            const btn = document.getElementById('btn'); // btnという定数を作成する。 var 変数とは異なり、window オブジェクトのプロパティにはならない;
-            const clockt = document.getElementById('view_clock'); // clocktという定数を作成する;
-            const timet = document.getElementById('view_time'); // timetという定数を作成する;
-            const headerh = document.getElementById('header'); // headerhという定数を作成する;
-            let statbtn = false; // statbtnという変数をfalseにする;
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font: Inter (モダンなWebサイトでよく使われるフォント) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* カスタムスタイルとアニメーション */
+        :root {
+            --header-height: 4rem; /* 64px */
+        }
 
-            function btn1() { // 上のonclick="btn1()"とつながっている;
-              if(statbtn) {
-                btn.classList.add('offb'); // btnが指定しているHTML要素に"offb"クラスを追加;
-                btn.classList.remove('onb'); // btnが指定しているHTML要素の"onb"クラスを削除;
-                clockt.classList.add('offc'); // clocktが指定しているHTML要素に"offc"クラスを追加;
-                clockt.classList.remove('onc'); // clocktが指定しているHTML要素の"onc"クラスを削除;
-                timet.classList.add('offd'); // timetが指定しているHTML要素に"offd"クラスを追加;
-                timet.classList.remove('ond'); // timetが指定しているHTML要素の"ond"クラスを削除;
-                headerh.classList.add('offh'); // headerhが指定しているHTML要素に"offh"クラスを追加;
-                headerh.classList.remove('onh'); // headerhが指定しているHTML要素の"onh"クラスを削除;
-              } else { // 上とは逆の動作をする;
-                btn.classList.add('onb'); 
-                btn.classList.remove('offb');
-                clockt.classList.add('onc');
-                clockt.classList.remove('offc');
-                timet.classList.add('ond');
-                timet.classList.remove('offd');
-                headerh.classList.add('onh');
-                headerh.classList.remove('offh');
-              }
-              statbtn = !statbtn;
-            }
-          </script>
-        </h4>
-        <div class="introduction">
-          <p align="center">-----------------------------------------------------------------------------------------------</p>
-          <h1 align="center">マーくんのSurvivブログ。</h1>
-          <p align="center">-----------------------------------------------------------------------------------------------</p>
-          <h1 align="center">はじめに</h1>
-          <h2 align="center" style="color:rgb(255, 0, 0);">
-            ※2023年2月13日、公式の発表によりSurviv.ioはサービス終了となりました。
-          </h2>
-          <p align="center">####ここからはsurviv.ioのお知らせに書いてあった内容丸コピ####</p>
-          <p align="center">
-            <b>Important Message</b><br>
-            February 13, 2023<br>
-            <br>
+        body {
+            /* 日本語と英語に対応するフォント設定 */
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            padding-top: var(--header-height);
+            background-color: #0d0d0d; /* より深いダークテーマ */
+            color: #e5e5e5;
+        }
+
+        /* スクロール時のヘッダー非表示アニメーション */
+        .header-hidden {
+            transform: translateY(calc(-1 * var(--header-height)));
+        }
+
+        /* フェードインアニメーションの基本設定 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 800ms ease-out, transform 800ms ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 時刻表示エリア */
+        .clock-display-container {
+            position: fixed;
+            top: var(--header-height);
+            right: 0;
+            z-index: 999;
+            padding: 0.5rem 1rem;
+            background-color: rgba(13, 13, 13, 0.9);
+            backdrop-filter: blur(5px);
+            border-bottom-left-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: top 300ms ease;
+        }
+
+        /* ヘッダー非表示時の時刻表示位置調整 */
+        .header-hidden ~ .clock-display-container {
+            top: 0;
+        }
+        
+        /* 武器リストの番号の色 */
+        .weapon-list {
+            counter-reset: weapon-counter;
+        }
+        .weapon-list > li {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 3rem;
+            text-align: left;
+        }
+        .weapon-list > li::before {
+            counter-increment: weapon-counter;
+            content: counter(weapon-counter);
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00ff73; /* 蛍光グリーン */
+        }
+        
+        /* 拡大画像用モーダル */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 10000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9); 
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        /* 画像のホバーエフェクト */
+        .zoomable-image, .link-icon-item img, .account-icon-item img {
+            transition: transform 300ms ease-in-out, box-shadow 300ms ease-in-out;
+            cursor: pointer;
+        }
+
+        .link-icon-item:hover img, .account-icon-item:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 115, 0.5);
+        }
+
+    </style>
+</head>
+<body class="antialiased text-white">
+    <!-- ヘッダー (固定) -->
+    <header id="header" class="fixed w-full bg-[#1a1a1a] shadow-lg z-[1000] transition-transform duration-300 ease-in-out" style="height: var(--header-height);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+            <h1 class="text-2xl font-bold tracking-tight flex items-center">
+                <span class="text-gray-300 mr-2">マーくんの</span>
+                <img class="h-6 sm:h-8 inline-block logo rounded-sm" src="photos/250px-Surviv.io.png" alt="Surviv.ioロゴ">
+                <span class="text-white ml-2">ブログ</span>
+            </h1>
+            <nav class="flex items-center space-x-4">
+                <a href="#top" class="p-2 transition duration-300 hover:scale-110 hover:opacity-100 opacity-80" title="ホームへ戻る">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-green-400"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 時刻表示とヘッダー制御ボタン -->
+    <div id="clock-container" class="clock-display-container flex flex-col items-end text-right text-xs sm:text-sm">
+        <div id="view_clock" class="realtime-clock font-mono text-green-400"></div>
+        <div id="view_time" class="loadtime-clock font-mono text-gray-400"></div>
+        <button id="header-toggle-btn" class="header-toggle-btn mt-1 text-xs text-gray-500 hover:text-green-400 transition-colors duration-300 focus:outline-none">
+            クリックしてヘッダーを表示/非表示
+        </button>
+    </div>
+
+    <main class="min-h-screen">
+        <br>
+        <!-- メインコンテンツ -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+            <!-- はじめにセクション -->
+            <section id="linktop" class="fade-in-section">
+                <h1 class="text-4xl font-extrabold text-center mb-10 border-b border-green-500 pb-3">
+                    マーくんのSurvivブログ。
+                </h1>
+                <div class="text-left bg-[#1f1f1f] p-6 rounded-xl shadow-2xl">
+                    <h2 class="text-3xl font-bold text-green-400 mb-6">はじめに</h2>
+                    
+                    <p class="text-lg leading-relaxed mb-6 border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-900/30 rounded-r-md">
+                        <strong class="text-yellow-300">2023年2月13日，公式の発表によりsurviv.ioはサービス終了となりました．</strong><br>
+                        以下は引用<br>
+                        <br>
+                        Important Message<br>
+                        February 13, 2023<br>
+                        <br>
             Dear Survivrs,<br>
             <br>
             We would like to start by sincerely thanking everyone for all of the passion, love, and support showed to us and each other over the years. With this in mind, <br>
@@ -477,322 +186,238 @@
             <br>
             To give Bit Heroes Arena a try, please visit: <a href="http://bitheroesarena.io/">http://bitheroesarena.io/</a><br>
             <br>
-            ####丸コピ終わり###<br>
-          </p>
-          <p align="center">
-            全部英語なんか読むのだるいと思うので簡単に要約すると、<br><br>
-            <font style="color:rgba(124, 241, 28, 0.942)">
-              "今までsurviv.ioをプレイしてくださった全てのプレイヤーへの情熱と愛、そしてサポートを胸に、悲報ながらもsurviv.ioのサービスを終了することになりました。<br>
-              これにより新しいSURVIVR PASSのシーズンは追加されなくなり、マーケットは利用できなくなります。<br>
-              ゲームそのものは依然としてプレイできますが、いずれ完全にオフラインになるでしょう。<br>
-              <br>
-              それでもなおsurviv.ioのスタイルを愛しているのなら、私たちが手掛けているもう1つのゲーム、BitHeroesArenaを試してみてください。<br>
-              これはsurviv.ioと多くの共通点を持って開発されています。<br>
-              <br>
-              改めて6年もの間 (surviv.ioは2017年にリリースされたため)、surviv.ioをプレイして下さった全プレイヤーの貢献に感謝いたします。"
-            </font>
-            <br><br>
-            という内容。<br>
-            んでここで挙げられていたBitHeroesArena.io、surviv.ioの遺伝子を引き継いで開発されているということで、<br>
-            自分は1回しかプレイしたことがないので正確には言えないが、まあ確かにsurviv.ioに似ているような似ていないような、何とも微妙な感じだった。<br>
-            ("ほぼ"2Dという点、それから一部場面でsurviv.ioの効果音が流用されている？)<br>
-          </p>
-          <p align="center" style="color:rgb(0, 255, 200);">
-            2023/4/15追記 surviv.io公式が提供している世界ランキングを見てみるとわかるが、<br>
-            現在でも<b>運さえよければ</b>プレイできる模様。実際デイリー世界ランクに載っている人がたまにいる。<br>
-            もちろん5ヵ所あるサーバーの全てが過疎り果てているため、永遠に表示され続ける<font style="color:rgb(255, 0, 242);">Failed Finding Game.</font>を見つめながらも<br>
-            根気よくゲームへの参加を待たなければならない。<br>
-            そんなことをするくらいなら、他のゲームでもやってた方がいいと思うんだけどね。<br>
-            <br>
-            <a href="https://surviv.io/stats/player?type=most_kills&team=solo&t=weekly&mapId=0">参考にしたSurviv.io 公式世界ランキング (Classic,Solo,Weekly)</a><br>
-            <br><br>
-            今は2キルで世界ランク1位になれる時代なのか<s>まあまあオワコンじゃねぇか。</s><br>
-            昔は何千試合とプレイしてようやくデイリー世界ランク15位まで上り詰められてそれで精一杯だったのに。<br>
-          </p>
-          <h2 align="center" style="color:rgb(255, 139, 245);">
-            2023/8/12追記 surviv.ioへのアクセスは完全に不可となり、bitheroesarena.ioに自動的に飛ばされるようになったことを確認。<br>
-            一時期筆者を沼にハメたバトロワは、ついに真の意味でのｻｼｭｳを遂げた。
-            <b><s>F*CK</s> Kongregate</b>
-          </h2>
-          <h2 align="center" style="color:rgb(59, 255, 245);">
-            2023/8/19追記 Suroi.ioというsurviv.ioをもとにして作られたゲームを発見した。<br>
-            武器の名前はほとんどすべて変わっているものの(なおAK-47だけは変わってない)<br>
-            基本的な構成やルールなどはsurviv.ioとほとんど同じであり、まさにsurviv.ioの復刻版と言えるだろう。<br>
-            運営によると現在絶賛開発中であり、一部のレア武器やグレネード系はまだ実装されていない模様。<br>
-            <a href="https://suroi.io/">こちらからプレイできる。</a>
-          </h2>
-          <p align="center">-----------------------------------------------------------------------------------------------</p>
-          <p align="center">
-            このページは、作者が高校1年の時にあった「社会と情報」の課題において、「自分のWebページを作る」という課題に応えるため、<br>
-            2021年1月下旬から非常に長い時間(マイクラブログよりは時間かかってない)をかけて作ったものです。<br>
-            当たり前ですがこのページは<font style="color: rgb(229, 255, 0)">HTML,CSS,<s>J(ry</s></font>を使って作成しています。
-          </p>
-          <p align="center">
-            <font style="color: rgb(255, 0, 0);">あ、また口が滑っちゃった(てぺぺろ</font>
-          </p>
-          <h1 align="center">
-            <font style="color: rgb(249, 134, 0);">お前それ反則だz((うるせえ!!!(殴)</font>
-          </h1>
-          <p align="center">
-            まあ、またこんなつまらない茶番に付き合ってくれた方々、ありがとうございます。<br>
-            そんなわけで長々と書きましたが、下のリンク、またはスクロールでお好きなところからゆっくり見て下さい。<br>
-            個人的にスクロールはゆっくりめの方がおすすめ。<br>
-          </p>
-          <h2 style="color:rgb(255, 0, 0);">
+                    </p>
+                    
+                    <p class="text-base sm:text-lg mb-6">
+                        2023/8/19追記 Suroi.ioというsurviv.ioをもとにして作られたゲームを発見した。<br>
+                        <a href="https://suroi.io/" class="text-cyan-400 hover:text-cyan-300 font-medium underline">こちらからプレイできる。</a>
+                    </p>
 
-          </h2>
-          <script type="text/javascript">
-            var scrollAnimationElm303 = document.querySelectorAll('.introduction'); // "scrollAnimationElm303"を定義;
-            var scrollAnimationFunc303 = function() { // "scrollAnimationFunc303"を定義;
-              for(var i303 = 0; i303 < scrollAnimationElm303.length; i303++) {
-                var triggerMargin303 = 200; // "triggerMargin"を定義;
-                if (window.innerHeight > scrollAnimationElm303[i303].getBoundingClientRect().top + triggerMargin303) { // 画面の下と要素の位置の差が200pxになった時に;
-                  scrollAnimationElm303[i303].classList.add('show'); // 要素に"show"クラスを追加;
-                }
-              }
-            }
-            window.addEventListener('load', scrollAnimationFunc303);
-            window.addEventListener('scroll', scrollAnimationFunc303);
-          </script>
-        </div>
-        <div class="links-top">
-          <p align="center">-----------------------------------------------------------------------------------------------</p>
-          <h1 align="center">リンク</h1>
-          <p align="center">
-            <a href="main3.html">
-              <img alt="武器紹介へ移動" class="top-link" title="武器紹介へ移動" src="photos/M9.png">
-            </a>
-            <a href="main10.html">
-              <img alt="あるあるへ移動" class="top-link" title="あるあるへ移動" src="photos/eye_ganseihirou_computer_man.png">
-            </a>
-          </p>
-          <script type="text/javascript">
-            var scrollAnimationElm300 = document.querySelectorAll('.links-top');
-            var scrollAnimationFunc300 = function() {
-              for(var i300 = 0; i300 < scrollAnimationElm300.length; i300++) {
-                var triggerMargin300 = 200;
-                if (window.innerHeight > scrollAnimationElm300[i300].getBoundingClientRect().top + triggerMargin300) {
-                  scrollAnimationElm300[i300].classList.add('show');
-                }
-              }
-            }
-            window.addEventListener('load', scrollAnimationFunc300);
-            window.addEventListener('scroll', scrollAnimationFunc300);
-          </script>
-        </div>
-        <div class="fadein-root">
-          <p align="center">-----------------------------------------------------------------------------------------------</p>
-          <h1 align="center">このブログを作ろうと思ったきっかけ</h1>
-          <p align="center">
-            まあ今回の社情の課題で「HTML&CSSで自分のWebページを作る」という課題があったわけなんだけれども、<br>
-            予定よりも早くマイクラブログが作り終わっちゃったわけだ。<br>
-            そこで、自分が最近始めたSurvivのブログも作ろっかなー、くらいの軽い気持ちで作り始めた。<br>
-            <h2 align="center">
-              <font style="color: rgb(255, 0, 0);"><s>(どんだけ暇人なんだよ)</s></font>
-            </h2>
-            <p align="center">
-              まあこのブログは主にSurviv.ioという平面版バトロワゲームについて紹介するわけなんだが、<br>
-            </p>
-            <h1 align="center">
-              <font style="color: rgba(255, 255, 0, 0.822);">Surviv.ioって何それ食えるの?おいしいの??</font><br>
-            </h1>
-            <p align="center">
-              という人向けに、一応簡単に説明しておこう。
-            </p>
-          </p>
-          <script type="text/javascript">
-            var scrollAnimationElm301 = document.querySelectorAll('.fadein-root');
-            var scrollAnimationFunc301 = function() {
-              for(var i301 = 0; i301 < scrollAnimationElm301.length; i301++) {
-                var triggerMargin301 = 200;
-                if (window.innerHeight > scrollAnimationElm301[i301].getBoundingClientRect().top + triggerMargin301) {
-                  scrollAnimationElm301[i301].classList.add('show');
-                }
-              }
-            }
-            window.addEventListener('load', scrollAnimationFunc301);
-            window.addEventListener('scroll', scrollAnimationFunc301);
-          </script>
-        </div>
-        <div class="fadein-0">
-          <p align="center">-----------------------------------------------------------------------------------------------</p>
-          <h1 align="center">Surviv.ioとは</h1>
-          <p align="center">
-            敵を次々と倒していき、最後の1人になるまで生き残る、いわゆるバトルロワイヤル。<br>
-            簡単に例えると、<font style="color: rgb(0, 255, 157);">2D版PUBG</font>みたいなもの。<br>
-            ワールドは完全なる平面そのものであり、つねに全方向が見えるようになっている。視界の広さは<abbr title="自分の視界を広げることができるアイテム。Surviv.ioの中でも重要なアイテムであり、最低でも4倍以上のスコープを持たないと終盤戦では勝ち目はほとんどない。">スコープ</abbr>で変更できる。<br>
-            ゲーム自体は<a href="https://surviv.io/">こちら</a>からプレイできる。<font style="color: rgba(124, 241, 28, 0.942);">←PCでやったほうが良い</font>
-          </p>
-          <p align="center">マップ画像（サンプル、クリックで拡大）</p>
-          <p align="center">
-            <img alt="マップサンプル" title="マップサンプル" src="photos/Screenshot_-_2019年12月21日_-_10時58分04秒.png" id="image1" onclick="func1()">
-          </p>
-          <p align="center">イベントではその他、特殊なマップが登場する。</p>
-          <script type="text/javascript">
-            const image1 = document.getElementById("image1");
-            let stat1 = false;
+                    <p class="text-base sm:text-lg mb-6">
+                      2025/11/3追記 Survev.ioという古いsurviv.ioがもとになって作られている(というかまんまsurviv.io)ゲームを発見した。<br>
+                      <a href="https://survev.io/" class="text-cyan-400 hover:text-cyan-300 font-medium underline">こちらからプレイできる。</a>
+                    </p>
+                    
+                    <p class="text-base sm:text-lg leading-relaxed mt-8 border-t border-gray-700 pt-4">
+                        このページは、作者が高校1年の時にあった「社会と情報」の課題において、「自分のWebページを作ろう」という課題から着想を得て作成したWebページです。<br>
+                        当初はマイクラブログを作っていたんですが，予定よりも早く作り終わってしまったため，当時ハマっていたゲーム「surviv.io」についてもブログを作りました．<br>
+                    </p>
+                </div>
+            </section>
 
-            function func1() {
-              if(stat1) {
-                image1.classList.add('off');
-                image1.classList.remove('on');
-              } else {
-                image1.classList.add('on');
-                image1.classList.remove('off');
-              }
-              stat1 = !stat1;
-            }
-          </script>
-          <script type="text/javascript">
-            var scrollAnimationElm101 = document.querySelectorAll('.fadein-0');
-            var scrollAnimationFunc101 = function() {
-              for(var i101 = 0; i101 < scrollAnimationElm101.length; i101++) {
-                var triggerMargin101 = 200;
-                if (window.innerHeight > scrollAnimationElm101[i101].getBoundingClientRect().top + triggerMargin101) {
-                  scrollAnimationElm101[i101].classList.add('show');
-                }
-              }
-            }
-            window.addEventListener('load', scrollAnimationFunc101);
-            window.addEventListener('scroll', scrollAnimationFunc101);
-          </script>
+            <!-- リンクセクション -->
+            <section class="fade-in-section">
+                <h1 class="text-3xl font-bold text-center mb-8 text-green-300">リンク</h1>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="main3.html" class="link-icon-item block p-4 bg-[#1f1f1f] rounded-xl shadow-lg hover:shadow-green-500/50 transition duration-300" title="武器紹介へ移動">
+                        <img alt="武器紹介へ移動" src="photos/M9.png" class="w-16 h-16 sm:w-20 sm:h-20 mx-auto object-contain">
+                        <p class="text-sm mt-2 text-center">武器紹介</p>
+                    </a>
+                    <a href="main10.html" class="link-icon-item block p-4 bg-[#1f1f1f] rounded-xl shadow-lg hover:shadow-green-500/50 transition duration-300" title="あるあるへ移動">
+                        <img alt="あるあるへ移動" src="photos/eye_ganseihirou_computer_man.png" class="w-16 h-16 sm:w-20 sm:h-20 mx-auto object-contain">
+                        <p class="text-sm mt-2 text-center">あるある</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- きっかけセクション -->
+            <section class="fade-in-section">
+                <h1 class="text-3xl font-bold mb-6 text-center border-b border-gray-700 pb-2 text-yellow-300">このブログを作ろうと思ったきっかけ</h1>
+                <div class="text-left text-lg leading-relaxed space-y-4">
+                    <p>このページを作成したきっかけは、上記の通り高校の課題から来ています。当時、情報科目の授業中に暇つぶしでHTML、CSS、JavaScriptを使い、課題とは関係のないWebページを一つ作っていたのですが、そのWebページが先生に発見され、その後課題として認められることになりました。</p>
+                    <p>元々、HTML、CSS、JavaScriptには興味があったため、この課題を通して本格的にWebページを作成するスキルを身につけることができたと思っています。</p>
+                    <p>ちなみに、このブログに使われているCSSは、大部分が自作ですが、一部はBootstrapから拝借しています。今回はTailwindでモダン化していますが、基本的な構造は維持しています。</p>
+                </div>
+            </section>
+
+            <!-- Surviv.ioとはセクション -->
+            <section class="fade-in-section">
+                <h1 class="text-3xl font-bold mb-6 text-center border-b border-gray-700 pb-2 text-pink-400">Surviv.ioとは</h1>
+                <div class="text-center text-lg leading-relaxed space-y-4">
+                    <p>
+                        敵を次々と倒していき、最後の1人になるまで生き残る、いわゆるバトルロワイヤル。<br>
+                        簡単に例えると、<span class="font-extrabold text-red-500">2D版PUBG</span>みたいなもの。
+                    </p>
+                    <p class="mt-6 text-gray-400">マップ画像（クリックで拡大）</p>
+                    <figure class="mt-4">
+                        <img 
+                            alt="マップサンプル" 
+                            title="クリックで画像を拡大・縮小できます。" 
+                            src="photos/Screenshot_-_2019年12月21日_-_10時58分04秒.png" 
+                            id="map-image" 
+                            class="zoomable-image mx-auto max-w-full h-auto rounded-lg shadow-xl cursor-pointer hover:shadow-green-500/50"
+                            style="max-height: 50vh;"
+                        >
+                        <figcaption class="mt-2 text-sm text-gray-500">クリックで画像を拡大・縮小できます。</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- 作者紹介セクション -->
+            <section class="fade-in-section">
+                <h1 class="text-3xl font-bold mb-6 text-center border-b border-gray-700 pb-2 text-purple-400">作者紹介</h1>
+                <div class="text-left text-lg leading-relaxed space-y-4">
+                    <p>
+                        このページの作者は、当時surviv.ioにハマっていたマーくんこと「nmkpkppecheneg」です。surviv.ioは2Dバトルロワイヤルということもあり、他のバトルロワイヤルにはない面白さがありました。
+                    </p>
+                    <p>
+                        当時、主にプレイしていた時間帯は平日16:00〜18:00くらいでした。
+                    </p>
+                    <h2 class="text-2xl font-semibold mt-8 mb-4 text-purple-300">好きな武器</h2>
+                    <ol class="weapon-list">
+                        <li>
+                            <h3 class="text-xl font-bold text-gray-200">AWM-S</h3>
+                            <p class="ml-2 text-base">最強スナイパー。性能、威力、連射速度、すべてがパーフェクト。最強武器。</p>
+                        </li>
+                        <li>
+                            <h3 class="text-xl font-bold text-gray-200">Vector</h3>
+                            <p class="ml-2 text-base">最強サブマシンガン。連射速度がすごい。火力も申し分なし。</p>
+                        </li>
+                        <li>
+                            <h3 class="text-xl font-bold text-gray-200">MP220</h3>
+                            <p class="ml-2 text-base">最強ショットガン。至近距離での火力は最強。外すと死ぬ。</p>
+                        </li>
+                        <li>
+                            <h3 class="text-xl font-bold text-gray-200">PKP Pecheneg</h3>
+                            <p class="ml-2 text-base">最強軽機関銃。装弾数が200発と極めて多いのが特徴。火力もあって強い。筆者の名前の由来でもある．</p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
         </div>
-        <div class="fadein-1">
-          <p align="center">-----------------------------------------------------------------------------------------------</p>
-          <h1 align="center">作者紹介</h1>
-          <h1 align="center">
-            <font style="color: rgb(0, 255, 200)"><b>HEY GUYS</b></font>
-          </h1>
-          <p align="center">
-            どうも。[NMK]PKPPechenegといいます。<br>
-            <br>
-            PC勢。韓国サーバーにたまに出没します。スキンはSurvivr Pass 8で手に入れた「Ghoul Fire」です。<br>
-            <br>
-            名前は「自分の最も好きな武器がPKPである」事に由来。<br>
-            <br>
-            以後お見知りおきを。
-          </p>
-          <br>
-          <h2 align="center">SURVIVRとしては</h2>
-          <br>
-          <p align="center">
-            初めてsurvivをやったのは、2020年11月中旬。アカウント作成は12月に入ってからやった。<br>
-          </p>
-          <br>
-          <h2 align="center">プレイヤーとしての特徴を簡単に言うと...</h2>
-          <br>
-          <p align="center">
-            1.フルオート武器が得意<br>
-            2.スナイパーヘタクソ(最近うまくなった)<br>
-            3.平均キル数が0.5~2.0位で大きく変動する(要するに<s>雑魚</s>)<br>
-            ちなみに最高平均キル数は4.7<br>
-            4.一番戦いたくない敵:<font style="color: rgb(255, 217, 0)"><b>Mosin&SPASの二刀流</b></font>←テストに出る<br>
-            5.無類のPKP信者<br>
-          </p>
-          <br>
-          <h2 align="center">好きな武器</h2><br>
-          <h3 align="center">6.AWM-S</h3>
-          <h2 align="center"><b>自分「行くぜえええ、ストライクショット!!!!!!!!!」</b></h2>
-          <h2 align="center"><font style="color: rgb(255, 0, 0);">敵「ﾌｧｱｱｱｱｱｱｱｱｱｱｱｱｱｱｱｱｱｱｱｱｱ!!!!!!!!!!」</font></h2>
-          <p align="center">
-            基本的に一発当てれば敵が吹っ飛ぶ。<b>男のロマン。</b><br>
-            <s>そして脳内麻薬物質ドーパミンがドp((殴</s><br>
-          </p>
-          <h3 align="center">5.Vector</h3>
-          <h2 align="center"><b>自分「銃弾ﾌﾞｼｬｰｰｰｰｰｰｰｰｰｰｰｰｰｰｰ!!!!!!!!!」</b></h2>
-          <p align="center">
-            とにかくエグイ連射力。あっという間に敵を溶かしてしまう。<br>
-            エンドレス・アモと組み合わせれば<s>チート武器</s>と化す。
-          </p>
-          <h3 align="center">4.M79</h3>
-          <h2 align="center">「ﾋﾟﾄｩﾝ....<font style="color: rgb(241, 123, 0);"><i>ﾎﾞｰｰｰｰｰﾝ!!!!!!!!!!</i></font>」</h2>
-          <p align="center"><s>消しゴムのような見た目の弾とは思えないほど</s>高威力。<br>
-            正直この銃（グレネードランチャー）一番使うの楽しいかもしれない。
-          </p>
-          <h3 align="center">3.USAS-12</h3>
-          <h2 align="center"><b>「ﾎﾞｺｰﾝﾎﾞｺｰﾝﾎﾞｺｰﾝ!!!!!!!!!!!!!」</b></h2>
-          <p align="center">
-            <b>もはやグレランと化した</b>散弾銃(?)。しかも10連射が可能。<br>
-            接近戦ならほぼ確実に勝てる<s>チート武器</s>
-          </p>
-          <h3 align="center">2.M249</h3>
-          <h2 align="center">自分「食らえええええええええええええええええ!!!!!!!」</h2>
-          <h2 align="center"><font style="color: rgb(255, 0, 0);">M249「ｼｭﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞﾄﾞ!!!!!!!!!!!!」</font></h2>
-          <h2 align="center"><font style="color: rgb(241, 123, 0);">敵「わああああああちょっと待っ..........orz」</font></h2>
-          <script type="text/javascript">
-            var scrollAnimationElm102 = document.querySelectorAll('.fadein-1');
-            var scrollAnimationFunc102 = function() {
-              for(var i102 = 0; i102 < scrollAnimationElm102.length; i102++) {
-                var triggerMargin102 = 200;
-                if (window.innerHeight > scrollAnimationElm102[i102].getBoundingClientRect().top + triggerMargin102) {
-                  scrollAnimationElm102[i102].classList.add('show');
-                }
-              }
-            }
-            window.addEventListener('load', scrollAnimationFunc102);
-            window.addEventListener('scroll', scrollAnimationFunc102);
-          </script>
+    </main>
+    
+    <!-- TOPへ戻るボタン -->
+    <a href="#top" class="fixed bottom-6 right-6 p-3 bg-green-500 text-gray-900 rounded-full shadow-lg transition duration-300 hover:bg-green-400 hover:scale-110 z-50" title="TOPへ移動">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+    </a>
+
+    <!-- フッター/アカウントリンク -->
+    <footer class="bg-[#1a1a1a] py-10 fade-in-section shadow-inner">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-2xl font-bold mb-6 text-gray-300">お気軽にフォローして下さい</h1>
+            <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+                <!-- アカウントリンク群 -->
+                <a href="https://www.youtube.com/channel/UCNmaOhZBYirWnuPYAbp5jwg" class="account-icon-item" title="YouTubeへ移動">
+                    <img alt="YouTubeへ移動" src="photos/favicon_144.png" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://bsky.app/profile/did:plc:vuahuwreulilp6xw2vw7spmu" class="account-icon-item" title="BlueSkyへ移動">
+                    <img alt="BlueSkyへ移動" src="photos/Bluesky_Logo.svg.png" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://twitter.com/diamond42548" class="account-icon-item" title="X(Twitter)へ移動">
+                    <img alt="X(Twitter)へ移動" src="photos/l_my_0724twitter05.jpg" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://github.com/Diamond9869" class="account-icon-item" title="GitHubへ移動">
+                    <img alt="GitHubへ移動" src="photos/github-6980894_1280.png" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://charire.f5.si" class="account-icon-item" title="Discordサーバー「Charire」公式サイトへ移動">
+                    <img alt="Discordサーバーへ移動" src="photos/discordlogo_400x400.jpg" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://steamcommunity.com/id/manaismyyouth/" class="account-icon-item" title="Steamへ移動">
+                    <img alt="Steamへ移動" src="photos/Steam_icon_logo.svg.png" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://open.spotify.com/user/31dwobdr5gxozkag6btd4rjsw6si" class="account-icon-item" title="Spotifyへ移動">
+                    <img alt="Spotifyへ移動" src="photos/Spotify_Icon_RGB_Green.png" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://www.roblox.com/ja/users/5600914519/profile" class="account-icon-item" title="Robloxへ移動">
+                    <img alt="Robloxへ移動" src="photos/Roblox_profile.jpg" class="w-10 h-10 rounded-full object-cover">
+                </a>
+                <a href="https://suno.com/@nmkpkppecheneg" class="account-icon-item" title="Robloxへ移動">
+                  <img alt="Sunoへ移動" class="w-10 h-10 rounded-full object-cover" src="photos/JbHhI1yH_400x400.jpg">
+                </a>
+            </div>
+            <p class="mt-8 text-sm text-gray-500">© 2021-2025 NagaseDaiya. All rights reserved.</p>
         </div>
-      </div>
+    </footer>
+
+    <!-- 拡大画像モーダル -->
+    <div id="image-modal" class="modal">
+        <span class="absolute top-4 right-8 text-white text-5xl font-light cursor-pointer opacity-70 hover:opacity-100">&times;</span>
+        <img class="modal-content rounded-lg" id="modal-image" src="" alt="拡大画像">
     </div>
-    <script type="text/javascript" src="javascripts/jquery-3.1.0.min.js" ></script> <!--jQuery本体のプログラムを読み込む-->
-    <!--以下、スクロール時に滑らかに移動するプログラムをjQueryで指定-->
-    <script type="text/javascript">
-      // <a>タグのジャンプ先の指定(href)で前に"#"がついているもの (要するにページ内ジャンプ) に以下のプログラムを適用;
-      $(function(){
-        $('a[href^="#"]').click(function() {
-          var speed = 1000;
-          var href= $(this).attr("href");
-          var target = $(href == "#" || href == "" ? 'html' : href);
-          var position = target.offset().top;
-          $('body, html').animate({scrollTop:position}, speed, 'swing');
-          return false;
+
+    <script>
+        // グローバル変数の定義
+        const header = document.getElementById('header');
+        const toggleBtn = document.getElementById('header-toggle-btn');
+        const mapImage = document.getElementById('map-image');
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalClose = modal.querySelector('span');
+
+        let isHeaderVisible = true;
+        let originalMapSrc = mapImage.src;
+        let isMapZoomed = false;
+
+        // 1. ヘッダーの表示/非表示機能
+        toggleBtn.addEventListener('click', () => {
+            isHeaderVisible = !isHeaderVisible;
+            header.classList.toggle('header-hidden', !isHeaderVisible);
+            // 時刻コンテナの位置はCSSの隣接セレクタで自動調整される
         });
-      });
-    </script>
-    <div class="account-links">
-      <p align="center">-----------------------------------------------------------------------------------------------</p>
-      <h1 align="center">お気軽にフォローして下さい</h1>
-      <p align="center">
-        <a href="https://www.youtube.com/channel/UCNmaOhZBYirWnuPYAbp5jwg">
-          <img alt="YouTubeへ移動" title="YouTubeへ移動" class="linkaccounts-1" src="photos/favicon_144.png">
-        </a>
-        <a href="https://bsky.app/profile/did:plc:vuahuwreulilp6xw2vw7spmu">
-          <img alt="BlueSkyへ移動" title="BlueSkyへ移動" class="linkaccounts-2" src="photos/Bluesky_Logo.svg.png">
-        </a>
-        <a href="https://twitter.com/diamond42548">
-          <img alt="X(Twitter)へ移動" title="X(Twitter)へ移動" class="linkaccounts-3" src="photos/l_my_0724twitter05.jpg">
-        </a>
-	<a href="https://github.com/Diamond9869">
-          <img alt="GitHubへ移動" title="GitHubへ移動" class="linkaccounts-4" src="photos/github-6980894_1280.png">
-        </a>
-	<a href="https://discord.gg/vC27wQEV6S">
-          <img alt="Discordサーバーへ移動" title="Discordサーバーへ移動" class="linkaccounts-5" src="photos/discordlogo_400x400.jpg">
-        </a>
-	<a href="https://steamcommunity.com/profiles/76561199465926941">
-          <img alt="Steamへ移動" title="Steamへ移動" class="linkaccounts-6" src="photos/Steam_icon_logo.svg.png">
-        </a>
-	<a href="https://open.spotify.com/user/31dwobdr5gxozkag6btd4rjsw6si">
-          <img alt="Spotifyへ移動" title="Spotifyへ移動" class="linkaccounts-7" src="photos/Spotify_Icon_RGB_Green.png">
-        </a>
-	<a href="https://www.roblox.com/ja/users/5600914519/profile">
-          <img alt="Robloxへ移動" title="Robloxへ移動" class="linkaccounts-8" src="photos/Roblox_profile.jpg">
-        </a><br>
-      </p>
-      <p align="center">Copyright (C) 2021-2025 MaKun. All Rights Reserved.</p>
-      <script type="text/javascript">
-        var scrollAnimationElm302 = document.querySelectorAll('.account-links');
-        var scrollAnimationFunc302 = function() {
-          for(var i302 = 0; i302 < scrollAnimationElm302.length; i302++) {
-            var triggerMargin302 = 10;
-            if (window.innerHeight > scrollAnimationElm302[i302].getBoundingClientRect().top + triggerMargin302) {
-              scrollAnimationElm302[i302].classList.add('show');
-            }
-          }
+
+        // 2. 時刻表示機能
+        function updateClock() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const date = String(now.getDate()).padStart(2, '0');
+            const day = ['日', '月', '火', '水', '木', '金', '土'][now.getDay()];
+            const hour = String(now.getHours()).padStart(2, '0');
+            const minute = String(now.getMinutes()).padStart(2, '0');
+            const second = String(now.getSeconds()).padStart(2, '0');
+
+            document.getElementById('view_clock').textContent = `${year}/${month}/${date} (${day}) ${hour}:${minute}:${second}`;
         }
-        window.addEventListener('load', scrollAnimationFunc302);
-        window.addEventListener('scroll', scrollAnimationFunc302);
-      </script>
-    </div>
-  </body>
+        
+        // 読み込み完了時刻 (旧view_timeの機能)
+        window.onload = () => {
+             const loadedTime = new Date();
+             const timeString = `${loadedTime.getHours()}時${loadedTime.getMinutes()}分${loadedTime.getSeconds()}秒`;
+             document.getElementById('view_time').textContent = `ページ読み込み時刻: ${timeString}`;
+        };
+
+
+        // ページの読み込み完了後、クロックの更新を1秒ごとに行う
+        document.addEventListener('DOMContentLoaded', () => {
+            updateClock(); // 初回実行
+            setInterval(updateClock, 1000); // 1秒ごとに更新
+        });
+
+        // 3. 画像拡大・縮小機能 (モダンモーダルを使用)
+        mapImage.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            modalImage.src = originalMapSrc;
+        });
+
+        // モーダルを閉じる
+        modalClose.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // モーダル外のクリックで閉じる
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // 4. スクロール時のフェードインアニメーション (Intersection Observer APIを使用)
+        const fader = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            rootMargin: '0px 0px -10% 0px' // ビューポートの10%手前で発火
+        });
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            fader.observe(section);
+        });
+
+    </script>
+</body>
 </html>
